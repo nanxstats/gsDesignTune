@@ -625,7 +625,7 @@ gstune_eval_design <- function(fn, args, config_id, target, base_args, tuned_arg
 
 gstune_cache_key <- function(base_blob, tuned_args) {
   raw <- serialize(list(base = base_blob, tuned = tuned_args), connection = NULL)
-  unname(tools::md5sum(bytes = raw))
+  gstune_md5_bytes(raw)
 }
 
 gstune_results_to_df <- function(results, configs) {
