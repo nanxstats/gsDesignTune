@@ -1,11 +1,10 @@
 # gsDesignTune: Dependency-Aware Scenario Exploration for Group Sequential Designs
 
 Systematic, dependency-aware exploration of group sequential designs
-created by 'gsDesign::gsDesign()' and 'gsDesign::gsSurv()'. Provides
-reproducible grid/random search over user-defined candidate sets,
-parallel evaluation via the 'future' framework, standardized metric
-extraction, and auditable reporting for design-space evaluation and
-trade-off analysis.
+created by 'gsDesign'. Provides reproducible grid/random search over
+user-defined candidate sets, parallel evaluation via the 'future'
+framework, standardized metric extraction, and auditable reporting for
+design-space evaluation and trade-off analysis.
 
 ## Author
 
