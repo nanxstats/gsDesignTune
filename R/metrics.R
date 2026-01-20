@@ -1,3 +1,15 @@
+#' Extract standardized metrics from a group sequential design object
+#'
+#' Supports designs returned by [gsDesign::gsDesign()], [gsDesign::gsSurv()], and
+#' [gsDesign::gsSurvCalendar()]. Uses [gsDesign::gsBoundSummary()] when
+#' available.
+#'
+#' @param design A design object returned by the target function.
+#' @param target Target function name (used for endpoint-specific metrics).
+#'
+#' @return A named list of extracted metrics and summaries.
+#'
+#' @noRd
 gstune_extract_metrics <- function(design, target = c("gsDesign", "gsSurv", "gsSurvCalendar")) {
   target <- match.arg(target)
 

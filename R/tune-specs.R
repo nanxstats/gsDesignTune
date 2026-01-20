@@ -155,10 +155,28 @@ tune_dep <- function(depends_on, map) {
   )
 }
 
+#' Check if an object is a tune specification
+#'
+#' @param x Any R object.
+#'
+#' @return Logical scalar.
+#'
+#' @noRd
 is_tune_spec <- function(x) {
   inherits(x, "gstune_spec")
 }
 
+#' Resolve a tuning spec into candidate values
+#'
+#' Expands `tune_*()` specifications into a list of concrete candidate values.
+#' Dependent specifications (`tune_dep()`) are resolved using `context`.
+#'
+#' @param spec A `gstune_spec` or fixed value.
+#' @param context Named list of already-resolved values used for `tune_dep()`.
+#'
+#' @return A list of candidate values (each element is one atomic setting).
+#'
+#' @noRd
 gstune_candidates <- function(spec, context) {
   if (!is_tune_spec(spec)) {
     return(list(spec))
@@ -198,6 +216,13 @@ gstune_candidates <- function(spec, context) {
   )
 }
 
+#' Null-coalescing operator
+#'
+#' @param x,y Objects.
+#'
+#' @return `x` if it is not `NULL`, otherwise `y`.
+#'
+#' @noRd
 `%||%` <- function(x, y) {
   if (is.null(x)) y else x
 }

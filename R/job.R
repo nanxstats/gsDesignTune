@@ -481,6 +481,17 @@ GSDTuneJob <- R6::R6Class(
   )
 )
 
+#' Parse user arguments into base args and tune specs
+#'
+#' Splits `args` into fixed `base_args` and `tune_specs`, translates spending
+#' specifications from `upper=`/`lower=` into tuned `*_setting` parameters, and
+#' constructs the internal [ParamSpace] used for configuration generation.
+#'
+#' @param args Named list of evaluated arguments passed to `gs*Tune()`.
+#'
+#' @return A list with `base_args`, `tune_specs`, and `param_space`.
+#'
+#' @noRd
 gstune_parse_args <- function(args) {
   if (!is.null(args$upper) && (!is.null(args$sfu) || !is.null(args$sfupar))) {
     stop("Specify either `upper=` or (`sfu`, `sfupar`), not both.", call. = FALSE)
@@ -522,6 +533,17 @@ gstune_parse_args <- function(args) {
   list(base_args = base_args, tune_specs = tune_specs, param_space = ps)
 }
 
+#' Build an argument list for the target gsDesign call
+#'
+#' Combines fixed `base_args` with a configuration's `tuned_args` and translates
+#' spending settings into legacy `(sfu, sfupar)` / `(sfl, sflpar)` pairs.
+#'
+#' @param base_args Named list of fixed args (stored as list elements).
+#' @param tuned_args Named list of tuned args (stored as list elements).
+#'
+#' @return Named list suitable for `do.call()` into the target function.
+#'
+#' @noRd
 gstune_build_call_args <- function(base_args, tuned_args) {
   args <- base_args
   args[names(tuned_args)] <- tuned_args
@@ -541,6 +563,16 @@ gstune_build_call_args <- function(base_args, tuned_args) {
   args
 }
 
+#' Convert a tune spec to an audit-friendly list
+#'
+#' Drops non-serializable components (for example mapping functions) while
+#' preserving type and call information.
+#'
+#' @param x A `gstune_spec` or fixed value.
+#'
+#' @return A named list.
+#'
+#' @noRd
 gstune_spec_to_list <- function(x) {
   if (!is_tune_spec(x)) {
     return(list(type = "fixed", value = x))
@@ -550,6 +582,16 @@ gstune_spec_to_list <- function(x) {
   x2
 }
 
+#' Add derived columns to a configuration table
+#'
+#' Adds user-friendly labels for spending settings (e.g., `upper_fun`,
+#' `upper_par`) to support printing, plotting, and reporting.
+#'
+#' @param configs A data.frame of configurations.
+#'
+#' @return A data.frame with derived columns added when applicable.
+#'
+#' @noRd
 gstune_add_derived_config_cols <- function(configs) {
   if (!is.data.frame(configs)) {
     return(configs)
@@ -569,6 +611,23 @@ gstune_add_derived_config_cols <- function(configs) {
   configs
 }
 
+#' Evaluate a single configuration and extract metrics
+#'
+#' Calls the target design function, captures warnings and errors, computes a
+#' cache key, and extracts standardized metrics (plus optional user metrics).
+#'
+#' @param fn Target function.
+#' @param args Argument list passed to `do.call()`.
+#' @param config_id Integer configuration ID.
+#' @param target Target function name.
+#' @param base_args Fixed argument list for audit/caching and user metrics.
+#' @param tuned_args Tuned argument list for audit/caching and user metrics.
+#' @param metrics_fun Optional user metrics hook.
+#'
+#' @return A named list containing status, messages, metrics, and the design
+#'   object (when successful).
+#'
+#' @noRd
 gstune_eval_design <- function(fn, args, config_id, target, base_args, tuned_args, metrics_fun) {
   warnings <- character()
   design <- NULL
@@ -644,11 +703,27 @@ gstune_eval_design <- function(fn, args, config_id, target, base_args, tuned_arg
   )
 }
 
+#' Compute a cache key for a configuration
+#'
+#' @param base_blob Serializable object representing the base specification.
+#' @param tuned_args Named list of tuned arguments.
+#'
+#' @return A character scalar hash.
+#'
+#' @noRd
 gstune_cache_key <- function(base_blob, tuned_args) {
   raw <- serialize(list(base = base_blob, tuned = tuned_args), connection = NULL)
   gstune_md5_bytes(raw)
 }
 
+#' Assemble per-configuration results into a data.frame
+#'
+#' @param results List of evaluation results from `gstune_eval_design()`.
+#' @param configs Configuration data.frame (includes `config_id`).
+#'
+#' @return A data.frame combining configurations, status columns, and metrics.
+#'
+#' @noRd
 gstune_results_to_df <- function(results, configs) {
   out <- vector("list", length(results))
 
@@ -679,6 +754,15 @@ gstune_results_to_df <- function(results, configs) {
   gstune_rows_to_df(out)
 }
 
+#' Bind heterogeneous named rows into a data.frame
+#'
+#' Preserves non-scalar values as list-columns.
+#'
+#' @param rows List of named lists.
+#'
+#' @return A data.frame.
+#'
+#' @noRd
 gstune_rows_to_df <- function(rows) {
   if (length(rows) == 0L) {
     return(data.frame())
@@ -693,6 +777,14 @@ gstune_rows_to_df <- function(rows) {
   as.data.frame(cols, stringsAsFactors = FALSE)
 }
 
+#' Apply constraints to a results table
+#'
+#' @param df Results data.frame.
+#' @param constraints NULL, a function, or an expression/character string.
+#'
+#' @return Filtered `df`.
+#'
+#' @noRd
 gstune_apply_constraints <- function(df, constraints) {
   if (is.null(constraints)) {
     return(df)

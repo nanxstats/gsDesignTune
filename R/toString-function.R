@@ -1,5 +1,15 @@
 .gstune_fun_label_cache <- new.env(parent = emptyenv())
 
+#' Label a function for printing and plotting
+#'
+#' Creates a short label for a function (preferably `pkg::name`) and caches the
+#' result to keep printing/plotting fast when function-valued columns are used.
+#'
+#' @param fun A function.
+#'
+#' @return A character scalar.
+#'
+#' @noRd
 gstune_fun_label <- function(fun) {
   if (!is.function(fun)) {
     return("<not a function>")
@@ -23,6 +33,13 @@ gstune_fun_label <- function(fun) {
   label
 }
 
+#' Compute an uncached function label
+#'
+#' @param fun A function.
+#'
+#' @return A character scalar.
+#'
+#' @noRd
 gstune_fun_label_uncached <- function(fun) {
   env <- environment(fun)
   if (is.null(env)) {
@@ -39,6 +56,16 @@ gstune_fun_label_uncached <- function(fun) {
   "<function>"
 }
 
+#' Find an object's name in an environment
+#'
+#' Used to label functions from namespace environments.
+#'
+#' @param obj Object to locate.
+#' @param env Environment to search.
+#'
+#' @return A character scalar name, or `NA_character_` if not found.
+#'
+#' @noRd
 gstune_find_name_in_env <- function(obj, env) {
   nms <- tryCatch(ls(env, all.names = TRUE), error = function(e) character())
   for (nm in nms) {
@@ -50,6 +77,16 @@ gstune_find_name_in_env <- function(obj, env) {
   NA_character_
 }
 
+#' Create a short label for a value
+#'
+#' Handles spending settings, functions, and scalars, with a `toString()`-based
+#' fallback for other values.
+#'
+#' @param x Value to label.
+#'
+#' @return A character scalar.
+#'
+#' @noRd
 gstune_label_value <- function(x) {
   if (is_spending_setting(x)) {
     par <- x$par
@@ -65,6 +102,13 @@ gstune_label_value <- function(x) {
   tryCatch(toString(x), error = function(e) "<value>")
 }
 
+#' Label each element of a list-column
+#'
+#' @param values List of values.
+#'
+#' @return A character vector.
+#'
+#' @noRd
 gstune_label_list_col <- function(values) {
   vapply(values, gstune_label_value, character(1))
 }
