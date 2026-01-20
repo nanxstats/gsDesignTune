@@ -27,8 +27,9 @@ tune_fixed <- function(x) {
 
 #' Explicit candidate values
 #'
-#' `tune_values()` defines a finite set of candidate values. Values are provided
-#' as a list so vector-valued candidates (e.g., `timing`) are treated as atomic.
+#' `tune_values()` defines a finite set of candidate values.
+#' Values are provided as a list so vector-valued candidates
+#' (for example, `timing`) are treated as atomic.
 #'
 #' @param values A list of candidate values.
 #'
@@ -126,10 +127,11 @@ tune_choice <- function(...) {
 #' `tune_dep()` defines candidates for one argument as a function of other
 #' arguments.
 #'
-#' @param depends_on Character vector of argument names this specification depends on.
-#' @param map A function returning either a `tune_*()` specification or a fixed
-#'   value. The function should have arguments matching `depends_on` (or use
-#'   `...`).
+#' @param depends_on Character vector of argument names this specification
+#'   depends on.
+#' @param map A function returning either a `tune_*()` specification or
+#'   a fixed value. The function should have arguments matching
+#'   `depends_on` (or use `...`).
 #'
 #' @return A `gstune_spec` object.
 #' @export

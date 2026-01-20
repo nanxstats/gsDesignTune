@@ -565,8 +565,8 @@ gstune_build_call_args <- function(base_args, tuned_args) {
 
 #' Convert a tune spec to an audit-friendly list
 #'
-#' Drops non-serializable components (for example mapping functions) while
-#' preserving type and call information.
+#' Drops non-serializable components (for example, mapping functions)
+#' while preserving type and call information.
 #'
 #' @param x A `gstune_spec` or fixed value.
 #'
@@ -584,8 +584,8 @@ gstune_spec_to_list <- function(x) {
 
 #' Add derived columns to a configuration table
 #'
-#' Adds user-friendly labels for spending settings (e.g., `upper_fun`,
-#' `upper_par`) to support printing, plotting, and reporting.
+#' Adds user-friendly labels for spending settings (for example,
+#' `upper_fun`, `upper_par`) to support printing, plotting, and reporting.
 #'
 #' @param configs A data.frame of configurations.
 #'

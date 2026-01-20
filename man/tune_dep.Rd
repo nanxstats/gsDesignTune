@@ -7,11 +7,12 @@
 tune_dep(depends_on, map)
 }
 \arguments{
-\item{depends_on}{Character vector of argument names this specification depends on.}
+\item{depends_on}{Character vector of argument names this specification
+depends on.}
 
-\item{map}{A function returning either a \verb{tune_*()} specification or a fixed
-value. The function should have arguments matching \code{depends_on} (or use
-\code{...}).}
+\item{map}{A function returning either a \verb{tune_*()} specification or
+a fixed value. The function should have arguments matching
+\code{depends_on} (or use \code{...}).}
 }
 \value{
 A \code{gstune_spec} object.
