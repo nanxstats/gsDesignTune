@@ -1,8 +1,7 @@
 #' Create a tune job for `gsDesign::gsDesign()`
 #'
-#' `gsDesignTune()` and `gsSurvTune()` are drop-in replacements for
-#' [gsDesign::gsDesign()] and [gsDesign::gsSurv()] that return a tune job object
-#' instead of immediately running a single design.
+#' `gsDesignTune()` is a drop-in replacement for [gsDesign::gsDesign()] that
+#' returns a tune job object instead of immediately running a single design.
 #'
 #' Any argument can be replaced by a tuning specification created by `tune_*()`.
 #' Use `SpendingSpec` / `SpendingFamily` via `upper=` and `lower=` for
@@ -25,9 +24,8 @@ gsDesignTune <- function(..., upper = NULL, lower = NULL) {
 
 #' Create a tune job for `gsDesign::gsSurv()`
 #'
-#' `gsDesignTune()` and `gsSurvTune()` are drop-in replacements for
-#' [gsDesign::gsDesign()] and [gsDesign::gsSurv()] that return a tune job object
-#' instead of immediately running a single design.
+#' `gsSurvTune()` is a drop-in replacement for [gsDesign::gsSurv()] that
+#' returns a tune job object instead of immediately running a single design.
 #'
 #' Any argument can be replaced by a tuning specification created by `tune_*()`.
 #' Use `SpendingSpec` / `SpendingFamily` via `upper=` and `lower=` for
@@ -49,6 +47,14 @@ gsSurvTune <- function(..., upper = NULL, lower = NULL) {
 }
 
 #' Create a tune job for `gsDesign::gsSurvCalendar()`
+#'
+#' `gsSurvCalendarTune()` is a drop-in replacement for
+#' [gsDesign::gsSurvCalendar()] that returns a tune job object instead of
+#' immediately running a single design.
+#'
+#' Any argument can be replaced by a tuning specification created by `tune_*()`.
+#' Use `SpendingSpec` / `SpendingFamily` via `upper=` and `lower=` for
+#' dependency-aware spending function tuning.
 #'
 #' @param ... Arguments to [gsDesign::gsSurvCalendar()]. Any argument can be
 #'   replaced by a `tune_*()` specification.

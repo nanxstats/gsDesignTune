@@ -18,9 +18,8 @@ the underlying \verb{(sfu, sfupar)} / \verb{(sfl, sflpar)} arguments.}
 A \code{GSDTuneJob} R6 object.
 }
 \description{
-\code{gsDesignTune()} and \code{gsSurvTune()} are drop-in replacements for
-\code{\link[gsDesign:gsDesign]{gsDesign::gsDesign()}} and \code{\link[gsDesign:nSurv]{gsDesign::gsSurv()}} that return a tune job object
-instead of immediately running a single design.
+\code{gsDesignTune()} is a drop-in replacement for \code{\link[gsDesign:gsDesign]{gsDesign::gsDesign()}} that
+returns a tune job object instead of immediately running a single design.
 }
 \details{
 Any argument can be replaced by a tuning specification created by \verb{tune_*()}.
