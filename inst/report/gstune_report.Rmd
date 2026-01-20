@@ -1,0 +1,61 @@
+---
+title: "gsDesignTune report"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+params:
+  job: !r NULL
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+job <- params$job
+stopifnot(!is.null(job))
+```
+
+## Spec
+
+```{r}
+utils::str(job$spec, max.level = 2)
+```
+
+## Results
+
+```{r}
+res <- job$results()
+table(res$status)
+utils::head(res, 20)
+```
+
+```{r}
+if (requireNamespace("knitr", quietly = TRUE)) {
+  knitr::kable(utils::head(res, 20))
+}
+```
+
+## Quick exploration
+
+```{r}
+if (requireNamespace("ggplot2", quietly = TRUE)) {
+  if ("final_events" %in% names(res) && "hr" %in% names(res) && is.numeric(res$final_events) && is.numeric(res$hr)) {
+    print(job$plot(metric = "final_events", x = "hr", color = if ("upper_fun" %in% names(res)) "upper_fun" else NULL))
+  } else if ("final_n" %in% names(res)) {
+    num_cols <- names(res)[vapply(res, is.numeric, logical(1))]
+    x <- setdiff(num_cols, c("final_n", "config_id"))[1]
+    if (!is.null(x)) {
+      print(job$plot(metric = "final_n", x = x))
+    }
+  }
+}
+```
+
+## Best designs (single metric)
+
+```{r}
+if ("final_events" %in% names(res) && is.numeric(res$final_events)) {
+  utils::head(job$best("final_events", direction = "min"), 10)
+} else if ("final_n" %in% names(res) && is.numeric(res$final_n)) {
+  utils::head(job$best("final_n", direction = "min"), 10)
+}
+```

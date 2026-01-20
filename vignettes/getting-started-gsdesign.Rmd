@@ -1,0 +1,64 @@
+---
+title: "Getting started: tuning gsDesign()"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started: tuning gsDesign()}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+This vignette shows a minimal, dependency-aware grid search over group sequential
+designs created by [gsDesign::gsDesign()].
+
+```{r}
+library(gsDesign)
+library(gsDesignTune)
+```
+
+## Minimal run
+
+```{r}
+job <- gsDesignTune(
+  k = 3,
+  test.type = 2,
+  alpha = 0.025,
+  beta = 0.10,
+  timing = tune_values(list(c(0.33, 0.67, 1), c(0.5, 0.75, 1))),
+  upper = SpendingFamily$new(
+    SpendingSpec$new(sfLDOF, par = tune_fixed(0)),
+    SpendingSpec$new(sfHSD, par = tune_seq(-4, 4, length_out = 3))
+  )
+)
+
+job$run(strategy = "grid", parallel = FALSE)
+res <- job$results()
+head(res)
+```
+
+## Ranking / filtering
+
+```{r}
+best <- job$best("final_n", direction = "min")
+head(best, 10)
+```
+
+## Plot
+
+```{r}
+if (requireNamespace("ggplot2", quietly = TRUE)) {
+  job$plot(metric = "final_n", x = "upper_par", color = "upper_fun")
+}
+```
+
+## Export a report
+
+```{r}
+report_path <- tempfile(fileext = ".html")
+job$report(report_path)
+report_path
+```
+
