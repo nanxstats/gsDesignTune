@@ -97,14 +97,43 @@ SpendingFamily <- R6::R6Class(
   )
 )
 
+#' Construct a concrete spending setting
+#'
+#' Internal representation used in tuning configurations for spending function
+#' choice plus a concrete parameter value.
+#'
+#' @param fun Spending function.
+#' @param fun_label Character label for `fun`.
+#' @param par Concrete parameter value (may be `NULL`).
+#'
+#' @return An object of class `gstune_spending`.
+#'
+#' @noRd
 spending_setting <- function(fun, fun_label, par) {
   structure(list(fun = fun, fun_label = fun_label, par = par), class = "gstune_spending")
 }
 
+#' Test if an object is a spending setting
+#'
+#' @param x Any R object.
+#'
+#' @return Logical scalar.
+#'
+#' @noRd
 is_spending_setting <- function(x) {
   inherits(x, "gstune_spending")
 }
 
+#' Coerce a spending specification to a list of settings
+#'
+#' Accepts `SpendingSpec`, `SpendingFamily`, or an existing spending setting
+#' object.
+#'
+#' @param x Object to coerce.
+#'
+#' @return A list of `gstune_spending` objects.
+#'
+#' @noRd
 as_spending_setting_list <- function(x) {
   if (inherits(x, "SpendingSpec")) {
     return(x$expand())

@@ -205,6 +205,15 @@ ParamSpace <- R6::R6Class(
   )
 )
 
+#' Convert configuration list to a data.frame
+#'
+#' @param configs List of named lists (contexts), one per configuration.
+#' @param ids Character vector of tuned parameter IDs (column order).
+#'
+#' @return A data.frame of configurations; complex values are stored as
+#'   list-columns.
+#'
+#' @noRd
 gstune_configs_to_df <- function(configs, ids) {
   n <- length(configs)
   cols <- stats::setNames(vector("list", length(ids)), ids)
@@ -215,6 +224,16 @@ gstune_configs_to_df <- function(configs, ids) {
   as.data.frame(cols, stringsAsFactors = FALSE)
 }
 
+#' Simplify column values for results/config tables
+#'
+#' Attempts to simplify a list of values into an atomic vector when every value
+#' is a scalar atomic. Otherwise returns an `I()` list-column.
+#'
+#' @param values List of values.
+#'
+#' @return An atomic vector or an `I()` list-column.
+#'
+#' @noRd
 gstune_simplify_col <- function(values) {
   if (length(values) == 0L) {
     return(values)

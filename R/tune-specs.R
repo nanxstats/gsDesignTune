@@ -27,8 +27,9 @@ tune_fixed <- function(x) {
 
 #' Explicit candidate values
 #'
-#' `tune_values()` defines a finite set of candidate values. Values are provided
-#' as a list so vector-valued candidates (e.g., `timing`) are treated as atomic.
+#' `tune_values()` defines a finite set of candidate values.
+#' Values are provided as a list so vector-valued candidates
+#' (for example, `timing`) are treated as atomic.
 #'
 #' @param values A list of candidate values.
 #'
@@ -126,10 +127,11 @@ tune_choice <- function(...) {
 #' `tune_dep()` defines candidates for one argument as a function of other
 #' arguments.
 #'
-#' @param depends_on Character vector of argument names this specification depends on.
-#' @param map A function returning either a `tune_*()` specification or a fixed
-#'   value. The function should have arguments matching `depends_on` (or use
-#'   `...`).
+#' @param depends_on Character vector of argument names this specification
+#'   depends on.
+#' @param map A function returning either a `tune_*()` specification or
+#'   a fixed value. The function should have arguments matching
+#'   `depends_on` (or use `...`).
 #'
 #' @return A `gstune_spec` object.
 #' @export
@@ -155,10 +157,28 @@ tune_dep <- function(depends_on, map) {
   )
 }
 
+#' Check if an object is a tune specification
+#'
+#' @param x Any R object.
+#'
+#' @return Logical scalar.
+#'
+#' @noRd
 is_tune_spec <- function(x) {
   inherits(x, "gstune_spec")
 }
 
+#' Resolve a tuning spec into candidate values
+#'
+#' Expands `tune_*()` specifications into a list of concrete candidate values.
+#' Dependent specifications (`tune_dep()`) are resolved using `context`.
+#'
+#' @param spec A `gstune_spec` or fixed value.
+#' @param context Named list of already-resolved values used for `tune_dep()`.
+#'
+#' @return A list of candidate values (each element is one atomic setting).
+#'
+#' @noRd
 gstune_candidates <- function(spec, context) {
   if (!is_tune_spec(spec)) {
     return(list(spec))
@@ -198,6 +218,13 @@ gstune_candidates <- function(spec, context) {
   )
 }
 
+#' Null-coalescing operator
+#'
+#' @param x,y Objects.
+#'
+#' @return `x` if it is not `NULL`, otherwise `y`.
+#'
+#' @noRd
 `%||%` <- function(x, y) {
   if (is.null(x)) y else x
 }

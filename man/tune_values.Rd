@@ -13,8 +13,9 @@ tune_values(values)
 A \code{gstune_spec} object.
 }
 \description{
-\code{tune_values()} defines a finite set of candidate values. Values are provided
-as a list so vector-valued candidates (e.g., \code{timing}) are treated as atomic.
+\code{tune_values()} defines a finite set of candidate values.
+Values are provided as a list so vector-valued candidates
+(for example, \code{timing}) are treated as atomic.
 }
 \examples{
 tune_values(list(0.55, 0.65, 0.75))
