@@ -98,5 +98,5 @@ head(job$results())
 report_path <- tempfile(fileext = ".html")
 job$report(report_path)
 report_path
-#> [1] "/tmp/RtmpWvzLqn/file1dc71755da0e.html"
+#> [1] "/tmp/RtmpZVbWNP/file1d9f6fc02575.html"
 ```

@@ -1,7 +1,8 @@
 # Getting started: tuning gsSurv()
 
 This vignette shows a small scenario exploration for time-to-event
-designs from \[gsDesign::gsSurv()\].
+designs from
+[`gsDesign::gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html).
 
 ``` r
 library(gsDesign)
@@ -192,5 +193,5 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 report_path <- tempfile(fileext = ".html")
 job$report(report_path)
 report_path
-#> [1] "/tmp/RtmpN3CAcd/file1d88253a328.html"
+#> [1] "/tmp/RtmpbxjKGj/file1d611b2aacec.html"
 ```

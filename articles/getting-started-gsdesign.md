@@ -1,7 +1,8 @@
 # Getting started: tuning gsDesign()
 
 This vignette shows a minimal, dependency-aware grid search over group
-sequential designs created by \[gsDesign::gsDesign()\].
+sequential designs created by
+[`gsDesign::gsDesign()`](https://keaven.github.io/gsDesign/reference/gsDesign.html).
 
 ``` r
 library(gsDesign)
@@ -155,5 +156,5 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 report_path <- tempfile(fileext = ".html")
 job$report(report_path)
 report_path
-#> [1] "/tmp/Rtmp6PUoaU/file1d4a1fef2a17.html"
+#> [1] "/tmp/RtmpcoQMkW/file1d225926583b.html"
 ```
