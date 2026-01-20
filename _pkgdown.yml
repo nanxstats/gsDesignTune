@@ -5,3 +5,33 @@ template:
   bslib:
     preset: "bootstrap"
   math-rendering: "mathjax"
+
+reference:
+  - title: "Tune jobs"
+    desc: "Create a tune job"
+    contents:
+      - gsDesignTune
+      - gsSurvTune
+
+  - title: "Tune job workflow"
+    desc: "R6 class for running searches, collecting results, and exploring designs"
+    contents:
+      - GSDTuneJob
+
+  - title: "Spending function tuning"
+    desc: "User-friendly specifications for spending functions and their parameters"
+    contents:
+      - spending_specs
+      - SpendingSpec
+      - SpendingFamily
+
+  - title: "Tune specifications"
+    desc: "Define candidate sets and dependencies for arguments to be explored"
+    contents:
+      - tune_specs
+      - tune_fixed
+      - tune_values
+      - tune_seq
+      - tune_int
+      - tune_choice
+      - tune_dep
