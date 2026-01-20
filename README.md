@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/nanxstats/gsDesignTune/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nanxstats/gsDesignTune/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 gsDesignTune enables systematic, dependency-aware scenario exploration
