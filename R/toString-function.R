@@ -6,7 +6,7 @@ gstune_fun_label <- function(fun) {
   }
 
   key <- tryCatch(
-    unname(tools::md5sum(bytes = serialize(fun, connection = NULL))),
+    gstune_md5_bytes(serialize(fun, connection = NULL)),
     error = function(e) NA_character_
   )
 
