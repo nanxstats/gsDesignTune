@@ -9,8 +9,8 @@
 <!-- badges: end -->
 
 gsDesignTune enables systematic, dependency-aware scenario exploration
-for group sequential designs created by `gsDesign::gsDesign()` and
-`gsDesign::gsSurv()`.
+for group sequential designs created by `gsDesign::gsDesign()`,
+`gsDesign::gsSurv()`, and `gsDesign::gsSurvCalendar()`.
 
 It is designed for **design-space evaluation** (ranking, filtering,
 Pareto trade-offs) rather than claiming a single “optimal design”.
@@ -27,8 +27,9 @@ pak::pak("nanxstats/gsDesignTune")
 
 ## Features
 
-- Drop-in workflow: replace `gsDesign()`/`gsSurv()` with
-  `gsDesignTune()`/`gsSurvTune()`, then `$run()`.
+- Drop-in workflow: replace `gsDesign()`/`gsSurv()`/`gsSurvCalendar()`
+  with `gsDesignTune()`/`gsSurvTune()`/`gsSurvCalendarTune()`, then
+  `$run()`.
 - Dependency-aware tuning: express relationships like spending function
   ↔ spending parameter.
 - Grid and random search over candidate sets (vector-valued args are
@@ -49,7 +50,7 @@ library(gsDesign)
 library(gsDesignTune)
 library(future)
 
-plan(multisession, workers = 8)
+plan(multisession, workers = 2)
 
 job <- gsSurvTune(
   k = 3,
@@ -88,6 +89,10 @@ job$plot(metric = "final_events", x = "hr", color = "upper_fun")
 ``` r
 job$report("gstune_report.html")
 ```
+
+For calendar-timed analyses, use `gsSurvCalendarTune()` with
+`calendarTime` and optionally tune
+`spending = tune_choice("information", "calendar")`.
 
 ## Tune specifications
 

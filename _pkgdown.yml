@@ -12,6 +12,7 @@ reference:
     contents:
       - gsDesignTune
       - gsSurvTune
+      - gsSurvCalendarTune
 
   - title: "Tune job workflow"
     desc: "R6 class for running searches, collecting results, and exploring designs"
