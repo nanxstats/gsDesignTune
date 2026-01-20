@@ -12,7 +12,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 This vignette shows a small scenario exploration for time-to-event designs from
-`gsDesign::gsSurv()`.
+`gsDesign::gsSurv()` and `gsDesign::gsSurvCalendar()`.
 
 ```{r}
 library(gsDesign)
@@ -46,6 +46,37 @@ job <- gsSurvTune(
 job$run(strategy = "grid", parallel = FALSE)
 res <- job$results()
 head(res)
+```
+
+## Calendar-timed analyses with `gsSurvCalendarTune()`
+
+`gsSurvCalendarTune()` is similar to `gsSurvTune()`, but you specify planned
+calendar times of analyses via `calendarTime` instead of information timing.
+
+```{r}
+job_cal <- gsSurvCalendarTune(
+  test.type = 4,
+  alpha = 0.025,
+  beta = 0.10,
+  calendarTime = tune_values(list(c(12, 24, 36), c(9, 18, 27))),
+  spending = tune_choice("information", "calendar"),
+  hr = tune_seq(0.60, 0.75, length_out = 3),
+  upper = SpendingFamily$new(
+    SpendingSpec$new(sfLDOF, par = tune_fixed(0)),
+    SpendingSpec$new(sfHSD, par = tune_seq(-4, 4, length_out = 3))
+  ),
+  lower = SpendingSpec$new(sfLDOF, par = tune_fixed(0)),
+  lambdaC = log(2) / 6,
+  eta = 0.01,
+  gamma = c(2.5, 5, 7.5, 10),
+  R = c(2, 2, 2, 6),
+  minfup = 18,
+  ratio = 1
+)
+
+job_cal$run(strategy = "grid", parallel = FALSE)
+res_cal <- job_cal$results()
+head(res_cal)
 ```
 
 ## Multi-scenario exploration
