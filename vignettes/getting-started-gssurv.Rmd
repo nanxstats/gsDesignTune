@@ -12,7 +12,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 This vignette shows a small scenario exploration for time-to-event designs from
-[gsDesign::gsSurv()].
+`gsDesign::gsSurv()`.
 
 ```{r}
 library(gsDesign)
@@ -68,4 +68,3 @@ report_path <- tempfile(fileext = ".html")
 job$report(report_path)
 report_path
 ```
-
