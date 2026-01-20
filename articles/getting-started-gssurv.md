@@ -286,5 +286,5 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 report_path <- tempfile(fileext = ".html")
 job$report(report_path)
 report_path
-#> [1] "/tmp/RtmpcWNQf5/file1d9c6310bfb6.html"
+#> [1] "/tmp/RtmpeHwvVb/file1d7b7508e62.html"
 ```
