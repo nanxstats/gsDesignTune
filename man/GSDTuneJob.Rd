@@ -49,13 +49,13 @@ designs created by \code{\link[gsDesign:gsDesign]{gsDesign::gsDesign()}} or \cod
 \subsection{Method \code{new()}}{
 Create a new tune job.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{GSDTuneJob$new(target = c("gsDesign", "gsSurv"), args)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{GSDTuneJob$new(target = c("gsDesign", "gsSurv", "gsSurvCalendar"), args)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{target}}{Target function name (\code{"gsDesign"} or \code{"gsSurv"}).}
+\item{\code{target}}{Target function name (\code{"gsDesign"}, \code{"gsSurv"}, or \code{"gsSurvCalendar"}).}
 
 \item{\code{args}}{Named list of evaluated arguments.}
 }

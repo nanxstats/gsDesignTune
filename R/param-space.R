@@ -155,7 +155,7 @@ ParamSpace <- R6::R6Class(
         cand <- gstune_candidates(spec, context = context)
         for (v in cand) {
           context2 <- context
-          context2[[id]] <- v
+          context2[id] <- list(v)
           walk(i + 1L, context2)
         }
         invisible(NULL)
@@ -195,7 +195,7 @@ ParamSpace <- R6::R6Class(
         for (id in ids) {
           spec <- self$params[[id]]
           cand <- gstune_candidates(spec, context = context)
-          context[[id]] <- cand[[sample.int(length(cand), size = 1L)]]
+          context[id] <- list(cand[[sample.int(length(cand), size = 1L)]])
         }
         configs[[i]] <- context
       }

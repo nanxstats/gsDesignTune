@@ -1,4 +1,4 @@
-gstune_extract_metrics <- function(design, target = c("gsDesign", "gsSurv")) {
+gstune_extract_metrics <- function(design, target = c("gsDesign", "gsSurv", "gsSurvCalendar")) {
   target <- match.arg(target)
 
   bs <- tryCatch(gsDesign::gsBoundSummary(design), error = function(e) NULL)
@@ -48,7 +48,7 @@ gstune_extract_metrics <- function(design, target = c("gsDesign", "gsSurv")) {
     bound_summary = bs
   )
 
-  if (target == "gsSurv") {
+  if (target %in% c("gsSurv", "gsSurvCalendar")) {
     n_total <- NULL
     if (!is.null(p_rows)) {
       n_total <- suppressWarnings(as.numeric(sub(".*N:\\s*", "", p_rows$Analysis)))
