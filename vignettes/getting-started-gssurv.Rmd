@@ -1,0 +1,71 @@
+---
+title: "Getting started: tuning gsSurv()"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started: tuning gsSurv()}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+This vignette shows a small scenario exploration for time-to-event designs from
+[gsDesign::gsSurv()].
+
+```{r}
+library(gsDesign)
+library(gsDesignTune)
+```
+
+## Minimal run
+
+```{r}
+job <- gsSurvTune(
+  k = 3,
+  test.type = 4,
+  alpha = 0.025,
+  beta = 0.10,
+  timing = tune_values(list(c(0.33, 0.67, 1), c(0.5, 0.75, 1))),
+  hr = tune_seq(0.60, 0.75, length_out = 3),
+  upper = SpendingFamily$new(
+    SpendingSpec$new(sfLDOF, par = tune_fixed(0)),
+    SpendingSpec$new(sfHSD, par = tune_seq(-4, 4, length_out = 3))
+  ),
+  lower = SpendingSpec$new(sfLDOF, par = tune_fixed(0)),
+  lambdaC = log(2) / 6,
+  eta = 0.01,
+  gamma = c(2.5, 5, 7.5, 10),
+  R = c(2, 2, 2, 6),
+  T = 18,
+  minfup = 6,
+  ratio = 1
+)
+
+job$run(strategy = "grid", parallel = FALSE)
+res <- job$results()
+head(res)
+```
+
+## Multi-scenario exploration
+
+```{r}
+best <- job$best("final_events", direction = "min")
+head(best, 10)
+```
+
+```{r}
+if (requireNamespace("ggplot2", quietly = TRUE)) {
+  job$plot(metric = "final_events", x = "hr", color = "upper_fun")
+}
+```
+
+## Export a report
+
+```{r}
+report_path <- tempfile(fileext = ".html")
+job$report(report_path)
+report_path
+```
+
