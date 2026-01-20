@@ -1,4 +1,4 @@
-#' Tune group sequential designs from gsDesign
+#' Create a tune job for `gsDesign::gsDesign()`
 #'
 #' `gsDesignTune()` and `gsSurvTune()` are drop-in replacements for
 #' [gsDesign::gsDesign()] and [gsDesign::gsSurv()] that return a tune job object
@@ -7,11 +7,6 @@
 #' Any argument can be replaced by a tuning specification created by `tune_*()`.
 #' Use `SpendingSpec` / `SpendingFamily` via `upper=` and `lower=` for
 #' dependency-aware spending function tuning.
-#'
-#' @name gsDesignTune
-NULL
-
-#' Create a tune job for `gsDesign::gsDesign()`
 #'
 #' @param ... Arguments to [gsDesign::gsDesign()]. Any argument can be replaced
 #'   by a `tune_*()` specification.
@@ -29,6 +24,14 @@ gsDesignTune <- function(..., upper = NULL, lower = NULL) {
 }
 
 #' Create a tune job for `gsDesign::gsSurv()`
+#'
+#' `gsDesignTune()` and `gsSurvTune()` are drop-in replacements for
+#' [gsDesign::gsDesign()] and [gsDesign::gsSurv()] that return a tune job object
+#' instead of immediately running a single design.
+#'
+#' Any argument can be replaced by a tuning specification created by `tune_*()`.
+#' Use `SpendingSpec` / `SpendingFamily` via `upper=` and `lower=` for
+#' dependency-aware spending function tuning.
 #'
 #' @param ... Arguments to [gsDesign::gsSurv()]. Any argument can be replaced
 #'   by a `tune_*()` specification.
