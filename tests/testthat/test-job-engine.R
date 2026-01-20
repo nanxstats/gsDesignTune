@@ -69,3 +69,40 @@ test_that("Call reconstruction reproduces a design", {
   expect_equal(d1$n.I, d2$n.I)
   expect_equal(d1$upper$bound, d2$upper$bound)
 })
+
+test_that("gsSurvCalendarTune runs and reconstructs calls", {
+  job <- gsSurvCalendarTune(
+    test.type = 4,
+    alpha = 0.025,
+    beta = 0.10,
+    calendarTime = tune_values(list(c(12, 24, 36), c(9, 18, 27))),
+    spending = tune_choice("information", "calendar"),
+    hr = tune_values(list(0.70, 0.75)),
+    sfl = gsDesign::sfLDPocock,
+    sflpar = NULL,
+    lambdaC = log(2) / 6,
+    eta = 0.01,
+    gamma = c(2.5, 5, 7.5, 10),
+    R = c(2, 2, 2, 6),
+    minfup = 18,
+    ratio = 1
+  )
+  job$run(strategy = "grid", parallel = FALSE)
+  res <- job$results()
+
+  expect_true(all(res$status %in% c("ok", "error")))
+  expect_true(any(res$status == "ok"))
+  expect_true("final_events" %in% names(res))
+
+  # Reconstruct the underlying call for one successful configuration
+  ok_i <- which(res$status == "ok")[[1]]
+  d1 <- job$design(ok_i)
+  call_args <- job$call_args(ok_i)
+  expect_true("sflpar" %in% names(call_args))
+  expect_true(is.null(call_args$sflpar))
+  d2 <- do.call(gsDesign::gsSurvCalendar, call_args)
+
+  expect_equal(d1$n.I, d2$n.I)
+  expect_equal(d1$upper$bound, d2$upper$bound)
+  expect_equal(d1$T, d2$T)
+})

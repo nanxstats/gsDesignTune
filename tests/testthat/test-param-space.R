@@ -18,3 +18,14 @@ test_that("Vector-valued candidates are treated as atomic", {
   expect_true(is.list(grid$timing))
   expect_equal(grid$timing[[1]], c(0.33, 0.67, 1))
 })
+
+test_that("NULL can be a candidate value", {
+  ps <- gsDesignTune:::ParamSpace$new()
+  ps$add_param("x", tune_values(list(NULL, 1)))
+  grid <- ps$grid(base_context = list())
+
+  expect_equal(nrow(grid), 2)
+  expect_true("x" %in% names(grid))
+  expect_true(is.list(grid$x))
+  expect_true(is.null(grid$x[[1]]) || is.null(grid$x[[2]]))
+})
