@@ -1,4 +1,4 @@
-# Tune group sequential designs from gsDesign
+# Create a tune job for `gsDesign::gsDesign()`
 
 `gsDesignTune()` and
 [`gsSurvTune()`](https://nanx.me/gsDesignTune/reference/gsSurvTune.md)

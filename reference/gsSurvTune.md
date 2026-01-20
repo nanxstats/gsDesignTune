@@ -1,7 +1,12 @@
 # Create a tune job for `gsDesign::gsSurv()`
 
-Create a tune job for
+[`gsDesignTune()`](https://nanx.me/gsDesignTune/reference/gsDesignTune.md)
+and `gsSurvTune()` are drop-in replacements for
+[`gsDesign::gsDesign()`](https://keaven.github.io/gsDesign/reference/gsDesign.html)
+and
 [`gsDesign::gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html)
+that return a tune job object instead of immediately running a single
+design.
 
 ## Usage
 
@@ -26,3 +31,9 @@ gsSurvTune(..., upper = NULL, lower = NULL)
 ## Value
 
 A `GSDTuneJob` R6 object.
+
+## Details
+
+Any argument can be replaced by a tuning specification created by
+`tune_*()`. Use `SpendingSpec` / `SpendingFamily` via `upper=` and
+`lower=` for dependency-aware spending function tuning.
