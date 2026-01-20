@@ -6,6 +6,16 @@ user-defined candidate sets, parallel evaluation via the 'future'
 framework, standardized metric extraction, and auditable reporting for
 design-space evaluation and trade-off analysis.
 
+## See also
+
+Useful links:
+
+- <https://nanx.me/gsDesignTune/>
+
+- <https://github.com/nanxstats/gsDesignTune>
+
+- Report bugs at <https://github.com/nanxstats/gsDesignTune/issues>
+
 ## Author
 
 **Maintainer**: Nan Xiao <me@nanx.me>

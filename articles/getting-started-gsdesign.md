@@ -142,7 +142,8 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 #> ℹ Please use tidy evaluation idioms with `aes()`.
 #> ℹ See also `vignette("ggplot2-in-packages")` for more information.
 #> ℹ The deprecated feature was likely used in the gsDesignTune package.
-#>   Please report the issue to the authors.
+#>   Please report the issue at
+#>   <https://github.com/nanxstats/gsDesignTune/issues>.
 #> This warning is displayed once per session.
 #> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 #> generated.
@@ -156,5 +157,5 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 report_path <- tempfile(fileext = ".html")
 job$report(report_path)
 report_path
-#> [1] "/tmp/RtmpToSJT3/file1d0d49f4887b.html"
+#> [1] "/tmp/RtmpCtYcFR/file1d27679e83ab.html"
 ```
