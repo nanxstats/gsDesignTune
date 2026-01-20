@@ -18,5 +18,12 @@ the underlying \verb{(sfu, sfupar)} / \verb{(sfl, sflpar)} arguments.}
 A \code{GSDTuneJob} R6 object.
 }
 \description{
-Create a tune job for \code{gsDesign::gsSurv()}
+\code{gsDesignTune()} and \code{gsSurvTune()} are drop-in replacements for
+\code{\link[gsDesign:gsDesign]{gsDesign::gsDesign()}} and \code{\link[gsDesign:nSurv]{gsDesign::gsSurv()}} that return a tune job object
+instead of immediately running a single design.
+}
+\details{
+Any argument can be replaced by a tuning specification created by \verb{tune_*()}.
+Use \code{SpendingSpec} / \code{SpendingFamily} via \verb{upper=} and \verb{lower=} for
+dependency-aware spending function tuning.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/job.R
 \name{gsDesignTune}
 \alias{gsDesignTune}
-\title{Tune group sequential designs from gsDesign}
+\title{Create a tune job for \code{gsDesign::gsDesign()}}
 \usage{
 gsDesignTune(..., upper = NULL, lower = NULL)
 }
