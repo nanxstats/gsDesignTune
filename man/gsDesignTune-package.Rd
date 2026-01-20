@@ -7,6 +7,15 @@
 \description{
 Systematic, dependency-aware exploration of group sequential designs created by 'gsDesign'. Provides reproducible grid/random search over user-defined candidate sets, parallel evaluation via the 'future' framework, standardized metric extraction, and auditable reporting for design-space evaluation and trade-off analysis.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://nanx.me/gsDesignTune/}
+  \item \url{https://github.com/nanxstats/gsDesignTune}
+  \item Report bugs at \url{https://github.com/nanxstats/gsDesignTune/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Nan Xiao \email{me@nanx.me} (\href{https://orcid.org/0000-0002-0250-5673}{ORCID})
 
