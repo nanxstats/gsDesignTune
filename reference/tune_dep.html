@@ -63,13 +63,14 @@ arguments.</p>
 
 
 <dl><dt id="arg-depends-on">depends_on<a class="anchor" aria-label="anchor" href="#arg-depends-on"></a></dt>
-<dd><p>Character vector of argument names this specification depends on.</p></dd>
+<dd><p>Character vector of argument names this specification
+depends on.</p></dd>
 
 
 <dt id="arg-map">map<a class="anchor" aria-label="anchor" href="#arg-map"></a></dt>
-<dd><p>A function returning either a <code>tune_*()</code> specification or a fixed
-value. The function should have arguments matching <code>depends_on</code> (or use
-<code>...</code>).</p></dd>
+<dd><p>A function returning either a <code>tune_*()</code> specification or
+a fixed value. The function should have arguments matching
+<code>depends_on</code> (or use <code>...</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -99,7 +100,7 @@ value. The function should have arguments matching <code>depends_on</code> (or u
 <span class="r-out co"><span class="r-pr">#&gt;</span>         tune_fixed(0)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     else tune_seq(-4, 4, 9)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55fef5f6eb78&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55dcb3057518&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $call</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> tune_dep(depends_on = "sfu", map = function(sfu) {</span>

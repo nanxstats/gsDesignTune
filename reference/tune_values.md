@@ -1,8 +1,8 @@
 # Explicit candidate values
 
 `tune_values()` defines a finite set of candidate values. Values are
-provided as a list so vector-valued candidates (e.g., `timing`) are
-treated as atomic.
+provided as a list so vector-valued candidates (for example, `timing`)
+are treated as atomic.
 
 ## Usage
 
