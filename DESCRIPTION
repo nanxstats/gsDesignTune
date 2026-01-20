@@ -20,6 +20,7 @@ Imports:
     progressr,
     R6
 Suggests:
+    future,
     ggplot2,
     knitr,
     rmarkdown,
