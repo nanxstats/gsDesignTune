@@ -66,7 +66,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>gsDesignTune enables systematic, dependency-aware scenario exploration for group sequential designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gsDesign.html" class="external-link">gsDesign::gsDesign()</a></code> and <code><a href="https://keaven.github.io/gsDesign/reference/nSurv.html" class="external-link">gsDesign::gsSurv()</a></code>.</p>
+<p>gsDesignTune enables systematic, dependency-aware scenario exploration for group sequential designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gsDesign.html" class="external-link">gsDesign::gsDesign()</a></code>, <code><a href="https://keaven.github.io/gsDesign/reference/nSurv.html" class="external-link">gsDesign::gsSurv()</a></code>, and <code><a href="https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html" class="external-link">gsDesign::gsSurvCalendar()</a></code>.</p>
 <p>It is designed for <strong>design-space evaluation</strong> (ranking, filtering, Pareto trade-offs) rather than claiming a single “optimal design”.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -80,7 +80,7 @@
 <h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
 </h2>
 <ul>
-<li>Drop-in workflow: replace <code><a href="https://keaven.github.io/gsDesign/reference/gsDesign.html" class="external-link">gsDesign()</a></code>/<code><a href="https://keaven.github.io/gsDesign/reference/nSurv.html" class="external-link">gsSurv()</a></code> with <code><a href="reference/gsDesignTune.html">gsDesignTune()</a></code>/<code><a href="reference/gsSurvTune.html">gsSurvTune()</a></code>, then <code>$run()</code>.</li>
+<li>Drop-in workflow: replace <code><a href="https://keaven.github.io/gsDesign/reference/gsDesign.html" class="external-link">gsDesign()</a></code>/<code><a href="https://keaven.github.io/gsDesign/reference/nSurv.html" class="external-link">gsSurv()</a></code>/<code><a href="https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html" class="external-link">gsSurvCalendar()</a></code> with <code><a href="reference/gsDesignTune.html">gsDesignTune()</a></code>/<code><a href="reference/gsSurvTune.html">gsSurvTune()</a></code>/<code><a href="reference/gsSurvCalendarTune.html">gsSurvCalendarTune()</a></code>, then <code>$run()</code>.</li>
 <li>Dependency-aware tuning: express relationships like spending function ↔︎ spending parameter.</li>
 <li>Grid and random search over candidate sets (vector-valued args are treated atomically).</li>
 <li>Parallel evaluation via {future} / {future.apply} with progress via {progressr} (no global plan set).</li>
@@ -97,7 +97,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nanx.me/gsDesignTune/">gsDesignTune</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://future.futureverse.org" class="external-link">future</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="va">multisession</span>, workers <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="va">multisession</span>, workers <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">job</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gsSurvTune.html">gsSurvTune</a></span><span class="op">(</span></span>
 <span>  k <span class="op">=</span> <span class="fl">3</span>,</span>
@@ -132,6 +132,7 @@
 <p><img src="reference/figures/README-example-1.svg" alt="" width="100%"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">job</span><span class="op">$</span><span class="fu">report</span><span class="op">(</span><span class="st">"gstune_report.html"</span><span class="op">)</span></span></code></pre></div>
+<p>For calendar-timed analyses, use <code><a href="reference/gsSurvCalendarTune.html">gsSurvCalendarTune()</a></code> with <code>calendarTime</code> and optionally tune <code>spending = tune_choice("information", "calendar")</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="tune-specifications">Tune specifications<a class="anchor" aria-label="anchor" href="#tune-specifications"></a>

@@ -1,14 +1,14 @@
-# Create a tune job for `gsDesign::gsDesign()`
+# Create a tune job for `gsDesign::gsSurvCalendar()`
 
-`gsDesignTune()` is a drop-in replacement for
-[`gsDesign::gsDesign()`](https://keaven.github.io/gsDesign/reference/gsDesign.html)
+`gsSurvCalendarTune()` is a drop-in replacement for
+[`gsDesign::gsSurvCalendar()`](https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html)
 that returns a tune job object instead of immediately running a single
 design.
 
 ## Usage
 
 ``` r
-gsDesignTune(..., upper = NULL, lower = NULL)
+gsSurvCalendarTune(..., upper = NULL, lower = NULL)
 ```
 
 ## Arguments
@@ -16,7 +16,7 @@ gsDesignTune(..., upper = NULL, lower = NULL)
 - ...:
 
   Arguments to
-  [`gsDesign::gsDesign()`](https://keaven.github.io/gsDesign/reference/gsDesign.html).
+  [`gsDesign::gsSurvCalendar()`](https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html).
   Any argument can be replaced by a `tune_*()` specification.
 
 - upper, lower:

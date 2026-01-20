@@ -1,11 +1,8 @@
 # Create a tune job for `gsDesign::gsSurv()`
 
-[`gsDesignTune()`](https://nanx.me/gsDesignTune/reference/gsDesignTune.md)
-and `gsSurvTune()` are drop-in replacements for
-[`gsDesign::gsDesign()`](https://keaven.github.io/gsDesign/reference/gsDesign.html)
-and
+`gsSurvTune()` is a drop-in replacement for
 [`gsDesign::gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html)
-that return a tune job object instead of immediately running a single
+that returns a tune job object instead of immediately running a single
 design.
 
 ## Usage

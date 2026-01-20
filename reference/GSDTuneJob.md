@@ -69,13 +69,14 @@ Create a new tune job.
 
 #### Usage
 
-    GSDTuneJob$new(target = c("gsDesign", "gsSurv"), args)
+    GSDTuneJob$new(target = c("gsDesign", "gsSurv", "gsSurvCalendar"), args)
 
 #### Arguments
 
 - `target`:
 
-  Target function name (`"gsDesign"` or `"gsSurv"`).
+  Target function name (`"gsDesign"`, `"gsSurv"`, or
+  `"gsSurvCalendar"`).
 
 - `args`:
 

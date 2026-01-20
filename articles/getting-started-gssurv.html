@@ -75,7 +75,8 @@
     
     
 <p>This vignette shows a small scenario exploration for time-to-event
-designs from <code><a href="https://keaven.github.io/gsDesign/reference/nSurv.html" class="external-link">gsDesign::gsSurv()</a></code>.</p>
+designs from <code><a href="https://keaven.github.io/gsDesign/reference/nSurv.html" class="external-link">gsDesign::gsSurv()</a></code> and
+<code><a href="https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html" class="external-link">gsDesign::gsSurvCalendar()</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://keaven.github.io/gsDesign/" class="external-link">gsDesign</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nanx.me/gsDesignTune/">gsDesignTune</a></span><span class="op">)</span></span></code></pre></div>
@@ -158,9 +159,97 @@ designs from <code><a href="https://keaven.github.io/gsDesign/reference/nSurv.ht
 <span><span class="co">#&gt; 6   549.3326 834, 892....           892  11.41939....   2.9626   0.3316</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="calendar-timed-analyses-with-gssurvcalendartune">Calendar-timed analyses with <code>gsSurvCalendarTune()</code><a class="anchor" aria-label="anchor" href="#calendar-timed-analyses-with-gssurvcalendartune"></a>
+</h2>
+<p><code><a href="../reference/gsSurvCalendarTune.html">gsSurvCalendarTune()</a></code> is similar to
+<code><a href="../reference/gsSurvTune.html">gsSurvTune()</a></code>, but you specify planned calendar times of
+analyses via <code>calendarTime</code> instead of information
+timing.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">job_cal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gsSurvCalendarTune.html">gsSurvCalendarTune</a></span><span class="op">(</span></span>
+<span>  test.type <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.025</span>,</span>
+<span>  beta <span class="op">=</span> <span class="fl">0.10</span>,</span>
+<span>  calendarTime <span class="op">=</span> <span class="fu"><a href="../reference/tune_values.html">tune_values</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">24</span>, <span class="fl">36</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">18</span>, <span class="fl">27</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  spending <span class="op">=</span> <span class="fu"><a href="../reference/tune_choice.html">tune_choice</a></span><span class="op">(</span><span class="st">"information"</span>, <span class="st">"calendar"</span><span class="op">)</span>,</span>
+<span>  hr <span class="op">=</span> <span class="fu"><a href="../reference/tune_seq.html">tune_seq</a></span><span class="op">(</span><span class="fl">0.60</span>, <span class="fl">0.75</span>, length_out <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  upper <span class="op">=</span> <span class="va"><a href="../reference/SpendingFamily.html">SpendingFamily</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
+<span>    <span class="va"><a href="../reference/SpendingSpec.html">SpendingSpec</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">sfLDOF</span>, par <span class="op">=</span> <span class="fu"><a href="../reference/tune_fixed.html">tune_fixed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="va"><a href="../reference/SpendingSpec.html">SpendingSpec</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">sfHSD</span>, par <span class="op">=</span> <span class="fu"><a href="../reference/tune_seq.html">tune_seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>, <span class="fl">4</span>, length_out <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  lower <span class="op">=</span> <span class="va"><a href="../reference/SpendingSpec.html">SpendingSpec</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">sfLDOF</span>, par <span class="op">=</span> <span class="fu"><a href="../reference/tune_fixed.html">tune_fixed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  lambdaC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fl">6</span>,</span>
+<span>  eta <span class="op">=</span> <span class="fl">0.01</span>,</span>
+<span>  gamma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.5</span>, <span class="fl">5</span>, <span class="fl">7.5</span>, <span class="fl">10</span><span class="op">)</span>,</span>
+<span>  R <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">6</span><span class="op">)</span>,</span>
+<span>  minfup <span class="op">=</span> <span class="fl">18</span>,</span>
+<span>  ratio <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">job_cal</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>strategy <span class="op">=</span> <span class="st">"grid"</span>, parallel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">res_cal</span> <span class="op">&lt;-</span> <span class="va">job_cal</span><span class="op">$</span><span class="fu">results</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res_cal</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   upper_setting lower_setting calendarTime    spending    hr upper_fun</span></span>
+<span><span class="co">#&gt; 1  function....  function....   12, 24, 36 information 0.600    sfLDOF</span></span>
+<span><span class="co">#&gt; 2  function....  function....   12, 24, 36 information 0.675    sfLDOF</span></span>
+<span><span class="co">#&gt; 3  function....  function....   12, 24, 36 information 0.750    sfLDOF</span></span>
+<span><span class="co">#&gt; 4  function....  function....   12, 24, 36    calendar 0.600    sfLDOF</span></span>
+<span><span class="co">#&gt; 5  function....  function....   12, 24, 36    calendar 0.675    sfLDOF</span></span>
+<span><span class="co">#&gt; 6  function....  function....   12, 24, 36    calendar 0.750    sfLDOF</span></span>
+<span><span class="co">#&gt;   upper_par lower_fun lower_par config_id status error_message warnings</span></span>
+<span><span class="co">#&gt; 1         0    sfLDOF         0         1     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 2         0    sfLDOF         0         2     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 3         0    sfLDOF         0         3     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 4         0    sfLDOF         0         4     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 5         0    sfLDOF         0         5     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 6         0    sfLDOF         0         6     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;                          cache_key design_rds    call_args k test.type alpha</span></span>
+<span><span class="co">#&gt; 1 80cab7b3f1ef2cb7d69b05ad76d9fe04       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
+<span><span class="co">#&gt; 2 7837c4562ffa62cb6de39f7f8279e011       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
+<span><span class="co">#&gt; 3 2980340293108aa9f6219e183297e8f1       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
+<span><span class="co">#&gt; 4 e877db1b97bfb9310c1debbb4405958c       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
+<span><span class="co">#&gt; 5 1cdb690fdd68835e83c7f82502877392       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
+<span><span class="co">#&gt; 6 23025db4f9212c44abb2e45c5041b8be       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
+<span><span class="co">#&gt;   beta       timing          n_I final_n_I      upper_z      lower_z</span></span>
+<span><span class="co">#&gt; 1  0.1 0.234953.... 40.57744....  172.7038 4.4783, .... -1.5645,....</span></span>
+<span><span class="co">#&gt; 2  0.1 0.239261.... 70.11502....  293.0477 4.4352, .... -1.5165,....</span></span>
+<span><span class="co">#&gt; 3  0.1 0.243794.... 133.8101....  548.8641 4.3911, .... -1.467, ....</span></span>
+<span><span class="co">#&gt; 4  0.1 0.234953.... 38.77267....  165.0225 3.7103, .... -1.0234,....</span></span>
+<span><span class="co">#&gt; 5  0.1 0.239261.... 66.81872....  279.2707 3.7103, .... -1.0102,....</span></span>
+<span><span class="co">#&gt; 6  0.1 0.243794.... 127.1925....  521.7201 3.7103, .... -0.9963,....</span></span>
+<span><span class="co">#&gt;        upper_p      lower_p power           en</span></span>
+<span><span class="co">#&gt; 1 0, 0.011.... 0.9412, ....   0.9 132.7343....</span></span>
+<span><span class="co">#&gt; 2 0, 0.012.... 0.9353, ....   0.9 226.1005....</span></span>
+<span><span class="co">#&gt; 3 0, 0.012.... 0.9288, ....   0.9 424.9595....</span></span>
+<span><span class="co">#&gt; 4 1e-04, 0.... 0.8469, ....   0.9 119.9537....</span></span>
+<span><span class="co">#&gt; 5 1e-04, 0.... 0.8438, ....   0.9 204.1470....</span></span>
+<span><span class="co">#&gt; 6 1e-04, 0.... 0.8404, ....   0.9 383.4977....</span></span>
+<span><span class="co">#&gt;                                 upper_name</span></span>
+<span><span class="co">#&gt; 1 Lan-DeMets O'Brien-Fleming approximation</span></span>
+<span><span class="co">#&gt; 2 Lan-DeMets O'Brien-Fleming approximation</span></span>
+<span><span class="co">#&gt; 3 Lan-DeMets O'Brien-Fleming approximation</span></span>
+<span><span class="co">#&gt; 4 Lan-DeMets O'Brien-Fleming approximation</span></span>
+<span><span class="co">#&gt; 5 Lan-DeMets O'Brien-Fleming approximation</span></span>
+<span><span class="co">#&gt; 6 Lan-DeMets O'Brien-Fleming approximation</span></span>
+<span><span class="co">#&gt;                                 lower_name bound_summary final_events</span></span>
+<span><span class="co">#&gt; 1 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     172.7038</span></span>
+<span><span class="co">#&gt; 2 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     293.0477</span></span>
+<span><span class="co">#&gt; 3 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     548.8641</span></span>
+<span><span class="co">#&gt; 4 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     165.0225</span></span>
+<span><span class="co">#&gt; 5 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     279.2707</span></span>
+<span><span class="co">#&gt; 6 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     521.7201</span></span>
+<span><span class="co">#&gt;   max_events      n_total final_n_total analysis_time upper_z1 lower_z1</span></span>
+<span><span class="co">#&gt; 1   172.7038 128, 212....           212    12, 24, 36   4.4783  -1.5645</span></span>
+<span><span class="co">#&gt; 2   293.0477 212, 354....           354    12, 24, 36   4.4352  -1.5165</span></span>
+<span><span class="co">#&gt; 3   548.8641 390, 650....           650    12, 24, 36   4.3911  -1.4670</span></span>
+<span><span class="co">#&gt; 4   165.0225 122, 204....           204    12, 24, 36   3.7103  -1.0234</span></span>
+<span><span class="co">#&gt; 5   279.2707 202, 336....           336    12, 24, 36   3.7103  -1.0102</span></span>
+<span><span class="co">#&gt; 6   521.7201 372, 618....           618    12, 24, 36   3.7103  -0.9963</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="multi-scenario-exploration">Multi-scenario exploration<a class="anchor" aria-label="anchor" href="#multi-scenario-exploration"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">best</span> <span class="op">&lt;-</span> <span class="va">job</span><span class="op">$</span><span class="fu">best</span><span class="op">(</span><span class="st">"final_events"</span>, direction <span class="op">=</span> <span class="st">"min"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">best</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    upper_setting lower_setting       timing    hr upper_fun upper_par lower_fun</span></span>
@@ -240,7 +329,7 @@ designs from <code><a href="https://keaven.github.io/gsDesign/reference/nSurv.ht
 <span><span class="co">#&gt; 19   226.0836 286, 392....           392  9.582183....   2.0822  -0.4282</span></span>
 <span><span class="co">#&gt; 2    287.9624 352, 482....           482  9.554795....   3.7307  -0.7190</span></span>
 <span><span class="co">#&gt; 8    288.8485 352, 484....           484  9.554795....   3.0162  -0.7161</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ggplot2"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">job</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span>metric <span class="op">=</span> <span class="st">"final_events"</span>, x <span class="op">=</span> <span class="st">"hr"</span>, color <span class="op">=</span> <span class="st">"upper_fun"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -253,16 +342,16 @@ designs from <code><a href="https://keaven.github.io/gsDesign/reference/nSurv.ht
 <span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once per session.</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span></code></pre></div>
-<p><img src="getting-started-gssurv_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="700"></p>
+<p><img src="getting-started-gssurv_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="export-a-report">Export a report<a class="anchor" aria-label="anchor" href="#export-a-report"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">report_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".html"</span><span class="op">)</span></span>
 <span><span class="va">job</span><span class="op">$</span><span class="fu">report</span><span class="op">(</span><span class="va">report_path</span><span class="op">)</span></span>
 <span><span class="va">report_path</span></span>
-<span><span class="co">#&gt; [1] "/tmp/Rtmp4rI5Oa/file1d75459b2766.html"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/RtmpcWNQf5/file1d9c6310bfb6.html"</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

@@ -4,13 +4,16 @@
 
 ### New features
 
-- [`gsDesignTune()`](https://nanx.me/gsDesignTune/reference/gsDesignTune.md)
+- [`gsDesignTune()`](https://nanx.me/gsDesignTune/reference/gsDesignTune.md),
+  [`gsSurvTune()`](https://nanx.me/gsDesignTune/reference/gsSurvTune.md),
   and
-  [`gsSurvTune()`](https://nanx.me/gsDesignTune/reference/gsSurvTune.md)
+  [`gsSurvCalendarTune()`](https://nanx.me/gsDesignTune/reference/gsSurvCalendarTune.md)
   create a `GSDTuneJob` for dependency-aware scenario exploration of
   [`gsDesign::gsDesign()`](https://keaven.github.io/gsDesign/reference/gsDesign.html)
   /
   [`gsDesign::gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html)
+  /
+  [`gsDesign::gsSurvCalendar()`](https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html)
   designs.
 - Tune specifications
   [`tune_fixed()`](https://nanx.me/gsDesignTune/reference/tune_fixed.md),

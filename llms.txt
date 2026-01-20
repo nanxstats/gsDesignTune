@@ -2,9 +2,10 @@
 
 gsDesignTune enables systematic, dependency-aware scenario exploration
 for group sequential designs created by
-[`gsDesign::gsDesign()`](https://keaven.github.io/gsDesign/reference/gsDesign.html)
+[`gsDesign::gsDesign()`](https://keaven.github.io/gsDesign/reference/gsDesign.html),
+[`gsDesign::gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html),
 and
-[`gsDesign::gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html).
+[`gsDesign::gsSurvCalendar()`](https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html).
 
 It is designed for **design-space evaluation** (ranking, filtering,
 Pareto trade-offs) rather than claiming a single “optimal design”.
@@ -22,9 +23,9 @@ pak::pak("nanxstats/gsDesignTune")
 ## Features
 
 - Drop-in workflow: replace
-  [`gsDesign()`](https://keaven.github.io/gsDesign/reference/gsDesign.html)/[`gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html)
+  [`gsDesign()`](https://keaven.github.io/gsDesign/reference/gsDesign.html)/[`gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html)/[`gsSurvCalendar()`](https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html)
   with
-  [`gsDesignTune()`](https://nanx.me/gsDesignTune/reference/gsDesignTune.md)/[`gsSurvTune()`](https://nanx.me/gsDesignTune/reference/gsSurvTune.md),
+  [`gsDesignTune()`](https://nanx.me/gsDesignTune/reference/gsDesignTune.md)/[`gsSurvTune()`](https://nanx.me/gsDesignTune/reference/gsSurvTune.md)/[`gsSurvCalendarTune()`](https://nanx.me/gsDesignTune/reference/gsSurvCalendarTune.md),
   then `$run()`.
 - Dependency-aware tuning: express relationships like spending function
   ↔︎ spending parameter.
@@ -46,7 +47,7 @@ library(gsDesign)
 library(gsDesignTune)
 library(future)
 
-plan(multisession, workers = 8)
+plan(multisession, workers = 2)
 
 job <- gsSurvTune(
   k = 3,
@@ -86,6 +87,11 @@ job$plot(metric = "final_events", x = "hr", color = "upper_fun")
 job$report("gstune_report.html")
 ```
 
+For calendar-timed analyses, use
+[`gsSurvCalendarTune()`](https://nanx.me/gsDesignTune/reference/gsSurvCalendarTune.md)
+with `calendarTime` and optionally tune
+`spending = tune_choice("information", "calendar")`.
+
 ## Tune specifications
 
 - `tune_fixed(x)`: explicit fixed value (useful inside dependencies)
@@ -115,6 +121,12 @@ Create a tune job
 
   Create a tune job for
   [`gsDesign::gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html)
+
+- [`gsSurvCalendarTune()`](https://nanx.me/gsDesignTune/reference/gsSurvCalendarTune.md)
+  :
+
+  Create a tune job for
+  [`gsDesign::gsSurvCalendar()`](https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html)
 
 ## Tune job workflow
 

@@ -2,7 +2,9 @@
 
 This vignette shows a small scenario exploration for time-to-event
 designs from
-[`gsDesign::gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html).
+[`gsDesign::gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html)
+and
+[`gsDesign::gsSurvCalendar()`](https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html).
 
 ``` r
 library(gsDesign)
@@ -85,6 +87,96 @@ head(res)
 #> 4   174.1202 284, 302....           302  11.48078....   2.9626   0.3316
 #> 5   294.1598 462, 492....           492  11.45171....   2.9626   0.3316
 #> 6   549.3326 834, 892....           892  11.41939....   2.9626   0.3316
+```
+
+## Calendar-timed analyses with `gsSurvCalendarTune()`
+
+[`gsSurvCalendarTune()`](https://nanx.me/gsDesignTune/reference/gsSurvCalendarTune.md)
+is similar to
+[`gsSurvTune()`](https://nanx.me/gsDesignTune/reference/gsSurvTune.md),
+but you specify planned calendar times of analyses via `calendarTime`
+instead of information timing.
+
+``` r
+job_cal <- gsSurvCalendarTune(
+  test.type = 4,
+  alpha = 0.025,
+  beta = 0.10,
+  calendarTime = tune_values(list(c(12, 24, 36), c(9, 18, 27))),
+  spending = tune_choice("information", "calendar"),
+  hr = tune_seq(0.60, 0.75, length_out = 3),
+  upper = SpendingFamily$new(
+    SpendingSpec$new(sfLDOF, par = tune_fixed(0)),
+    SpendingSpec$new(sfHSD, par = tune_seq(-4, 4, length_out = 3))
+  ),
+  lower = SpendingSpec$new(sfLDOF, par = tune_fixed(0)),
+  lambdaC = log(2) / 6,
+  eta = 0.01,
+  gamma = c(2.5, 5, 7.5, 10),
+  R = c(2, 2, 2, 6),
+  minfup = 18,
+  ratio = 1
+)
+
+job_cal$run(strategy = "grid", parallel = FALSE)
+res_cal <- job_cal$results()
+head(res_cal)
+#>   upper_setting lower_setting calendarTime    spending    hr upper_fun
+#> 1  function....  function....   12, 24, 36 information 0.600    sfLDOF
+#> 2  function....  function....   12, 24, 36 information 0.675    sfLDOF
+#> 3  function....  function....   12, 24, 36 information 0.750    sfLDOF
+#> 4  function....  function....   12, 24, 36    calendar 0.600    sfLDOF
+#> 5  function....  function....   12, 24, 36    calendar 0.675    sfLDOF
+#> 6  function....  function....   12, 24, 36    calendar 0.750    sfLDOF
+#>   upper_par lower_fun lower_par config_id status error_message warnings
+#> 1         0    sfLDOF         0         1     ok          <NA>     <NA>
+#> 2         0    sfLDOF         0         2     ok          <NA>     <NA>
+#> 3         0    sfLDOF         0         3     ok          <NA>     <NA>
+#> 4         0    sfLDOF         0         4     ok          <NA>     <NA>
+#> 5         0    sfLDOF         0         5     ok          <NA>     <NA>
+#> 6         0    sfLDOF         0         6     ok          <NA>     <NA>
+#>                          cache_key design_rds    call_args k test.type alpha
+#> 1 80cab7b3f1ef2cb7d69b05ad76d9fe04       <NA> 4, 0.025.... 3         4 0.025
+#> 2 7837c4562ffa62cb6de39f7f8279e011       <NA> 4, 0.025.... 3         4 0.025
+#> 3 2980340293108aa9f6219e183297e8f1       <NA> 4, 0.025.... 3         4 0.025
+#> 4 e877db1b97bfb9310c1debbb4405958c       <NA> 4, 0.025.... 3         4 0.025
+#> 5 1cdb690fdd68835e83c7f82502877392       <NA> 4, 0.025.... 3         4 0.025
+#> 6 23025db4f9212c44abb2e45c5041b8be       <NA> 4, 0.025.... 3         4 0.025
+#>   beta       timing          n_I final_n_I      upper_z      lower_z
+#> 1  0.1 0.234953.... 40.57744....  172.7038 4.4783, .... -1.5645,....
+#> 2  0.1 0.239261.... 70.11502....  293.0477 4.4352, .... -1.5165,....
+#> 3  0.1 0.243794.... 133.8101....  548.8641 4.3911, .... -1.467, ....
+#> 4  0.1 0.234953.... 38.77267....  165.0225 3.7103, .... -1.0234,....
+#> 5  0.1 0.239261.... 66.81872....  279.2707 3.7103, .... -1.0102,....
+#> 6  0.1 0.243794.... 127.1925....  521.7201 3.7103, .... -0.9963,....
+#>        upper_p      lower_p power           en
+#> 1 0, 0.011.... 0.9412, ....   0.9 132.7343....
+#> 2 0, 0.012.... 0.9353, ....   0.9 226.1005....
+#> 3 0, 0.012.... 0.9288, ....   0.9 424.9595....
+#> 4 1e-04, 0.... 0.8469, ....   0.9 119.9537....
+#> 5 1e-04, 0.... 0.8438, ....   0.9 204.1470....
+#> 6 1e-04, 0.... 0.8404, ....   0.9 383.4977....
+#>                                 upper_name
+#> 1 Lan-DeMets O'Brien-Fleming approximation
+#> 2 Lan-DeMets O'Brien-Fleming approximation
+#> 3 Lan-DeMets O'Brien-Fleming approximation
+#> 4 Lan-DeMets O'Brien-Fleming approximation
+#> 5 Lan-DeMets O'Brien-Fleming approximation
+#> 6 Lan-DeMets O'Brien-Fleming approximation
+#>                                 lower_name bound_summary final_events
+#> 1 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     172.7038
+#> 2 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     293.0477
+#> 3 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     548.8641
+#> 4 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     165.0225
+#> 5 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     279.2707
+#> 6 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     521.7201
+#>   max_events      n_total final_n_total analysis_time upper_z1 lower_z1
+#> 1   172.7038 128, 212....           212    12, 24, 36   4.4783  -1.5645
+#> 2   293.0477 212, 354....           354    12, 24, 36   4.4352  -1.5165
+#> 3   548.8641 390, 650....           650    12, 24, 36   4.3911  -1.4670
+#> 4   165.0225 122, 204....           204    12, 24, 36   3.7103  -1.0234
+#> 5   279.2707 202, 336....           336    12, 24, 36   3.7103  -1.0102
+#> 6   521.7201 372, 618....           618    12, 24, 36   3.7103  -0.9963
 ```
 
 ## Multi-scenario exploration
@@ -186,7 +278,7 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 #> generated.
 ```
 
-![](getting-started-gssurv_files/figure-html/unnamed-chunk-5-1.png)
+![](getting-started-gssurv_files/figure-html/unnamed-chunk-6-1.png)
 
 ## Export a report
 
@@ -194,5 +286,5 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 report_path <- tempfile(fileext = ".html")
 job$report(report_path)
 report_path
-#> [1] "/tmp/Rtmp4rI5Oa/file1d75459b2766.html"
+#> [1] "/tmp/RtmpcWNQf5/file1d9c6310bfb6.html"
 ```

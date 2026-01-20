@@ -16,6 +16,12 @@ Create a tune job
   Create a tune job for
   [`gsDesign::gsSurv()`](https://keaven.github.io/gsDesign/reference/nSurv.html)
 
+- [`gsSurvCalendarTune()`](https://nanx.me/gsDesignTune/reference/gsSurvCalendarTune.md)
+  :
+
+  Create a tune job for
+  [`gsDesign::gsSurvCalendar()`](https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html)
+
 ## Tune job workflow
 
 R6 class for running searches, collecting results, and exploring designs
