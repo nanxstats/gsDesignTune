@@ -97,4 +97,3 @@ report_path <- tempfile(fileext = ".html")
 job2$report(report_path)
 report_path
 ```
-
