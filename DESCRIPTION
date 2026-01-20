@@ -10,6 +10,8 @@ Description: Systematic, dependency-aware exploration of group sequential
     framework, standardized metric extraction, and auditable reporting for
     design-space evaluation and trade-off analysis.
 License: MIT + file LICENSE
+URL: https://nanx.me/gsDesignTune/, https://github.com/nanxstats/gsDesignTune
+BugReports: https://github.com/nanxstats/gsDesignTune/issues
 Encoding: UTF-8
 Depends:
     R (>= 4.1.0)
