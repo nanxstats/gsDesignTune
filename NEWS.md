@@ -2,8 +2,10 @@
 
 ## New features
 
-- `gsDesignTune()` and `gsSurvTune()` create a `GSDTuneJob` for dependency-aware
-  scenario exploration of `gsDesign::gsDesign()` / `gsDesign::gsSurv()` designs.
+- `gsDesignTune()`, `gsSurvTune()`, and `gsSurvCalendarTune()` create a
+  `GSDTuneJob` for dependency-aware scenario exploration of
+  `gsDesign::gsDesign()` / `gsDesign::gsSurv()` / `gsDesign::gsSurvCalendar()`
+  designs.
 - Tune specifications `tune_fixed()`, `tune_values()`, `tune_seq()`, `tune_int()`, `tune_choice()`, and `tune_dep()` for grid/random search with dependent parameters.
 - Spending UX via `SpendingSpec` and `SpendingFamily` to tune spending function
   families with parameter candidates.

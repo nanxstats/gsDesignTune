@@ -1,8 +1,7 @@
 #' Create a tune job for `gsDesign::gsDesign()`
 #'
-#' `gsDesignTune()` and `gsSurvTune()` are drop-in replacements for
-#' [gsDesign::gsDesign()] and [gsDesign::gsSurv()] that return a tune job object
-#' instead of immediately running a single design.
+#' `gsDesignTune()` is a drop-in replacement for [gsDesign::gsDesign()] that
+#' returns a tune job object instead of immediately running a single design.
 #'
 #' Any argument can be replaced by a tuning specification created by `tune_*()`.
 #' Use `SpendingSpec` / `SpendingFamily` via `upper=` and `lower=` for
@@ -25,9 +24,8 @@ gsDesignTune <- function(..., upper = NULL, lower = NULL) {
 
 #' Create a tune job for `gsDesign::gsSurv()`
 #'
-#' `gsDesignTune()` and `gsSurvTune()` are drop-in replacements for
-#' [gsDesign::gsDesign()] and [gsDesign::gsSurv()] that return a tune job object
-#' instead of immediately running a single design.
+#' `gsSurvTune()` is a drop-in replacement for [gsDesign::gsSurv()] that
+#' returns a tune job object instead of immediately running a single design.
 #'
 #' Any argument can be replaced by a tuning specification created by `tune_*()`.
 #' Use `SpendingSpec` / `SpendingFamily` via `upper=` and `lower=` for
@@ -46,6 +44,31 @@ gsSurvTune <- function(..., upper = NULL, lower = NULL) {
   args$upper <- upper
   args$lower <- lower
   GSDTuneJob$new(target = "gsSurv", args = args)
+}
+
+#' Create a tune job for `gsDesign::gsSurvCalendar()`
+#'
+#' `gsSurvCalendarTune()` is a drop-in replacement for
+#' [gsDesign::gsSurvCalendar()] that returns a tune job object instead of
+#' immediately running a single design.
+#'
+#' Any argument can be replaced by a tuning specification created by `tune_*()`.
+#' Use `SpendingSpec` / `SpendingFamily` via `upper=` and `lower=` for
+#' dependency-aware spending function tuning.
+#'
+#' @param ... Arguments to [gsDesign::gsSurvCalendar()]. Any argument can be
+#'   replaced by a `tune_*()` specification.
+#' @param upper,lower Optional spending specifications provided as
+#'   `SpendingSpec` or `SpendingFamily`. When supplied, these are translated to
+#'   the underlying `(sfu, sfupar)` / `(sfl, sflpar)` arguments.
+#'
+#' @return A `GSDTuneJob` R6 object.
+#' @export
+gsSurvCalendarTune <- function(..., upper = NULL, lower = NULL) {
+  args <- list(...)
+  args$upper <- upper
+  args$lower <- lower
+  GSDTuneJob$new(target = "gsSurvCalendar", args = args)
 }
 
 #' GSDTuneJob
@@ -90,9 +113,9 @@ GSDTuneJob <- R6::R6Class(
     #' @description
     #' Create a new tune job.
     #'
-    #' @param target Target function name (`"gsDesign"` or `"gsSurv"`).
+    #' @param target Target function name (`"gsDesign"`, `"gsSurv"`, or `"gsSurvCalendar"`).
     #' @param args Named list of evaluated arguments.
-    initialize = function(target = c("gsDesign", "gsSurv"), args) {
+    initialize = function(target = c("gsDesign", "gsSurv", "gsSurvCalendar"), args) {
       target <- match.arg(target)
       if (!is.list(args)) {
         stop("`args` must be a list.", call. = FALSE)
@@ -172,7 +195,7 @@ GSDTuneJob <- R6::R6Class(
         }
         tuned_args <- stats::setNames(vector("list", length(tune_ids)), tune_ids)
         for (id in tune_ids) {
-          tuned_args[[id]] <- configs[[id]][[i]]
+          tuned_args[id] <- list(configs[[id]][[i]])
         }
         full_args <- gstune_build_call_args(self$base_args, tuned_args)
 
@@ -459,8 +482,6 @@ GSDTuneJob <- R6::R6Class(
 )
 
 gstune_parse_args <- function(args) {
-  args <- args[!vapply(args, is.null, logical(1))]
-
   if (!is.null(args$upper) && (!is.null(args$sfu) || !is.null(args$sfupar))) {
     stop("Specify either `upper=` or (`sfu`, `sfupar`), not both.", call. = FALSE)
   }
@@ -488,7 +509,7 @@ gstune_parse_args <- function(args) {
     if (is_tune_spec(val)) {
       tune_specs[[nm]] <- val
     } else {
-      base_args[[nm]] <- val
+      base_args[nm] <- list(val)
     }
   }
 
@@ -507,14 +528,14 @@ gstune_build_call_args <- function(base_args, tuned_args) {
 
   if (!is.null(args$upper_setting)) {
     us <- args$upper_setting
-    args$sfu <- us$fun
-    args$sfupar <- us$par
+    args["sfu"] <- list(us$fun)
+    args["sfupar"] <- list(us$par)
     args$upper_setting <- NULL
   }
   if (!is.null(args$lower_setting)) {
     ls <- args$lower_setting
-    args$sfl <- ls$fun
-    args$sflpar <- ls$par
+    args["sfl"] <- list(ls$fun)
+    args["sflpar"] <- list(ls$par)
     args$lower_setting <- NULL
   }
   args
