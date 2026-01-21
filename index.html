@@ -73,10 +73,10 @@
 </h2>
 <ul>
 <li>Drop-in workflow: replace <code><a href="https://keaven.github.io/gsDesign/reference/gsDesign.html" class="external-link">gsDesign()</a></code>/<code><a href="https://keaven.github.io/gsDesign/reference/nSurv.html" class="external-link">gsSurv()</a></code>/<code><a href="https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html" class="external-link">gsSurvCalendar()</a></code> with <code><a href="reference/gsDesignTune.html">gsDesignTune()</a></code>/<code><a href="reference/gsSurvTune.html">gsSurvTune()</a></code>/<code><a href="reference/gsSurvCalendarTune.html">gsSurvCalendarTune()</a></code>, then <code>$run()</code>.</li>
-<li>Dependency-aware tuning: express relationships like spending function ↔︎ spending parameter.</li>
-<li>Grid and random search over candidate sets (vector-valued args are treated atomically).</li>
-<li>Parallel evaluation via {future} / {future.apply} with progress via {progressr} (no global plan set).</li>
-<li>Reproducible and auditable results: per-config warnings/errors + reconstructable underlying call.</li>
+<li>Dependency-aware tuning: express design parameter dependency relationships precisely, for example, spending functions and their spending parameters.</li>
+<li>Grid and random search over candidate sets, with vector-valued arguments treated atomically.</li>
+<li>Parallel evaluation via {future} / {future.apply} with progress via {progressr}. Use any {future} backend that fits your infrastructure.</li>
+<li>Reproducible and auditable results: per-configuration warnings/errors and reconstructable underlying call.</li>
 <li>Optional caching of design objects to disk and HTML reporting via {rmarkdown}.</li>
 </ul>
 </div>

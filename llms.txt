@@ -24,14 +24,15 @@ pak::pak("nanxstats/gsDesignTune")
   with
   [`gsDesignTune()`](https://nanx.me/gsDesignTune/reference/gsDesignTune.md)/[`gsSurvTune()`](https://nanx.me/gsDesignTune/reference/gsSurvTune.md)/[`gsSurvCalendarTune()`](https://nanx.me/gsDesignTune/reference/gsSurvCalendarTune.md),
   then `$run()`.
-- Dependency-aware tuning: express relationships like spending function
-  ↔︎ spending parameter.
-- Grid and random search over candidate sets (vector-valued args are
-  treated atomically).
+- Dependency-aware tuning: express design parameter dependency
+  relationships precisely, for example, spending functions and their
+  spending parameters.
+- Grid and random search over candidate sets, with vector-valued
+  arguments treated atomically.
 - Parallel evaluation via {future} / {future.apply} with progress via
-  {progressr} (no global plan set).
-- Reproducible and auditable results: per-config warnings/errors +
-  reconstructable underlying call.
+  {progressr}. Use any {future} backend that fits your infrastructure.
+- Reproducible and auditable results: per-configuration warnings/errors
+  and reconstructable underlying call.
 - Optional caching of design objects to disk and HTML reporting via
   {rmarkdown}.
 
