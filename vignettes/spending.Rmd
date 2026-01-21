@@ -8,7 +8,16 @@ vignette: >
 ---
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dev = "svg",
+  fig.ext = "svg",
+  fig.width = 7.2916667,
+  fig.asp = 0.618,
+  fig.align = "center",
+  out.width = "80%"
+)
 ```
 
 gsDesignTune provides two ways to handle dependencies between spending
