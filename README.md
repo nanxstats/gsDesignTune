@@ -86,7 +86,7 @@ job$pareto(metrics = c("final_events", "upper_z1"), directions = c("min", "min")
 job$plot(metric = "final_events", x = "hr", color = "upper_fun")
 ```
 
-<img src="man/figures/README-example-1.svg" alt="" width="100%" />
+<img src="man/figures/README-example-1.svg" alt="" width="100%" style="display: block; margin: auto;" />
 
 ``` r
 job$report("gstune_report.html")
