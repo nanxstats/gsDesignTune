@@ -86,7 +86,7 @@ gsSurvCalendarTune <- function(..., upper = NULL, lower = NULL) {
 #' @param args Named list of arguments (evaluated).
 #' @param strategy Search strategy (`"grid"` or `"random"`).
 #' @param n Number of configurations for random search.
-#' @param parallel Whether to evaluate configurations in parallel via `{future}`.
+#' @param parallel Whether to evaluate configurations in parallel via {future}.
 #' @param seed Optional seed for reproducibility.
 #' @param cache_dir Optional directory for caching `RDS` design objects.
 #' @param metrics_fun Optional user hook: `function(design_obj, base_args, tuned_args)`.
@@ -393,7 +393,7 @@ GSDTuneJob <- R6::R6Class(
       df[!dominated, , drop = FALSE]
     },
     #' @description
-    #' Create a quick exploration plot with `{ggplot2}`.
+    #' Create a quick exploration plot with {ggplot2}.
     #'
     #' @param metric Y-axis metric column name.
     #' @param x X-axis column name.
@@ -440,7 +440,7 @@ GSDTuneJob <- R6::R6Class(
       p
     },
     #' @description
-    #' Render an HTML report via `{rmarkdown}`.
+    #' Render an HTML report via {rmarkdown}.
     #'
     #' @param path Output HTML file path.
     report = function(path) {
