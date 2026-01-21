@@ -393,7 +393,7 @@ GSDTuneJob <- R6::R6Class(
       df[!dominated, , drop = FALSE]
     },
     #' @description
-    #' Create a quick exploration plot with {ggplot2}.
+    #' Create a quick exploration plot.
     #'
     #' @param metric Y-axis metric column name.
     #' @param x X-axis column name.
@@ -437,7 +437,7 @@ GSDTuneJob <- R6::R6Class(
       p
     },
     #' @description
-    #' Render an HTML report via {rmarkdown}.
+    #' Render an HTML report.
     #'
     #' @param path Output HTML file path.
     report = function(path) {
