@@ -105,7 +105,7 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 #> generated.
 ```
 
-![](spending_files/figure-html/unnamed-chunk-5-1.png)
+![](spending_files/figure-html/unnamed-chunk-5-1.svg)
 
 ## Export a report
 
@@ -113,5 +113,5 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 report_path <- tempfile(fileext = ".html")
 job2$report(report_path)
 report_path
-#> [1] "/tmp/Rtmpripge0/file1da053895672.html"
+#> [1] "/tmp/Rtmpb1aHJ0/file1db271392eaf.html"
 ```

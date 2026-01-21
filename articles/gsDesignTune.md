@@ -153,7 +153,7 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 #> generated.
 ```
 
-![](gsDesignTune_files/figure-html/unnamed-chunk-5-1.png)
+![](gsDesignTune_files/figure-html/unnamed-chunk-5-1.svg)
 
 ## Survival designs with `gsSurvTune()`
 
@@ -418,7 +418,7 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 }
 ```
 
-![](gsDesignTune_files/figure-html/unnamed-chunk-9-1.png)
+![](gsDesignTune_files/figure-html/unnamed-chunk-9-1.svg)
 
 ## Export a report
 
@@ -426,5 +426,5 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 report_path <- tempfile(fileext = ".html")
 job_surv$report(report_path)
 report_path
-#> [1] "/tmp/RtmpOy4SDU/file1d227eea7321.html"
+#> [1] "/tmp/RtmpMJnMsj/file1d31769b43ed.html"
 ```
