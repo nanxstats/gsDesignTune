@@ -400,9 +400,6 @@ GSDTuneJob <- R6::R6Class(
     #' @param color Optional color column name.
     #' @param facet Optional faceting column name.
     plot = function(metric, x, color = NULL, facet = NULL) {
-      if (!requireNamespace("ggplot2", quietly = TRUE)) {
-        stop("Package 'ggplot2' is required for `$plot()`.", call. = FALSE)
-      }
       df <- self$results()
       df <- df[df$status == "ok", , drop = FALSE]
       if (!metric %in% names(df)) stop(sprintf("Unknown `metric`: '%s'.", metric), call. = FALSE)
@@ -427,9 +424,9 @@ GSDTuneJob <- R6::R6Class(
       }
 
       mapping <- if (is.null(color_col)) {
-        ggplot2::aes_string(x = x, y = metric)
+        ggplot2::aes(x = .data[[x]], y = .data[[metric]])
       } else {
-        ggplot2::aes_string(x = x, y = metric, color = color_col)
+        ggplot2::aes(x = .data[[x]], y = .data[[metric]], color = .data[[color_col]])
       }
       p <- ggplot2::ggplot(df_plot, mapping) +
         ggplot2::geom_point() +
