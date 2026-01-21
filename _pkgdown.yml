@@ -36,3 +36,10 @@ reference:
       - tune_int
       - tune_choice
       - tune_dep
+
+articles:
+  - title: "Vignettes"
+    contents:
+      - gsDesignTune
+      - spending
+      - parallel
