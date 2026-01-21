@@ -225,7 +225,7 @@ Compute a Pareto (non-dominated) set for multiple metrics.
 
 ### Method [`plot()`](https://rdrr.io/r/graphics/plot.default.html)
 
-Create a quick exploration plot with ggplot2.
+Create a quick exploration plot.
 
 #### Usage
 
@@ -253,7 +253,7 @@ Create a quick exploration plot with ggplot2.
 
 ### Method `report()`
 
-Render an HTML report via rmarkdown.
+Render an HTML report.
 
 #### Usage
 
