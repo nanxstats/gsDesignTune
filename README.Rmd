@@ -20,11 +20,11 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 gsDesignTune enables systematic, dependency-aware scenario exploration for group
-sequential designs created by `gsDesign::gsDesign()`, `gsDesign::gsSurv()`, and
-`gsDesign::gsSurvCalendar()`.
-
-It is designed for **design-space evaluation** (ranking, filtering, Pareto
-trade-offs) rather than claiming a single “optimal design”.
+sequential designs created by gsDesign. It is built for
+**design-space evaluation** (ranking, filtering, Pareto trade-offs)
+rather than claiming a single "optimal design".
+Focusing on user experience, correctness, and speed, it supports off-the-shelf
+parallel processing with progress tracking, caching, and reproducible reporting.
 
 ## Installation
 
@@ -38,7 +38,7 @@ pak::pak("nanxstats/gsDesignTune")
 ## Features
 
 - Drop-in workflow: replace `gsDesign()`/`gsSurv()`/`gsSurvCalendar()` with `gsDesignTune()`/`gsSurvTune()`/`gsSurvCalendarTune()`, then `$run()`.
-- Dependency-aware tuning: express relationships like spending function ↔ spending parameter.
+- Dependency-aware tuning: express relationships like spending function &harr; spending parameter.
 - Grid and random search over candidate sets (vector-valued args are treated atomically).
 - Parallel evaluation via {future} / {future.apply} with progress via {progressr} (no global plan set).
 - Reproducible and auditable results: per-config warnings/errors + reconstructable underlying call.
@@ -87,9 +87,6 @@ job$pareto(metrics = c("final_events", "upper_z1"), directions = c("min", "min")
 job$plot(metric = "final_events", x = "hr", color = "upper_fun")
 job$report("gstune_report.html")
 ```
-
-For calendar-timed analyses, use `gsSurvCalendarTune()` with `calendarTime` and
-optionally tune `spending = tune_choice("information", "calendar")`.
 
 ## Tune specifications
 
