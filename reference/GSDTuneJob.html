@@ -23,14 +23,9 @@ GSDTuneJob"></head><body>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting-started-gsdesign.html">Getting started: tuning gsDesign()</a></li>
-    <li><a class="dropdown-item" href="../articles/getting-started-gssurv.html">Getting started: tuning gsSurv()</a></li>
-    <li><a class="dropdown-item" href="../articles/parallel-and-reproducibility.html">Parallel execution with future + reproducible reporting</a></li>
-    <li><a class="dropdown-item" href="../articles/spending-and-dependencies.html">Spending functions and dependent parameters</a></li>
-  </ul></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/gsDesignTune.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/index.html">Articles</a></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -257,7 +252,7 @@ designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gs
 
 </div><p></p><hr><a id="method-GSDTuneJob-plot"></a><div class="section">
 <h3 id="method-plot-">Method <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code><a class="anchor" aria-label="anchor" href="#method-plot-"></a></h3>
-<p>Create a quick exploration plot with <code>{ggplot2}</code>.</p><div class="section">
+<p>Create a quick exploration plot with ggplot2.</p><div class="section">
 <h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span><span class="va">metric</span>, <span class="va">x</span>, color <span class="op">=</span> <span class="cn">NULL</span>, facet <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
@@ -285,7 +280,7 @@ designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gs
 
 </div><p></p><hr><a id="method-GSDTuneJob-report"></a><div class="section">
 <h3 id="method-report-">Method <code>report()</code><a class="anchor" aria-label="anchor" href="#method-report-"></a></h3>
-<p>Render an HTML report via <code>{rmarkdown}</code>.</p><div class="section">
+<p>Render an HTML report via rmarkdown.</p><div class="section">
 <h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">report</span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
