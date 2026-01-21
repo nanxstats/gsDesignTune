@@ -61,9 +61,7 @@ head(best, 10)
 ### Plot
 
 ```{r}
-if (requireNamespace("ggplot2", quietly = TRUE)) {
-  job$plot(metric = "final_n", x = "upper_par", color = "upper_fun")
-}
+job$plot(metric = "final_n", x = "upper_par", color = "upper_fun")
 ```
 
 ## Survival designs with `gsSurvTune()`
@@ -136,9 +134,7 @@ head(best_surv, 10)
 ```
 
 ```{r}
-if (requireNamespace("ggplot2", quietly = TRUE)) {
-  job_surv$plot(metric = "final_events", x = "hr", color = "upper_fun")
-}
+job_surv$plot(metric = "final_events", x = "hr", color = "upper_fun")
 ```
 
 ## Export a report
