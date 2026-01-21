@@ -5,5 +5,6 @@
 #' @importFrom future.apply future_lapply
 #' @importFrom progressr progressor with_progress
 #' @importFrom R6 R6Class
+#' @importFrom rlang .data
 ## usethis namespace: end
 NULL

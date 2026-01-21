@@ -23,12 +23,13 @@ Depends:
 Imports:
     digest,
     future.apply,
+    ggplot2,
     gsDesign,
     progressr,
-    R6
+    R6,
+    rlang
 Suggests:
     future,
-    ggplot2,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)

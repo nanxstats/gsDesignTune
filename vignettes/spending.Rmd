@@ -94,9 +94,7 @@ head(res2[, c("hr", "sfu", "sfupar", "final_events")])
 ```
 
 ```{r}
-if (requireNamespace("ggplot2", quietly = TRUE)) {
-  job2$plot(metric = "final_events", x = "hr", color = "sfu")
-}
+job2$plot(metric = "final_events", x = "hr", color = "sfu")
 ```
 
 ## Export a report
