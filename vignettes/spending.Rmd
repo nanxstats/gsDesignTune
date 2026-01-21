@@ -11,7 +11,7 @@ vignette: >
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
-`gsDesignTune` provides two ways to handle dependencies between spending
+gsDesignTune provides two ways to handle dependencies between spending
 functions and their parameters:
 
 1. Preferred: use `upper = SpendingSpec/SpendingFamily` and `lower = ...`.

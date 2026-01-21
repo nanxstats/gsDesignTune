@@ -194,7 +194,7 @@ Compute a Pareto (non-dominated) set for multiple metrics.
 \if{html}{\out{<a id="method-GSDTuneJob-plot"></a>}}
 \if{latex}{\out{\hypertarget{method-GSDTuneJob-plot}{}}}
 \subsection{Method \code{plot()}}{
-Create a quick exploration plot with \code{{ggplot2}}.
+Create a quick exploration plot with {ggplot2}.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GSDTuneJob$plot(metric, x, color = NULL, facet = NULL)}\if{html}{\out{</div>}}
 }
@@ -217,7 +217,7 @@ Create a quick exploration plot with \code{{ggplot2}}.
 \if{html}{\out{<a id="method-GSDTuneJob-report"></a>}}
 \if{latex}{\out{\hypertarget{method-GSDTuneJob-report}{}}}
 \subsection{Method \code{report()}}{
-Render an HTML report via \code{{rmarkdown}}.
+Render an HTML report via {rmarkdown}.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GSDTuneJob$report(path)}\if{html}{\out{</div>}}
 }
