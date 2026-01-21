@@ -139,18 +139,7 @@ head(best, 10)
 ### Plot
 
 ``` r
-if (requireNamespace("ggplot2", quietly = TRUE)) {
-  job$plot(metric = "final_n", x = "upper_par", color = "upper_fun")
-}
-#> Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
-#> ℹ Please use tidy evaluation idioms with `aes()`.
-#> ℹ See also `vignette("ggplot2-in-packages")` for more information.
-#> ℹ The deprecated feature was likely used in the gsDesignTune package.
-#>   Please report the issue at
-#>   <https://github.com/nanxstats/gsDesignTune/issues>.
-#> This warning is displayed once per session.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
+job$plot(metric = "final_n", x = "upper_par", color = "upper_fun")
 ```
 
 ![](gsDesignTune_files/figure-html/unnamed-chunk-5-1.svg)
@@ -413,9 +402,7 @@ head(best_surv, 10)
 ```
 
 ``` r
-if (requireNamespace("ggplot2", quietly = TRUE)) {
-  job_surv$plot(metric = "final_events", x = "hr", color = "upper_fun")
-}
+job_surv$plot(metric = "final_events", x = "hr", color = "upper_fun")
 ```
 
 ![](gsDesignTune_files/figure-html/unnamed-chunk-9-1.svg)
@@ -426,5 +413,5 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 report_path <- tempfile(fileext = ".html")
 job_surv$report(report_path)
 report_path
-#> [1] "/tmp/RtmpdXxzUg/file1d792b2a07f3.html"
+#> [1] "/tmp/RtmpLrF8h6/file1d35bcb439d.html"
 ```

@@ -200,18 +200,7 @@ for tuning basic group sequential designs.</p>
 <h3 id="plot">Plot<a class="anchor" aria-label="anchor" href="#plot"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ggplot2"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">job</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span>metric <span class="op">=</span> <span class="st">"final_n"</span>, x <span class="op">=</span> <span class="st">"upper_par"</span>, color <span class="op">=</span> <span class="st">"upper_fun"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="co">#&gt; Warning: `aes_string()` was deprecated in ggplot2 3.0.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use tidy evaluation idioms with `aes()`.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> See also `vignette("ggplot2-in-packages")` for more information.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">gsDesignTune</span> package.</span></span>
-<span><span class="co">#&gt;   Please report the issue at</span></span>
-<span><span class="co">#&gt;   <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/nanxstats/gsDesignTune/issues&gt;</span>.</span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once per session.</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">job</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span>metric <span class="op">=</span> <span class="st">"final_n"</span>, x <span class="op">=</span> <span class="st">"upper_par"</span>, color <span class="op">=</span> <span class="st">"upper_fun"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gsDesignTune_files/figure-html/unnamed-chunk-5-1.svg" class="r-plt" alt="" width="80%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -466,9 +455,7 @@ timing.</p>
 <span><span class="co">#&gt; 2    287.9624 352, 482....           482  9.554795....   3.7307  -0.7190</span></span>
 <span><span class="co">#&gt; 8    288.8485 352, 484....           484  9.554795....   3.0162  -0.7161</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ggplot2"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">job_surv</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span>metric <span class="op">=</span> <span class="st">"final_events"</span>, x <span class="op">=</span> <span class="st">"hr"</span>, color <span class="op">=</span> <span class="st">"upper_fun"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">job_surv</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span>metric <span class="op">=</span> <span class="st">"final_events"</span>, x <span class="op">=</span> <span class="st">"hr"</span>, color <span class="op">=</span> <span class="st">"upper_fun"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gsDesignTune_files/figure-html/unnamed-chunk-9-1.svg" class="r-plt" alt="" width="80%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -479,7 +466,7 @@ timing.</p>
 <code class="sourceCode R"><span><span class="va">report_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".html"</span><span class="op">)</span></span>
 <span><span class="va">job_surv</span><span class="op">$</span><span class="fu">report</span><span class="op">(</span><span class="va">report_path</span><span class="op">)</span></span>
 <span><span class="va">report_path</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpdXxzUg/file1d792b2a07f3.html"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/RtmpLrF8h6/file1d35bcb439d.html"</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

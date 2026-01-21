@@ -91,18 +91,7 @@ head(res2[, c("hr", "sfu", "sfupar", "final_events")])
 ```
 
 ``` r
-if (requireNamespace("ggplot2", quietly = TRUE)) {
-  job2$plot(metric = "final_events", x = "hr", color = "sfu")
-}
-#> Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
-#> ℹ Please use tidy evaluation idioms with `aes()`.
-#> ℹ See also `vignette("ggplot2-in-packages")` for more information.
-#> ℹ The deprecated feature was likely used in the gsDesignTune package.
-#>   Please report the issue at
-#>   <https://github.com/nanxstats/gsDesignTune/issues>.
-#> This warning is displayed once per session.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
+job2$plot(metric = "final_events", x = "hr", color = "sfu")
 ```
 
 ![](spending_files/figure-html/unnamed-chunk-5-1.svg)
@@ -113,5 +102,5 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
 report_path <- tempfile(fileext = ".html")
 job2$report(report_path)
 report_path
-#> [1] "/tmp/RtmpdQUSzX/file1df93613f8a1.html"
+#> [1] "/tmp/RtmpseTCuO/file1db511b5dc.html"
 ```
