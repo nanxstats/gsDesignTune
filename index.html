@@ -17,8 +17,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Dependency-Aware Scenario Exploration for Group Sequential Designs">
-<meta name="description" content="Systematic, dependency-aware exploration of group sequential designs created by gsDesign. Provides reproducible grid/random search over user-defined candidate sets, parallel evaluation via the future framework, standardized metric extraction, and auditable reporting for design-space evaluation and trade-off analysis.">
-<meta property="og:description" content="Systematic, dependency-aware exploration of group sequential designs created by gsDesign. Provides reproducible grid/random search over user-defined candidate sets, parallel evaluation via the future framework, standardized metric extraction, and auditable reporting for design-space evaluation and trade-off analysis.">
+<meta name="description" content="Provides systematic, dependency-aware exploration of group sequential designs created with gsDesign. Supports reproducible grid and random search over user-defined candidate sets, parallel evaluation via the future framework, standardized metric extraction, and auditable reporting for design-space evaluation and trade-off analysis. Methods for group sequential design are described in Anderson (2025) &lt;doi:10.32614/CRAN.package.gsDesign&gt;. The future framework for parallel processing is described in Bengtsson (2021) &lt;doi:10.32614/RJ-2021-048&gt;.">
+<meta property="og:description" content="Provides systematic, dependency-aware exploration of group sequential designs created with gsDesign. Supports reproducible grid and random search over user-defined candidate sets, parallel evaluation via the future framework, standardized metric extraction, and auditable reporting for design-space evaluation and trade-off analysis. Methods for group sequential design are described in Anderson (2025) &lt;doi:10.32614/CRAN.package.gsDesign&gt;. The future framework for parallel processing is described in Bengtsson (2021) &lt;doi:10.32614/RJ-2021-048&gt;.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -66,8 +66,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>gsDesignTune enables systematic, dependency-aware scenario exploration for group sequential designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gsDesign.html" class="external-link">gsDesign::gsDesign()</a></code>, <code><a href="https://keaven.github.io/gsDesign/reference/nSurv.html" class="external-link">gsDesign::gsSurv()</a></code>, and <code><a href="https://keaven.github.io/gsDesign/reference/gsSurvCalendar.html" class="external-link">gsDesign::gsSurvCalendar()</a></code>.</p>
-<p>It is designed for <strong>design-space evaluation</strong> (ranking, filtering, Pareto trade-offs) rather than claiming a single “optimal design”.</p>
+<p>gsDesignTune enables systematic, dependency-aware scenario exploration for group sequential designs created by gsDesign. It is built for <strong>design-space evaluation</strong> (ranking, filtering, Pareto trade-offs) rather than claiming a single “optimal design”. Focusing on user experience, correctness, and speed, it supports off-the-shelf parallel processing with progress tracking, caching, and reproducible reporting.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -132,7 +131,6 @@
 <p><img src="reference/figures/README-example-1.svg" alt="" width="100%"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">job</span><span class="op">$</span><span class="fu">report</span><span class="op">(</span><span class="st">"gstune_report.html"</span><span class="op">)</span></span></code></pre></div>
-<p>For calendar-timed analyses, use <code><a href="reference/gsSurvCalendarTune.html">gsSurvCalendarTune()</a></code> with <code>calendarTime</code> and optionally tune <code>spending = tune_choice("information", "calendar")</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="tune-specifications">Tune specifications<a class="anchor" aria-label="anchor" href="#tune-specifications"></a>
@@ -188,6 +186,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/nanxstats/gsDesignTune/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/nanxstats/gsDesignTune/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://cran.r-project.org/package=gsDesignTune" class="external-link"><img src="https://www.r-pkg.org/badges/version/gsDesignTune" alt="CRAN status"></a></li>
 </ul>
 </div>
 
