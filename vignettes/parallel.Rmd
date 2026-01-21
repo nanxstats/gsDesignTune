@@ -1,8 +1,8 @@
 ---
-title: "Parallel execution with future + reproducible reporting"
+title: "Parallel evaluation and reproducible reporting"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Parallel execution with future + reproducible reporting}
+  %\VignetteIndexEntry{Parallel evaluation and reproducible reporting}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -11,8 +11,8 @@ vignette: >
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
-`gsDesignTune` uses `{future}` (via `{future.apply}`) for parallel evaluation.
-You control parallelism using `future::plan()`; `gsDesignTune` does not set a
+gsDesignTune uses {future} (via {future.apply}) for parallel evaluation.
+You control parallelism using `future::plan()`; gsDesignTune does not set a
 global plan.
 
 ```{r}
