@@ -6,14 +6,16 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/nanxstats/gsDesignTune/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nanxstats/gsDesignTune/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/gsDesignTune)](https://cran.r-project.org/package=gsDesignTune)
 <!-- badges: end -->
 
 gsDesignTune enables systematic, dependency-aware scenario exploration
-for group sequential designs created by `gsDesign::gsDesign()`,
-`gsDesign::gsSurv()`, and `gsDesign::gsSurvCalendar()`.
-
-It is designed for **design-space evaluation** (ranking, filtering,
-Pareto trade-offs) rather than claiming a single “optimal design”.
+for group sequential designs created by gsDesign. It is built for
+**design-space evaluation** (ranking, filtering, Pareto trade-offs)
+rather than claiming a single “optimal design”. Focusing on user
+experience, correctness, and speed, it supports off-the-shelf parallel
+processing with progress tracking, caching, and reproducible reporting.
 
 ## Installation
 
@@ -89,10 +91,6 @@ job$plot(metric = "final_events", x = "hr", color = "upper_fun")
 ``` r
 job$report("gstune_report.html")
 ```
-
-For calendar-timed analyses, use `gsSurvCalendarTune()` with
-`calendarTime` and optionally tune
-`spending = tune_choice("information", "calendar")`.
 
 ## Tune specifications
 
