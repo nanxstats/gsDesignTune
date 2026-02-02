@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Nan Xiao**. Author, maintainer.
+- **Nan Xiao**. Author, maintainer, copyright holder.
   [](https://orcid.org/0000-0002-0250-5673)
 
 ## Citation
@@ -11,13 +11,13 @@ Source:
 [`DESCRIPTION`](https://github.com/nanxstats/gsDesignTune/blob/main/DESCRIPTION)
 
 Xiao N (2026). *gsDesignTune: Dependency-Aware Scenario Exploration for
-Group Sequential Designs*. R package version 0.0.0.9000,
+Group Sequential Designs*. R package version 0.1.0,
 <https://nanx.me/gsDesignTune/>.
 
     @Manual{,
       title = {gsDesignTune: Dependency-Aware Scenario Exploration for Group Sequential Designs},
       author = {Nan Xiao},
       year = {2026},
-      note = {R package version 0.0.0.9000},
+      note = {R package version 0.1.0},
       url = {https://nanx.me/gsDesignTune/},
     }

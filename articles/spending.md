@@ -102,5 +102,5 @@ job2$plot(metric = "final_events", x = "hr", color = "sfu")
 report_path <- tempfile(fileext = ".html")
 job2$report(report_path)
 report_path
-#> [1] "/tmp/RtmpwFwryU/file1e44695c9e0.html"
+#> [1] "/tmp/RtmpEGJ9r1/file1e06682f5440.html"
 ```

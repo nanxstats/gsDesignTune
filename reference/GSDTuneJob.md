@@ -4,6 +4,10 @@ GSDTuneJob
 
 GSDTuneJob
 
+## Value
+
+An R6 class generator. Use `$new()` to create a `GSDTuneJob` object.
+
 ## Details
 
 R6 class representing a dependency-aware tuning job for group sequential
@@ -280,3 +284,11 @@ The objects of this class are cloneable with this method.
 - `deep`:
 
   Whether to make a deep clone.
+
+## Examples
+
+``` r
+job <- GSDTuneJob$new(target = "gsDesign", args = list(k = 3, alpha = 0.025))
+job$spec$target
+#> [1] "gsDesign"
+```

@@ -17,7 +17,7 @@ immediately running a single design."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">gsDesignTune</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,6 +82,36 @@ Use <code>SpendingSpec</code> / <code>SpendingFamily</code> via <code>upper=</co
 dependency-aware spending function tuning.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">job</span> <span class="op">&lt;-</span> <span class="fu">gsSurvCalendarTune</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  calendarTime <span class="op">=</span> <span class="fu"><a href="tune_values.html">tune_values</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">24</span>, <span class="fl">36</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">24</span>, <span class="fl">48</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  spending <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"information"</span>, <span class="st">"calendar"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">job</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>strategy <span class="op">=</span> <span class="st">"grid"</span>, parallel <span class="op">=</span> <span class="cn">FALSE</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">job</span><span class="op">$</span><span class="fu">results</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   calendarTime config_id status error_message warnings</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   12, 24, 36         1     ok          &lt;NA&gt;     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   12, 24, 48         2     ok          &lt;NA&gt;     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          cache_key design_rds    call_args k test.type alpha</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 98468c90a3faa29f0afcf6656e8f4d3c       &lt;NA&gt; c("infor.... 3         4 0.025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 d5a31e561e166e47783110174c34c3ae       &lt;NA&gt; c("infor.... 3         4 0.025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   beta       timing          n_I final_n_I      upper_z      lower_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.1 0.291608.... 50.41988....  172.9027 3.0811, .... -0.4228,....</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.1 0.169188.... 28.37513....  167.7133 3.3193, .... -1.1287,....</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        upper_p      lower_p power           en        upper_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.001, 0.... 0.6638, ....   0.9 110.2262.... Hwang-Shih-DeCani</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 5e-04, 0.... 0.8705, ....   0.9 105.9637.... Hwang-Shih-DeCani</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          lower_name bound_summary final_events max_events      n_total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Hwang-Shih-DeCani  c("IA 1:....     172.9027   172.9027 130, 194....</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Hwang-Shih-DeCani  c("IA 1:....     167.7133   167.7133 74, 146, 182</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   final_n_total analysis_time upper_z1 lower_z1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           194    12, 24, 36   3.0811  -0.4228</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2           182    12, 24, 48   3.3193  -1.1287</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

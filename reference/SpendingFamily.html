@@ -15,7 +15,7 @@ SpendingFamily"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">gsDesignTune</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,6 +49,10 @@ SpendingFamily"></head><body>
     </div>
 
 
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>An R6 class generator. Use <code>$new()</code> to create a <code>SpendingFamily</code> object.</p>
+    </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>An R6 class representing a set of spending function specifications. Each
@@ -115,6 +119,80 @@ family member is a <code>SpendingSpec</code>.</p>
 
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">fam</span> <span class="op">&lt;-</span> <span class="va">SpendingFamily</span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va"><a href="SpendingSpec.html">SpendingSpec</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="fu">gsDesign</span><span class="fu">::</span><span class="va"><a href="https://keaven.github.io/gsDesign/reference/sfHSD.html" class="external-link">sfHSD</a></span>, par <span class="op">=</span> <span class="fu"><a href="tune_fixed.html">tune_fixed</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="va"><a href="SpendingSpec.html">SpendingSpec</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="fu">gsDesign</span><span class="fu">::</span><span class="va"><a href="https://keaven.github.io/gsDesign/reference/sfLDOF.html" class="external-link">sfLDOF</a></span>, par <span class="op">=</span> <span class="fu"><a href="tune_fixed.html">tune_fixed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fam</span><span class="op">$</span><span class="fu">expand</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $fun</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> function (alpha, t, param) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     checkScalar(alpha, "numeric", c(0, Inf), c(FALSE, FALSE))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     checkScalar(param, "numeric", c(-40, 40))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     checkVector(t, "numeric", c(0, Inf), c(TRUE, FALSE))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     t[t &gt; 1] &lt;- 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     x &lt;- list(name = "Hwang-Shih-DeCani", param = param, parname = "gamma", </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         sf = sfHSD, spend = if (param == 0) t * alpha else alpha * </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             (1 - exp(-t * param))/(1 - exp(-param)), bound = NULL, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         prob = NULL)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     class(x) &lt;- "spendfn"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     x</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x55b431fee0d8&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: namespace:gsDesign&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $fun_label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gsDesign::sfHSD"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $par</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gstune_spending"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $fun</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> function (alpha, t, param = NULL) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     checkScalar(alpha, "numeric", c(0, Inf), c(FALSE, FALSE))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     checkVector(t, "numeric", c(0, Inf), c(TRUE, FALSE))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     if (is.null(param) || param &lt; 0.005 || param &gt; 20) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         param &lt;- 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     checkScalar(param, "numeric", c(0.005, 20), c(TRUE, TRUE))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     t[t &gt; 1] &lt;- 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     if (param == 1) {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         rho &lt;- 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         txt &lt;- "Lan-DeMets O'Brien-Fleming approximation"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         parname &lt;- "none"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     else {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         rho &lt;- param</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         txt &lt;- "Generalized Lan-DeMets O'Brien-Fleming"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         parname &lt;- "rho"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     z &lt;- -qnorm(alpha/2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     x &lt;- list(name = txt, param = param, parname = parname, sf = sfLDOF, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         spend = 2 * (1 - pnorm(z/t^(rho/2))), bound = NULL, prob = NULL)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     class(x) &lt;- "spendfn"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     x</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x55b431ffe3b0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: namespace:gsDesign&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $fun_label</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gsDesign::sfLDOF"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $par</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gstune_spending"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

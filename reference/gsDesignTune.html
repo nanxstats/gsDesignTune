@@ -15,7 +15,7 @@ returns a tune job object instead of immediately running a single design."></hea
 
     <a class="navbar-brand me-2" href="../index.html">gsDesignTune</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,6 +79,34 @@ Use <code>SpendingSpec</code> / <code>SpendingFamily</code> via <code>upper=</co
 dependency-aware spending function tuning.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">job</span> <span class="op">&lt;-</span> <span class="fu">gsDesignTune</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  k <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  test.type <span class="op">=</span> <span class="fl">4</span>,</span></span>
+<span class="r-in"><span>  alpha <span class="op">=</span> <span class="fu"><a href="tune_values.html">tune_values</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.03</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">job</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>strategy <span class="op">=</span> <span class="st">"grid"</span>, parallel <span class="op">=</span> <span class="cn">FALSE</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">job</span><span class="op">$</span><span class="fu">results</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   alpha config_id status error_message warnings</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.025         1     ok          &lt;NA&gt;     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.030         2     ok          &lt;NA&gt;     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          cache_key design_rds   call_args k test.type beta</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 80ff9bd71804790b9770dedebc97b8e1       &lt;NA&gt; 3, 4, 0.025 3         4  0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 568a75220e8cd9d6514057e9a0b6edd4       &lt;NA&gt;  3, 4, 0.03 3         4  0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         timing          n_I final_n_I      upper_z      lower_z      upper_p</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.333333.... 0.356627....  1.069883 3.0107, .... -0.2387,.... 0.0013, ....</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.333333.... 0.356983....  1.070950 2.9549, .... -0.2851,.... 0.0016, ....</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        lower_p power           en        upper_name        lower_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.5943, ....   0.9 0.624858.... Hwang-Shih-DeCani Hwang-Shih-DeCani</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.6122, ....   0.9 0.637266.... Hwang-Shih-DeCani Hwang-Shih-DeCani</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   bound_summary  final_n    max_n upper_z1 lower_z1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  c("IA 1:.... 1.069883 1.069883   3.0107  -0.2387</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  c("IA 1:.... 1.070950 1.070950   2.9549  -0.2851</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

@@ -58,3 +58,8 @@ Define candidate sets and dependencies for arguments to be explored
   : Categorical choices
 - [`tune_dep()`](https://nanx.me/gsDesignTune/reference/tune_dep.md) :
   Dependent tuning specification
+
+## Utilities
+
+- [`toString(`*`<function>`*`)`](https://nanx.me/gsDesignTune/reference/toString.function.md)
+  : Convert a function to a short label string
