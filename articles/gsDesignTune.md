@@ -413,5 +413,5 @@ job_surv$plot(metric = "final_events", x = "hr", color = "upper_fun")
 report_path <- tempfile(fileext = ".html")
 job_surv$report(report_path)
 report_path
-#> [1] "/tmp/RtmpXMPFeW/file1d843b3bea58.html"
+#> [1] "/tmp/RtmpdrF8zH/file1dc458b80ba3.html"
 ```
