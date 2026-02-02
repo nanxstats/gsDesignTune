@@ -27,3 +27,13 @@ Any argument can be replaced by a tuning specification created by \verb{tune_*()
 Use \code{SpendingSpec} / \code{SpendingFamily} via \verb{upper=} and \verb{lower=} for
 dependency-aware spending function tuning.
 }
+\examples{
+job <- gsSurvCalendarTune(
+  calendarTime = tune_values(list(c(12, 24, 36), c(12, 24, 48))),
+  spending = c("information", "calendar")
+)
+\donttest{
+job$run(strategy = "grid", parallel = FALSE, seed = 1)
+utils::head(job$results())
+}
+}

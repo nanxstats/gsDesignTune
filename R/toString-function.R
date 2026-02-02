@@ -113,8 +113,21 @@ gstune_label_list_col <- function(values) {
   vapply(values, gstune_label_value, character(1))
 }
 
-#' @noRd
+#' Convert a function to a short label string
+#'
+#' [gsDesignTune()] uses function-valued columns (for example, spending functions)
+#' in results tables. This method provides a stable, readable label for such
+#' functions to keep printing and plotting robust.
+#'
+#' @param x A function.
+#' @param ... Unused (included for S3 method compatibility).
+#'
+#' @return A character scalar.
+#'
 #' @export
+#'
+#' @examples
+#' toString(stats::rnorm)
 toString.function <- function(x, ...) {
   gstune_fun_label(x)
 }

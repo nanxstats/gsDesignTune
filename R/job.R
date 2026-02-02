@@ -14,7 +14,19 @@
 #'   the underlying `(sfu, sfupar)` / `(sfl, sflpar)` arguments.
 #'
 #' @return A `GSDTuneJob` R6 object.
+#'
 #' @export
+#'
+#' @examples
+#' job <- gsDesignTune(
+#'   k = 3,
+#'   test.type = 4,
+#'   alpha = tune_values(list(0.025, 0.03))
+#' )
+#' \donttest{
+#' job$run(strategy = "grid", parallel = FALSE, seed = 1)
+#' utils::head(job$results())
+#' }
 gsDesignTune <- function(..., upper = NULL, lower = NULL) {
   args <- list(...)
   args$upper <- upper
@@ -38,7 +50,19 @@ gsDesignTune <- function(..., upper = NULL, lower = NULL) {
 #'   the underlying `(sfu, sfupar)` / `(sfl, sflpar)` arguments.
 #'
 #' @return A `GSDTuneJob` R6 object.
+#'
 #' @export
+#'
+#' @examples
+#' job <- gsSurvTune(
+#'   k = 3,
+#'   test.type = 4,
+#'   hr = tune_values(list(0.6, 0.7))
+#' )
+#' \donttest{
+#' job$run(strategy = "grid", parallel = FALSE, seed = 1)
+#' utils::head(job$results())
+#' }
 gsSurvTune <- function(..., upper = NULL, lower = NULL) {
   args <- list(...)
   args$upper <- upper
@@ -63,7 +87,18 @@ gsSurvTune <- function(..., upper = NULL, lower = NULL) {
 #'   the underlying `(sfu, sfupar)` / `(sfl, sflpar)` arguments.
 #'
 #' @return A `GSDTuneJob` R6 object.
+#'
 #' @export
+#'
+#' @examples
+#' job <- gsSurvCalendarTune(
+#'   calendarTime = tune_values(list(c(12, 24, 36), c(12, 24, 48))),
+#'   spending = c("information", "calendar")
+#' )
+#' \donttest{
+#' job$run(strategy = "grid", parallel = FALSE, seed = 1)
+#' utils::head(job$results())
+#' }
 gsSurvCalendarTune <- function(..., upper = NULL, lower = NULL) {
   args <- list(...)
   args$upper <- upper
@@ -101,7 +136,13 @@ gsSurvCalendarTune <- function(..., upper = NULL, lower = NULL) {
 #' @param facet Optional faceting column name for plotting.
 #' @param path Output path for HTML report.
 #'
+#' @return An R6 class generator. Use `$new()` to create a `GSDTuneJob` object.
+#'
 #' @export
+#'
+#' @examples
+#' job <- GSDTuneJob$new(target = "gsDesign", args = list(k = 3, alpha = 0.025))
+#' job$spec$target
 GSDTuneJob <- R6::R6Class(
   "GSDTuneJob",
   public = list(
@@ -399,7 +440,7 @@ GSDTuneJob <- R6::R6Class(
     #' @param x X-axis column name.
     #' @param color Optional color column name.
     #' @param facet Optional faceting column name.
-    #' 
+    #'
     #' @importFrom ggplot2 ggplot aes geom_point theme_minimal facet_wrap
     plot = function(metric, x, color = NULL, facet = NULL) {
       df <- self$results()

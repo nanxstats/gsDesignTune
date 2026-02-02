@@ -14,6 +14,7 @@ NULL
 #' @param x Any R object.
 #'
 #' @return A `gstune_spec` object.
+#'
 #' @export
 #'
 #' @examples
@@ -34,6 +35,7 @@ tune_fixed <- function(x) {
 #' @param values A list of candidate values.
 #'
 #' @return A `gstune_spec` object.
+#'
 #' @export
 #'
 #' @examples
@@ -58,6 +60,7 @@ tune_values <- function(values) {
 #' @param length_out Integer scalar, the number of candidates.
 #'
 #' @return A `gstune_spec` object.
+#'
 #' @export
 #'
 #' @examples
@@ -85,6 +88,7 @@ tune_seq <- function(from, to, length_out) {
 #' @param by Integer scalar step size.
 #'
 #' @return A `gstune_spec` object.
+#'
 #' @export
 #'
 #' @examples
@@ -113,6 +117,7 @@ tune_int <- function(from, to, by = 1) {
 #' @param ... Candidate values.
 #'
 #' @return A `gstune_spec` object.
+#'
 #' @export
 #'
 #' @examples
@@ -134,6 +139,7 @@ tune_choice <- function(...) {
 #'   `depends_on` (or use `...`).
 #'
 #' @return A `gstune_spec` object.
+#'
 #' @export
 #'
 #' @examples

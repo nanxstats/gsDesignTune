@@ -26,3 +26,14 @@ Any argument can be replaced by a tuning specification created by \verb{tune_*()
 Use \code{SpendingSpec} / \code{SpendingFamily} via \verb{upper=} and \verb{lower=} for
 dependency-aware spending function tuning.
 }
+\examples{
+job <- gsDesignTune(
+  k = 3,
+  test.type = 4,
+  alpha = tune_values(list(0.025, 0.03))
+)
+\donttest{
+job$run(strategy = "grid", parallel = FALSE, seed = 1)
+utils::head(job$results())
+}
+}

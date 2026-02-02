@@ -18,7 +18,13 @@ NULL
 #' @param fun Spending function.
 #' @param par Spending parameter specification (fixed value or `tune_*()` spec).
 #'
+#' @return An R6 class generator. Use `$new()` to create a `SpendingSpec` object.
+#'
 #' @export
+#'
+#' @examples
+#' spec <- SpendingSpec$new(gsDesign::sfHSD, par = tune_seq(-4, -2, length_out = 2))
+#' spec$expand()
 SpendingSpec <- R6::R6Class(
   "SpendingSpec",
   public = list(
@@ -68,7 +74,16 @@ SpendingSpec <- R6::R6Class(
 #'
 #' @param ... One or more `SpendingSpec` objects.
 #'
+#' @return An R6 class generator. Use `$new()` to create a `SpendingFamily` object.
+#'
 #' @export
+#'
+#' @examples
+#' fam <- SpendingFamily$new(
+#'   SpendingSpec$new(gsDesign::sfHSD, par = tune_fixed(-4)),
+#'   SpendingSpec$new(gsDesign::sfLDOF, par = tune_fixed(0))
+#' )
+#' fam$expand()
 SpendingFamily <- R6::R6Class(
   "SpendingFamily",
   public = list(

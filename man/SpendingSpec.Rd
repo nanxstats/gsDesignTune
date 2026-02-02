@@ -3,6 +3,9 @@
 \name{SpendingSpec}
 \alias{SpendingSpec}
 \title{SpendingSpec}
+\value{
+An R6 class generator. Use \verb{$new()} to create a \code{SpendingSpec} object.
+}
 \description{
 SpendingSpec
 
@@ -11,6 +14,10 @@ SpendingSpec
 \details{
 An R6 class representing a single spending function (\code{fun}) and a tuning
 specification for its parameter (\code{par}).
+}
+\examples{
+spec <- SpendingSpec$new(gsDesign::sfHSD, par = tune_seq(-4, -2, length_out = 2))
+spec$expand()
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
