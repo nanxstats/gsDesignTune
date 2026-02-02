@@ -399,6 +399,8 @@ GSDTuneJob <- R6::R6Class(
     #' @param x X-axis column name.
     #' @param color Optional color column name.
     #' @param facet Optional faceting column name.
+    #' 
+    #' @importFrom ggplot2 ggplot aes geom_point theme_minimal facet_wrap
     plot = function(metric, x, color = NULL, facet = NULL) {
       df <- self$results()
       df <- df[df$status == "ok", , drop = FALSE]
@@ -424,15 +426,15 @@ GSDTuneJob <- R6::R6Class(
       }
 
       mapping <- if (is.null(color_col)) {
-        ggplot2::aes(x = .data[[x]], y = .data[[metric]])
+        aes(x = .data[[x]], y = .data[[metric]])
       } else {
-        ggplot2::aes(x = .data[[x]], y = .data[[metric]], color = .data[[color_col]])
+        aes(x = .data[[x]], y = .data[[metric]], color = .data[[color_col]])
       }
-      p <- ggplot2::ggplot(df_plot, mapping) +
-        ggplot2::geom_point() +
-        ggplot2::theme_minimal()
+      p <- ggplot(df_plot, mapping) +
+        geom_point() +
+        theme_minimal()
       if (!is.null(facet_col)) {
-        p <- p + ggplot2::facet_wrap(stats::as.formula(paste("~", facet_col)))
+        p <- p + facet_wrap(stats::as.formula(paste("~", facet_col)))
       }
       p
     },
