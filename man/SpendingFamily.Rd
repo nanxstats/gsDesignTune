@@ -3,6 +3,9 @@
 \name{SpendingFamily}
 \alias{SpendingFamily}
 \title{SpendingFamily}
+\value{
+An R6 class generator. Use \verb{$new()} to create a \code{SpendingFamily} object.
+}
 \description{
 SpendingFamily
 
@@ -11,6 +14,13 @@ SpendingFamily
 \details{
 An R6 class representing a set of spending function specifications. Each
 family member is a \code{SpendingSpec}.
+}
+\examples{
+fam <- SpendingFamily$new(
+  SpendingSpec$new(gsDesign::sfHSD, par = tune_fixed(-4)),
+  SpendingSpec$new(gsDesign::sfLDOF, par = tune_fixed(0))
+)
+fam$expand()
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}

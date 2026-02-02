@@ -3,6 +3,9 @@
 \name{GSDTuneJob}
 \alias{GSDTuneJob}
 \title{GSDTuneJob}
+\value{
+An R6 class generator. Use \verb{$new()} to create a \code{GSDTuneJob} object.
+}
 \description{
 GSDTuneJob
 
@@ -11,6 +14,10 @@ GSDTuneJob
 \details{
 R6 class representing a dependency-aware tuning job for group sequential
 designs created by \code{\link[gsDesign:gsDesign]{gsDesign::gsDesign()}} or \code{\link[gsDesign:nSurv]{gsDesign::gsSurv()}}.
+}
+\examples{
+job <- GSDTuneJob$new(target = "gsDesign", args = list(k = 3, alpha = 0.025))
+job$spec$target
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}

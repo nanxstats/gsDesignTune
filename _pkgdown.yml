@@ -37,6 +37,10 @@ reference:
       - tune_choice
       - tune_dep
 
+  - title: "Utilities"
+    contents:
+      - toString.function
+
 articles:
   - title: "Vignettes"
     contents:
