@@ -39,7 +39,7 @@ returns a tune job object instead of immediately running a single design."></hea
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Create a tune job for <code>gsDesign::gsSurv()</code></h1>
-      <small class="dont-index">Source: <a href="https://github.com/nanxstats/gsDesignTune/blob/main/R/job.R" class="external-link"><code>R/job.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/nanxstats/gsDesignTune/blob/v0.1.0/R/job.R" class="external-link"><code>R/job.R</code></a></small>
       <div class="d-none name"><code>gsSurvTune.Rd</code></div>
     </div>
 
@@ -90,8 +90,8 @@ dependency-aware spending function tuning.</p>
 <span class="r-in"><span><span class="va">job</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>strategy <span class="op">=</span> <span class="st">"grid"</span>, parallel <span class="op">=</span> <span class="cn">FALSE</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">job</span><span class="op">$</span><span class="fu">results</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    hr config_id status error_message warnings                        cache_key</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.6         1     ok          &lt;NA&gt;     &lt;NA&gt; 3689b99dfda3ad5e3b30fc37fe60d282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.7         2     ok          &lt;NA&gt;     &lt;NA&gt; 19751893a549af4ae938f26c8326130c</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.6         1     ok          &lt;NA&gt;     &lt;NA&gt; 26c8089bcbc7aab988fe66194419e9de</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.7         2     ok          &lt;NA&gt;     &lt;NA&gt; ebab4456ba8841262b1a29125961cf5c</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   design_rds call_args k test.type alpha beta       timing          n_I</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       &lt;NA&gt; 3, 4, 0.6 3         4 0.025  0.1 0.333333.... 57.23055....</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       &lt;NA&gt; 3, 4, 0.7 3         4 0.025  0.1 0.333333.... 117.5472....</span>

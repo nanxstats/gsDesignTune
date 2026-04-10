@@ -66,11 +66,11 @@ head(job$results())
 #> 4  function.... 0.33, 0.....     sfHSD        -2         4     ok          <NA>
 #> 5  function.... 0.5, 0.75, 1     sfHSD         0         5     ok          <NA>
 #>   warnings                        cache_key design_rds    call_args k test.type
-#> 1     <NA> 9ea0d19ce1458f48c81bfc56c0a34190       <NA> 3, 2, 0..... 3         2
-#> 2     <NA> 9ea0d19ce1458f48c81bfc56c0a34190       <NA> 3, 2, 0..... 3         2
-#> 3     <NA> 503c551a1cf21057d81659eeb8483e68       <NA> 3, 2, 0..... 3         2
-#> 4     <NA> ca4b397033e2751df9ef414c28e34e6b       <NA> 3, 2, 0..... 3         2
-#> 5     <NA> ed750dfc7a5411194478dad66288c358       <NA> 3, 2, 0..... 3         2
+#> 1     <NA> 9a58b4eeb3847992f01dadc5c9317c92       <NA> 3, 2, 0..... 3         2
+#> 2     <NA> 9a58b4eeb3847992f01dadc5c9317c92       <NA> 3, 2, 0..... 3         2
+#> 3     <NA> 1efc77f880a86f1016c08b31ff8b0e9a       <NA> 3, 2, 0..... 3         2
+#> 4     <NA> 10536dd2fa170ecc0af4ea40d0cfb733       <NA> 3, 2, 0..... 3         2
+#> 5     <NA> 93a3a5c5b477581dbce058508a1ed2e3       <NA> 3, 2, 0..... 3         2
 #>   alpha beta          n_I final_n_I      upper_z      lower_z      upper_p
 #> 1 0.025  0.1 0.523934....  1.047869 2.4717, .... -2.4717,.... 0.0067, ....
 #> 2 0.025  0.1 0.523934....  1.047869 2.4717, .... -2.4717,.... 0.0067, ....
@@ -97,5 +97,5 @@ head(job$results())
 report_path <- tempfile(fileext = ".html")
 job$report(report_path)
 report_path
-#> [1] "/tmp/RtmpOfgWaK/file1dc73afcd856.html"
+#> [1] "/tmp/RtmpwyieCZ/file1d9f2db15059.html"
 ```

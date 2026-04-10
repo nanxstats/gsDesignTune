@@ -2,6 +2,8 @@
 
 ## gsDesignTune 0.1.0
 
+CRAN release: 2026-02-04
+
 ### New features
 
 - [`gsDesignTune()`](https://nanx.me/gsDesignTune/reference/gsDesignTune.md),

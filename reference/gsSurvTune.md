@@ -47,8 +47,8 @@ job <- gsSurvTune(
 job$run(strategy = "grid", parallel = FALSE, seed = 1)
 utils::head(job$results())
 #>    hr config_id status error_message warnings                        cache_key
-#> 1 0.6         1     ok          <NA>     <NA> 3689b99dfda3ad5e3b30fc37fe60d282
-#> 2 0.7         2     ok          <NA>     <NA> 19751893a549af4ae938f26c8326130c
+#> 1 0.6         1     ok          <NA>     <NA> 26c8089bcbc7aab988fe66194419e9de
+#> 2 0.7         2     ok          <NA>     <NA> ebab4456ba8841262b1a29125961cf5c
 #>   design_rds call_args k test.type alpha beta       timing          n_I
 #> 1       <NA> 3, 4, 0.6 3         4 0.025  0.1 0.333333.... 57.23055....
 #> 2       <NA> 3, 4, 0.7 3         4 0.025  0.1 0.333333.... 117.5472....

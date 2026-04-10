@@ -50,8 +50,8 @@ utils::head(job$results())
 #> 1 0.025         1     ok          <NA>     <NA>
 #> 2 0.030         2     ok          <NA>     <NA>
 #>                          cache_key design_rds   call_args k test.type beta
-#> 1 80ff9bd71804790b9770dedebc97b8e1       <NA> 3, 4, 0.025 3         4  0.1
-#> 2 568a75220e8cd9d6514057e9a0b6edd4       <NA>  3, 4, 0.03 3         4  0.1
+#> 1 8a23233b9c6893b8615cb09ede5c7da6       <NA> 3, 4, 0.025 3         4  0.1
+#> 2 489c138d24d8fbff57e4f91b5b350567       <NA>  3, 4, 0.03 3         4  0.1
 #>         timing          n_I final_n_I      upper_z      lower_z      upper_p
 #> 1 0.333333.... 0.356627....  1.069883 3.0107, .... -0.2387,.... 0.0013, ....
 #> 2 0.333333.... 0.356983....  1.070950 2.9549, .... -0.2851,.... 0.0016, ....
