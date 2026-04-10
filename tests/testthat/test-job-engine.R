@@ -207,3 +207,23 @@ test_that("Table rendering supports Pareto results", {
   expect_false(any(grepl("^Call args$", header)))
   expect_false(any(grepl("^Bound summary$", header)))
 })
+
+test_that("Explicit table columns preserve hidden audit fields", {
+  job <- gsDesignTune(
+    k = 3,
+    test.type = 2,
+    alpha = 0.025,
+    beta = 0.10
+  )
+  job$run(strategy = "grid", parallel = FALSE, cache_dir = tempdir())
+
+  tab <- job$table(columns = c("config_id", "cache_key", "call_args", "design_rds"), n = 1)
+  expect_s4_class(tab, "tinytable")
+
+  df <- tinytable::save_tt(tab, output = "dataframe")
+  header <- trimws(gsub("*", "", unlist(df[1, ]), fixed = TRUE))
+  expect_true(any(grepl("^Config ID$", header)))
+  expect_true(any(grepl("^Cache key$", header)))
+  expect_true(any(grepl("^Call args$", header)))
+  expect_true(any(grepl("^Design RDS$", header)))
+})

@@ -329,7 +329,8 @@ GSDTuneJob <- R6::R6Class(
     #' @param data Optional results-like data.frame to render. Defaults to
     #'   `$results()`.
     #' @param columns Optional character vector of columns to display, in order.
-    #'   When `NULL`, a compact default set is chosen automatically.
+    #'   When `NULL`, a compact default set is chosen automatically. Explicit
+    #'   column selections are preserved, including audit/internal columns.
     #' @param n Optional number of rows to display.
     #' @param caption Optional table caption.
     #' @param notes Optional table notes passed to [tinytable::tt()].
@@ -337,6 +338,7 @@ GSDTuneJob <- R6::R6Class(
     #' @param theme Tinytable theme passed to [tinytable::tt()]. Defaults to
     #'   `"striped"`.
     table = function(data = NULL, columns = NULL, n = NULL, caption = NULL, notes = NULL, digits = 3, theme = "striped") {
+      explicit_columns <- !is.null(columns)
       if (is.null(data)) {
         data <- self$results()
       }
@@ -369,7 +371,7 @@ GSDTuneJob <- R6::R6Class(
       display_df <- if (nrow(data) == 0L) {
         data.frame(message = "No rows to display.", stringsAsFactors = FALSE)
       } else {
-        gstune_prepare_table_df(data)
+        gstune_prepare_table_df(data, drop_hidden = !explicit_columns)
       }
       tab <- tt(
         display_df,
@@ -901,18 +903,22 @@ gstune_rows_to_df <- function(rows) {
 #' list-columns to readable labels, and reorders columns for compact display.
 #'
 #' @param df Results-like data.frame.
+#' @param drop_hidden Logical; if `TRUE`, drop audit/internal columns that are
+#'   hidden in the default table display.
 #'
 #' @return A display-ready data.frame.
 #'
 #' @noRd
-gstune_prepare_table_df <- function(df) {
+gstune_prepare_table_df <- function(df, drop_hidden = TRUE) {
   stopifnot(is.data.frame(df))
 
-  hidden <- intersect(
-    c("cache_key", "design_rds", "call_args", "upper_setting", "lower_setting"),
-    names(df)
-  )
-  df <- df[, setdiff(names(df), hidden), drop = FALSE]
+  if (isTRUE(drop_hidden)) {
+    hidden <- intersect(
+      c("cache_key", "design_rds", "call_args", "upper_setting", "lower_setting"),
+      names(df)
+    )
+    df <- df[, setdiff(names(df), hidden), drop = FALSE]
+  }
 
   front <- intersect(c("config_id", "status"), names(df))
   back <- intersect(c("error_message", "warnings"), names(df))
@@ -1024,6 +1030,9 @@ gstune_table_colname <- function(x) {
   label_map <- c(
     config_id = "Config ID",
     status = "Status",
+    cache_key = "Cache key",
+    design_rds = "Design RDS",
+    call_args = "Call args",
     error_message = "Error message",
     warnings = "Warnings",
     timing = "Timing",
@@ -1033,6 +1042,8 @@ gstune_table_colname <- function(x) {
     alpha = "Type I error",
     beta = "Type II error",
     test.type = "Test type",
+    upper_setting = "Upper setting",
+    lower_setting = "Lower setting",
     upper_fun = "Upper bound",
     upper_par = "Upper parameter",
     lower_fun = "Lower bound",

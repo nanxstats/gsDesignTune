@@ -152,7 +152,8 @@ R Markdown and can also be printed explicitly with
 \verb{$results()}.}
 
 \item{\code{columns}}{Optional character vector of columns to display, in order.
-When \code{NULL}, a compact default set is chosen automatically.}
+When \code{NULL}, a compact default set is chosen automatically. Explicit
+column selections are preserved, including audit/internal columns.}
 
 \item{\code{n}}{Optional number of rows to display.}
 
