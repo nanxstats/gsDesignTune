@@ -128,7 +128,7 @@ Summarize the run (counts + numeric metric summaries).
 \if{html}{\out{<a id="method-GSDTuneJob-table"></a>}}
 \if{latex}{\out{\hypertarget{method-GSDTuneJob-table}{}}}
 \subsection{Method \code{table()}}{
-Render a compact results table with {tinytable}.
+Render a compact results table with tinytable.
 
 Returns a \code{tinytable} object which knits to HTML/LaTeX automatically in
 R Markdown and can also be printed explicitly with

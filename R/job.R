@@ -320,7 +320,7 @@ GSDTuneJob <- R6::R6Class(
       )
     },
     #' @description
-    #' Render a compact results table with {tinytable}.
+    #' Render a compact results table with tinytable.
     #'
     #' Returns a `tinytable` object which knits to HTML/LaTeX automatically in
     #' R Markdown and can also be printed explicitly with
