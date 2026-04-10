@@ -140,10 +140,10 @@ test_that("Table rendering supports Pareto results", {
     timing = tune_values(list(c(0.33, 0.67, 1), c(0.5, 0.75, 1))),
     hr = tune_values(list(0.60, 0.65)),
     upper = SpendingFamily$new(
-      SpendingSpec$new(sfLDOF, par = tune_fixed(0)),
-      SpendingSpec$new(sfHSD, par = tune_values(list(-2, 0)))
+      SpendingSpec$new(gsDesign::sfLDOF, par = tune_fixed(0)),
+      SpendingSpec$new(gsDesign::sfHSD, par = tune_values(list(-2, 0)))
     ),
-    lower = SpendingSpec$new(sfLDOF, par = tune_fixed(0)),
+    lower = SpendingSpec$new(gsDesign::sfLDOF, par = tune_fixed(0)),
     lambdaC = log(2) / 6,
     eta = 0.01,
     gamma = c(2.5, 5, 7.5, 10),
