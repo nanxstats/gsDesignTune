@@ -128,8 +128,13 @@ gstune_label_bound_summary <- function(x) {
     return("<bound summary>")
   }
 
-  analyses <- x$Analysis[grepl("^IA\\s|^Final$", x$Analysis)]
-  n_analyses <- length(analyses)
+  analyses <- x$Analysis[
+    grepl("^IA\\s|^Final$", x$Analysis) &
+      !is.na(x$Analysis) &
+      !is.na(x$Value) &
+      x$Value == "Z"
+  ]
+  n_analyses <- length(unique(analyses))
 
   final_row <- which(x$Analysis == "Final" & x$Value == "Z")
   final_eff <- if (length(final_row) == 1L) round(x$Efficacy[[final_row]], 3) else NA_real_

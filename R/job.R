@@ -357,13 +357,13 @@ GSDTuneJob <- R6::R6Class(
         data <- data[, columns, drop = FALSE]
       }
       if (!is.null(n)) {
-        if (!is.numeric(n) || length(n) != 1L || is.na(n) || n < 1L) {
-          stop("`n` must be a positive numeric scalar.", call. = FALSE)
+        if (!is.numeric(n) || length(n) != 1L || is.na(n) || !is.finite(n) || n < 1L || n %% 1 != 0) {
+          stop("`n` must be a finite positive integer scalar.", call. = FALSE)
         }
         data <- utils::head(data, as.integer(n))
       }
-      if (!is.numeric(digits) || length(digits) != 1L || is.na(digits) || digits < 0) {
-        stop("`digits` must be a non-negative numeric scalar.", call. = FALSE)
+      if (!is.numeric(digits) || length(digits) != 1L || is.na(digits) || !is.finite(digits) || digits < 0 || digits %% 1 != 0) {
+        stop("`digits` must be a finite non-negative integer scalar.", call. = FALSE)
       }
 
       display_df <- if (nrow(data) == 0L) {
@@ -980,7 +980,7 @@ gstune_default_table_columns <- function(df, tune_ids = character()) {
   }, logical(1))]
 
   front <- "config_id"
-  status <- if ("status" %in% names(df) && !all(df$status %in% "ok")) "status" else character()
+  status <- if ("status" %in% names(df) && any(is.na(df$status) | df$status != "ok")) "status" else character()
   errors <- if ("error_message" %in% names(df) && any(!is.na(df$error_message) & nzchar(df$error_message))) "error_message" else character()
   warnings <- if ("warnings" %in% names(df) && any(!is.na(df$warnings) & nzchar(df$warnings))) "warnings" else character()
 

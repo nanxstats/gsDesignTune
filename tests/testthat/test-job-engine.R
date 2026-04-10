@@ -131,6 +131,48 @@ test_that("Table rendering returns a compact tinytable", {
   expect_false(any(grepl("^Status$", header)))
 })
 
+test_that("Table rendering validates n and digits strictly", {
+  job <- gsDesignTune(
+    k = 3,
+    test.type = 2,
+    alpha = 0.025,
+    beta = 0.10
+  )
+  job$run(strategy = "grid", parallel = FALSE)
+
+  expect_error(job$table(n = Inf), "`n` must be a finite positive integer scalar.")
+  expect_error(job$table(n = 1.5), "`n` must be a finite positive integer scalar.")
+  expect_error(job$table(digits = Inf), "`digits` must be a finite non-negative integer scalar.")
+  expect_error(job$table(digits = 1.5), "`digits` must be a finite non-negative integer scalar.")
+})
+
+test_that("Default table columns handle missing status values", {
+  df <- data.frame(
+    config_id = 1:2,
+    status = c(NA_character_, "ok"),
+    final_n = c(100, 120)
+  )
+
+  cols <- gsDesignTune:::gstune_default_table_columns(df)
+  expect_true("status" %in% cols)
+})
+
+test_that("Bound summary labels count analyses correctly", {
+  x <- structure(
+    data.frame(
+      Analysis = c("IA 1: 33%", "IA 1: 33%", "IA 2: 67%", "IA 2: 67%", "Final", "Final"),
+      Value = c("Z", "p (1-sided)", "Z", "p (1-sided)", "Z", "p (1-sided)"),
+      Efficacy = c(3.1, 0.001, 2.4, 0.008, 2.0, 0.023),
+      Futility = c(-0.8, 0.7, 0.2, 0.4, 1.8, 0.96),
+      stringsAsFactors = FALSE
+    ),
+    class = c("gsBoundSummary", "data.frame")
+  )
+
+  label <- gsDesignTune:::gstune_label_bound_summary(x)
+  expect_match(label, "^3 analyses;")
+})
+
 test_that("Table rendering supports Pareto results", {
   job <- gsSurvTune(
     k = 3,
