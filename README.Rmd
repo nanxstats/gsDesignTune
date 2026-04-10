@@ -60,7 +60,7 @@ pak::pak("nanxstats/gsDesignTune")
 
 Evaluate time-to-event designs:
 
-```{r example, results="hide", warning=FALSE}
+```{r example, warning=FALSE}
 library(gsDesign)
 library(gsDesignTune)
 library(future)
@@ -91,11 +91,14 @@ job <- gsSurvTune(
 job$run(strategy = "grid", parallel = TRUE, seed = 1, cache_dir = "gstune_cache")
 
 res <- job$results()
-head(res)
 
-job$best("final_events", direction = "min")
-job$pareto(metrics = c("final_events", "upper_z1"), directions = c("min", "min"))
-
+job$table(n = 10)
+job$best("final_events", direction = "min") |>
+  job$table(n = 10)
+job$pareto(
+  metrics = c("final_events", "upper_z1"),
+  directions = c("min", "min")
+) |> job$table(n = 10)
 job$plot(metric = "final_events", x = "hr", color = "upper_fun")
 job$report("gstune_report.html")
 ```

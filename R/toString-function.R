@@ -88,6 +88,9 @@ gstune_find_name_in_env <- function(obj, env) {
 #'
 #' @noRd
 gstune_label_value <- function(x) {
+  if (inherits(x, "gsBoundSummary")) {
+    return(gstune_label_bound_summary(x))
+  }
   if (is_spending_setting(x)) {
     par <- x$par
     par_txt <- if (is.null(par)) "NULL" else tryCatch(toString(par), error = function(e) "<par>")
@@ -111,6 +114,41 @@ gstune_label_value <- function(x) {
 #' @noRd
 gstune_label_list_col <- function(values) {
   vapply(values, gstune_label_value, character(1))
+}
+
+#' Summarize a bound summary object for compact display
+#'
+#' @param x A `gsBoundSummary` object.
+#'
+#' @return A character scalar.
+#'
+#' @noRd
+gstune_label_bound_summary <- function(x) {
+  if (!inherits(x, "gsBoundSummary") || !is.data.frame(x)) {
+    return("<bound summary>")
+  }
+
+  analyses <- x$Analysis[
+    grepl("^IA\\s|^Final$", x$Analysis) &
+      !is.na(x$Analysis) &
+      !is.na(x$Value) &
+      x$Value == "Z"
+  ]
+  n_analyses <- length(unique(analyses))
+
+  final_row <- which(x$Analysis == "Final" & x$Value == "Z")
+  final_eff <- if (length(final_row) == 1L) round(x$Efficacy[[final_row]], 3) else NA_real_
+  final_fut <- if (length(final_row) == 1L) round(x$Futility[[final_row]], 3) else NA_real_
+
+  pieces <- c(sprintf("%s analyses", n_analyses))
+  if (!is.na(final_eff)) {
+    pieces <- c(pieces, sprintf("final eff Z=%s", final_eff))
+  }
+  if (!is.na(final_fut)) {
+    pieces <- c(pieces, sprintf("final fut Z=%s", final_fut))
+  }
+
+  paste(pieces, collapse = "; ")
 }
 
 #' Convert a function to a short label string

@@ -25,13 +25,7 @@ utils::str(job$spec, max.level = 2)
 ```{r}
 res <- job$results()
 table(res$status)
-utils::head(res, 20)
-```
-
-```{r}
-if (requireNamespace("knitr", quietly = TRUE)) {
-  knitr::kable(utils::head(res, 20))
-}
+job$table(n = 20)
 ```
 
 ## Quick exploration
@@ -52,8 +46,8 @@ if ("final_events" %in% names(res) && "hr" %in% names(res) && is.numeric(res$fin
 
 ```{r}
 if ("final_events" %in% names(res) && is.numeric(res$final_events)) {
-  utils::head(job$best("final_events", direction = "min"), 10)
+  job$table(job$best("final_events", direction = "min"), n = 10)
 } else if ("final_n" %in% names(res) && is.numeric(res$final_n)) {
-  utils::head(job$best("final_n", direction = "min"), 10)
+  job$table(job$best("final_n", direction = "min"), n = 10)
 }
 ```

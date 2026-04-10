@@ -320,6 +320,86 @@ GSDTuneJob <- R6::R6Class(
       )
     },
     #' @description
+    #' Render a compact results table with tinytable.
+    #'
+    #' Returns a `tinytable` object which knits to HTML/LaTeX automatically in
+    #' R Markdown and can also be printed explicitly with
+    #' `print(x, output = "html")` or `print(x, output = "latex")`.
+    #'
+    #' @param data Optional results-like data.frame to render. Defaults to
+    #'   `$results()`.
+    #' @param columns Optional character vector of columns to display, in order.
+    #'   When `NULL`, a compact default set is chosen automatically. Explicit
+    #'   column selections are preserved, including audit/internal columns.
+    #' @param n Optional number of rows to display.
+    #' @param caption Optional table caption.
+    #' @param notes Optional table notes passed to [tinytable::tt()].
+    #' @param digits Number of digits for numeric columns.
+    #' @param theme Tinytable theme passed to [tinytable::tt()]. Defaults to
+    #'   `"striped"`.
+    table = function(data = NULL, columns = NULL, n = NULL, caption = NULL, notes = NULL, digits = 3, theme = "striped") {
+      explicit_columns <- !is.null(columns)
+      if (is.null(data)) {
+        data <- self$results()
+      }
+      if (!is.data.frame(data)) {
+        stop("`data` must be a data.frame.", call. = FALSE)
+      }
+      if (is.null(columns)) {
+        columns <- gstune_default_table_columns(data, tune_ids = names(self$tune_specs))
+      }
+      if (!is.null(columns)) {
+        if (!is.character(columns) || length(columns) < 1L) {
+          stop("`columns` must be a non-empty character vector.", call. = FALSE)
+        }
+        missing_columns <- setdiff(columns, names(data))
+        if (length(missing_columns) > 0L) {
+          stop(sprintf("Unknown columns: %s", paste(missing_columns, collapse = ", ")), call. = FALSE)
+        }
+        data <- data[, columns, drop = FALSE]
+      }
+      if (!is.null(n)) {
+        if (!is.numeric(n) || length(n) != 1L || is.na(n) || !is.finite(n) || n < 1L || n %% 1 != 0) {
+          stop("`n` must be a finite positive integer scalar.", call. = FALSE)
+        }
+        data <- utils::head(data, as.integer(n))
+      }
+      if (!is.numeric(digits) || length(digits) != 1L || is.na(digits) || !is.finite(digits) || digits < 0 || digits %% 1 != 0) {
+        stop("`digits` must be a finite non-negative integer scalar.", call. = FALSE)
+      }
+
+      display_df <- if (nrow(data) == 0L) {
+        data.frame(message = "No rows to display.", stringsAsFactors = FALSE)
+      } else {
+        gstune_prepare_table_df(data, drop_hidden = !explicit_columns)
+      }
+      tab <- tt(
+        display_df,
+        caption = caption,
+        notes = notes,
+        theme = theme
+      )
+      tab <- theme_html(
+        tab,
+        portable = TRUE,
+        class = "tinytable tinytable-sm",
+        css = "font-size: 0.875rem;"
+      )
+      tab <- format_tt(tab, digits = as.integer(digits))
+      tab <- format_tt(tab, replace = "")
+      tab <- format_tt(tab, i = "colnames", fn = gstune_table_colname)
+      num_idx <- which(vapply(display_df, is.numeric, logical(1)))
+      txt_idx <- setdiff(seq_along(display_df), num_idx)
+      if (length(num_idx) > 0L) {
+        tab <- style_tt(tab, j = num_idx, align = "r")
+      }
+      if (length(txt_idx) > 0L) {
+        tab <- style_tt(tab, j = txt_idx, align = "l")
+      }
+      tab <- style_tt(tab, i = 0, bold = TRUE, align = "c", line = "b")
+      tab
+    },
+    #' @description
     #' Retrieve a design object for configuration `i`.
     #'
     #' @param i Row index of the configuration.
@@ -815,6 +895,195 @@ gstune_rows_to_df <- function(rows) {
     cols[[nm]] <- gstune_simplify_col(values)
   }
   as.data.frame(cols, stringsAsFactors = FALSE)
+}
+
+#' Prepare a results-like data.frame for table display
+#'
+#' Drops audit-only columns, prefers user-facing derived columns, converts
+#' list-columns to readable labels, and reorders columns for compact display.
+#'
+#' @param df Results-like data.frame.
+#' @param drop_hidden Logical; if `TRUE`, drop audit/internal columns that are
+#'   hidden in the default table display.
+#'
+#' @return A display-ready data.frame.
+#'
+#' @noRd
+gstune_prepare_table_df <- function(df, drop_hidden = TRUE) {
+  stopifnot(is.data.frame(df))
+
+  if (isTRUE(drop_hidden)) {
+    hidden <- intersect(
+      c("cache_key", "design_rds", "call_args", "upper_setting", "lower_setting"),
+      names(df)
+    )
+    df <- df[, setdiff(names(df), hidden), drop = FALSE]
+  }
+
+  front <- intersect(c("config_id", "status"), names(df))
+  back <- intersect(c("error_message", "warnings"), names(df))
+  middle <- setdiff(names(df), c(front, back))
+  df <- df[, c(front, middle, back), drop = FALSE]
+
+  out <- lapply(df, function(x) {
+    if (is.list(x)) {
+      return(gstune_label_list_col(x))
+    }
+    x
+  })
+
+  as.data.frame(out, stringsAsFactors = FALSE, check.names = FALSE)
+}
+
+#' Choose a compact default set of table columns
+#'
+#' @param df Results-like data.frame.
+#' @param tune_ids Names of tuned arguments in the job specification.
+#'
+#' @return A character vector of column names.
+#'
+#' @noRd
+gstune_default_table_columns <- function(df, tune_ids = character()) {
+  stopifnot(is.data.frame(df))
+
+  tune_display <- character()
+  for (id in tune_ids) {
+    if (identical(id, "upper_setting")) {
+      tune_display <- c(tune_display, intersect(c("upper_fun", "upper_par"), names(df)))
+    } else if (identical(id, "lower_setting")) {
+      tune_display <- c(tune_display, intersect(c("lower_fun", "lower_par"), names(df)))
+    } else if (id %in% names(df)) {
+      tune_display <- c(tune_display, id)
+    }
+  }
+  tune_display <- unique(tune_display)
+  tune_display <- tune_display[vapply(tune_display, function(nm) {
+    values <- df[[nm]]
+    if (is.list(values)) {
+      labels <- gstune_label_list_col(values)
+      return(length(unique(stats::na.omit(labels))) > 1L)
+    }
+    length(unique(stats::na.omit(values))) > 1L
+  }, logical(1))]
+
+  metric_priority <- c(
+    "final_events",
+    "final_n",
+    "final_n_I",
+    "max_events",
+    "final_n_total",
+    "n_total",
+    "power",
+    "en",
+    "analysis_time",
+    "upper_z1",
+    "lower_z1"
+  )
+  metric_cols <- intersect(metric_priority, names(df))
+  metric_cols <- metric_cols[vapply(metric_cols, function(nm) {
+    values <- df[[nm]]
+    !is.list(values) && is.atomic(values)
+  }, logical(1))]
+
+  front <- "config_id"
+  status <- if ("status" %in% names(df) && any(is.na(df$status) | df$status != "ok")) "status" else character()
+  errors <- if ("error_message" %in% names(df) && any(!is.na(df$error_message) & nzchar(df$error_message))) "error_message" else character()
+  warnings <- if ("warnings" %in% names(df) && any(!is.na(df$warnings) & nzchar(df$warnings))) "warnings" else character()
+
+  cols <- unique(c(front, status, tune_display, metric_cols, errors, warnings))
+  cols <- cols[cols %in% names(df)]
+  if (length(cols) > 1L) {
+    keep <- logical(length(cols))
+    seen_labels <- character()
+    seen_values <- list()
+    for (i in seq_along(cols)) {
+      nm <- cols[[i]]
+      label <- gstune_table_colname(nm)
+      values <- df[[nm]]
+      dup_label <- label %in% seen_labels
+      dup_values <- any(vapply(seen_values, function(prev) identical(prev, values), logical(1)))
+      keep[[i]] <- !(dup_label || dup_values)
+      if (keep[[i]]) {
+        seen_labels <- c(seen_labels, label)
+        seen_values[[length(seen_values) + 1L]] <- values
+      }
+    }
+    cols <- cols[keep]
+  }
+
+  if (length(cols) == 0L) {
+    keep <- setdiff(names(df), c("cache_key", "design_rds", "call_args", "bound_summary"))
+    return(utils::head(keep, 10))
+  }
+
+  cols
+}
+
+#' Format table column names for display
+#'
+#' @param x Column name.
+#'
+#' @return A character scalar.
+#'
+#' @noRd
+gstune_table_colname <- function(x) {
+  label_map <- c(
+    config_id = "Config ID",
+    status = "Status",
+    cache_key = "Cache key",
+    design_rds = "Design RDS",
+    call_args = "Call args",
+    error_message = "Error message",
+    warnings = "Warnings",
+    timing = "Timing",
+    calendarTime = "Calendar time",
+    spending = "Spending",
+    hr = "HR",
+    alpha = "Type I error",
+    beta = "Type II error",
+    test.type = "Test type",
+    upper_setting = "Upper setting",
+    lower_setting = "Lower setting",
+    upper_fun = "Upper bound",
+    upper_par = "Upper parameter",
+    lower_fun = "Lower bound",
+    lower_par = "Lower parameter",
+    n_I = "N by analysis",
+    final_n_I = "Final N",
+    upper_z = "Upper Z",
+    lower_z = "Lower Z",
+    upper_p = "Upper p-value",
+    lower_p = "Lower p-value",
+    power = "Power",
+    en = "Expected N",
+    upper_name = "Upper spending",
+    lower_name = "Lower spending",
+    bound_summary = "Bound summary",
+    final_events = "Final events",
+    max_events = "Max events",
+    n_total = "Total N",
+    final_n_total = "Final total N",
+    analysis_time = "Analysis time",
+    upper_z1 = "Upper Z (IA1)",
+    lower_z1 = "Lower Z (IA1)"
+  )
+
+  vapply(x, function(one) {
+    if (one %in% names(label_map)) {
+      return(unname(label_map[[one]]))
+    }
+
+    words <- strsplit(gsub("_", " ", one, fixed = TRUE), "\\s+")[[1]]
+    words <- words[nzchar(words)]
+    words <- vapply(words, function(word) {
+      if (nchar(word) <= 2L) {
+        toupper(word)
+      } else {
+        paste0(toupper(substr(word, 1, 1)), substr(word, 2, nchar(word)))
+      }
+    }, character(1))
+    paste(words, collapse = " ")
+  }, character(1))
 }
 
 #' Apply constraints to a results table

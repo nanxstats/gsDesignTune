@@ -1,3 +1,14 @@
+# gsDesignTune (development version)
+
+## Improvements
+
+- Added `GSDTuneJob$table()` method to render results data frames with
+  {tinytable}, with compact display defaults for HTML/LaTeX reporting and
+  vignettes (#27). The defaults are optimized for readability:
+  compact column selection, shorter bound summary labels, scientific-style
+  column headings, and smaller HTML table sizing to reduce wrapping and
+  horizontal scrolling.
+
 # gsDesignTune 0.1.0
 
 ## New features
