@@ -41,6 +41,7 @@ job$spec$target
 \item \href{#method-GSDTuneJob-run}{\code{GSDTuneJob$run()}}
 \item \href{#method-GSDTuneJob-results}{\code{GSDTuneJob$results()}}
 \item \href{#method-GSDTuneJob-summarize}{\code{GSDTuneJob$summarize()}}
+\item \href{#method-GSDTuneJob-table}{\code{GSDTuneJob$table()}}
 \item \href{#method-GSDTuneJob-design}{\code{GSDTuneJob$design()}}
 \item \href{#method-GSDTuneJob-call_args}{\code{GSDTuneJob$call_args()}}
 \item \href{#method-GSDTuneJob-best}{\code{GSDTuneJob$best()}}
@@ -122,6 +123,50 @@ Summarize the run (counts + numeric metric summaries).
 \if{html}{\out{<div class="r">}}\preformatted{GSDTuneJob$summarize()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GSDTuneJob-table"></a>}}
+\if{latex}{\out{\hypertarget{method-GSDTuneJob-table}{}}}
+\subsection{Method \code{table()}}{
+Render a compact results table with {tinytable}.
+
+Returns a \code{tinytable} object which knits to HTML/LaTeX automatically in
+R Markdown and can also be printed explicitly with
+\code{print(x, output = "html")} or \code{print(x, output = "latex")}.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GSDTuneJob$table(
+  data = NULL,
+  columns = NULL,
+  n = NULL,
+  caption = NULL,
+  notes = NULL,
+  digits = 3,
+  theme = "striped"
+)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{data}}{Optional results-like data.frame to render. Defaults to
+\verb{$results()}.}
+
+\item{\code{columns}}{Optional character vector of columns to display, in order.
+When \code{NULL}, a compact default set is chosen automatically.}
+
+\item{\code{n}}{Optional number of rows to display.}
+
+\item{\code{caption}}{Optional table caption.}
+
+\item{\code{notes}}{Optional table notes passed to \code{\link[tinytable:tt]{tinytable::tt()}}.}
+
+\item{\code{digits}}{Number of digits for numeric columns.}
+
+\item{\code{theme}}{Tinytable theme passed to \code{\link[tinytable:tt]{tinytable::tt()}}. Defaults to
+\code{"striped"}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-GSDTuneJob-design"></a>}}
