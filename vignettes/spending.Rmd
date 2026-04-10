@@ -57,7 +57,7 @@ job1 <- gsSurvTune(
 
 job1$run(strategy = "grid", parallel = FALSE)
 res1 <- job1$results()
-head(res1[, c("hr", "upper_fun", "upper_par", "final_events")])
+job1$table(columns = c("hr", "upper_fun", "upper_par", "final_events"), n = 6)
 ```
 
 ## Advanced: `tune_dep()`
@@ -90,7 +90,7 @@ job2 <- gsSurvTune(
 
 job2$run(strategy = "grid", parallel = FALSE)
 res2 <- job2$results()
-head(res2[, c("hr", "sfu", "sfupar", "final_events")])
+job2$table(columns = c("hr", "sfu", "sfupar", "final_events"), n = 6)
 ```
 
 ```{r}

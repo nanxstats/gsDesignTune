@@ -48,14 +48,14 @@ job <- gsDesignTune(
 
 job$run(strategy = "grid", parallel = FALSE)
 res <- job$results()
-head(res)
+job$table(n = 6)
 ```
 
 ### Ranking and filtering
 
 ```{r}
 best <- job$best("final_n", direction = "min")
-head(best, 10)
+job$table(best, n = 10)
 ```
 
 ### Plot
@@ -92,7 +92,7 @@ job_surv <- gsSurvTune(
 
 job_surv$run(strategy = "grid", parallel = FALSE)
 res_surv <- job_surv$results()
-head(res_surv)
+job_surv$table(n = 6)
 ```
 
 ### Calendar-timed analyses with `gsSurvCalendarTune()`
@@ -123,14 +123,14 @@ job_cal <- gsSurvCalendarTune(
 
 job_cal$run(strategy = "grid", parallel = FALSE)
 res_cal <- job_cal$results()
-head(res_cal)
+job_cal$table(n = 6)
 ```
 
 ### Multi-scenario exploration
 
 ```{r}
 best_surv <- job_surv$best("final_events", direction = "min")
-head(best_surv, 10)
+job_surv$table(best_surv, n = 10)
 ```
 
 ```{r}

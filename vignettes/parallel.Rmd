@@ -77,7 +77,7 @@ job <- gsDesignTune(
 )
 
 job$run(strategy = "random", n = 5, parallel = FALSE, seed = 123)
-head(job$results())
+job$table()
 ```
 
 ## Export a report
