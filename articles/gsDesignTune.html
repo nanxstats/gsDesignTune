@@ -61,7 +61,7 @@
       <h1>Getting started with gsDesignTune</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/nanxstats/gsDesignTune/blob/v0.1.0/vignettes/gsDesignTune.Rmd" class="external-link"><code>vignettes/gsDesignTune.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/nanxstats/gsDesignTune/blob/main/vignettes/gsDesignTune.Rmd" class="external-link"><code>vignettes/gsDesignTune.Rmd</code></a></small>
       <div class="d-none name"><code>gsDesignTune.Rmd</code></div>
     </div>
 
@@ -92,109 +92,1217 @@ for tuning basic group sequential designs.</p>
 <span></span>
 <span><span class="va">job</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>strategy <span class="op">=</span> <span class="st">"grid"</span>, parallel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="va">job</span><span class="op">$</span><span class="fu">results</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   upper_setting       timing upper_fun upper_par config_id status error_message</span></span>
-<span><span class="co">#&gt; 1  function.... 0.33, 0.....    sfLDOF         0         1     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 2  function.... 0.5, 0.75, 1    sfLDOF         0         2     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 3  function.... 0.33, 0.....     sfHSD        -4         3     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 4  function.... 0.5, 0.75, 1     sfHSD        -4         4     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 5  function.... 0.33, 0.....     sfHSD         0         5     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 6  function.... 0.5, 0.75, 1     sfHSD         0         6     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   warnings                        cache_key design_rds    call_args k test.type</span></span>
-<span><span class="co">#&gt; 1     &lt;NA&gt; cb2610fb0a4d16425894a20d0b0d5191       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 2     &lt;NA&gt; 9a19b655ab2e76bc9718cb78cc437a7f       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 3     &lt;NA&gt; a596bf2736e423e3be03e7a44ede0efa       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 4     &lt;NA&gt; 1efc77f880a86f1016c08b31ff8b0e9a       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 5     &lt;NA&gt; d5b205647b9b1c31fa1ff28050f0bca3       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 6     &lt;NA&gt; 93a3a5c5b477581dbce058508a1ed2e3       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt;   alpha beta          n_I final_n_I      upper_z      lower_z      upper_p</span></span>
-<span><span class="co">#&gt; 1 0.025  0.1 0.333977....  1.012053 3.7307, .... -3.7307,.... 1e-04, 0....</span></span>
-<span><span class="co">#&gt; 2 0.025  0.1 0.509137....  1.018275 2.9626, .... -2.9626,.... 0.0015, ....</span></span>
-<span><span class="co">#&gt; 3 0.025  0.1 0.335043....  1.015284 3.0162, .... -3.0162,.... 0.0013, ....</span></span>
-<span><span class="co">#&gt; 4 0.025  0.1 0.509227....  1.018456 2.75, 2..... -2.75, -.... 0.003, 0....</span></span>
-<span><span class="co">#&gt; 5 0.025  0.1 0.365230....  1.106759 2.3977, .... -2.3977,.... 0.0082, ....</span></span>
-<span><span class="co">#&gt; 6 0.025  0.1 0.555438....  1.110878 2.2414, .... -2.2414,.... 0.0125, ....</span></span>
-<span><span class="co">#&gt;        lower_p power           en                               upper_name</span></span>
-<span><span class="co">#&gt; 1 1e-04, 0....   0.9 1.007862.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 2 0.0015, ....   0.9 1.012586.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 3 0.0013, ....   0.9 1.010154....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 4 0.003, 0....   0.9 1.012404....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 5 0.0082, ....   0.9 1.088314....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 6 0.0125, ....   0.9 1.093520....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt;                                 lower_name bound_summary  final_n    max_n</span></span>
-<span><span class="co">#&gt; 1 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:.... 1.012053 1.012053</span></span>
-<span><span class="co">#&gt; 2 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:.... 1.018275 1.018275</span></span>
-<span><span class="co">#&gt; 3                        Hwang-Shih-DeCani  c("IA 1:.... 1.015284 1.015284</span></span>
-<span><span class="co">#&gt; 4                        Hwang-Shih-DeCani  c("IA 1:.... 1.018456 1.018456</span></span>
-<span><span class="co">#&gt; 5                        Hwang-Shih-DeCani  c("IA 1:.... 1.106759 1.106759</span></span>
-<span><span class="co">#&gt; 6                        Hwang-Shih-DeCani  c("IA 1:.... 1.110878 1.110878</span></span>
-<span><span class="co">#&gt;   upper_z1 lower_z1</span></span>
-<span><span class="co">#&gt; 1   3.7307  -3.7307</span></span>
-<span><span class="co">#&gt; 2   2.9626  -2.9626</span></span>
-<span><span class="co">#&gt; 3   3.0162  -3.0162</span></span>
-<span><span class="co">#&gt; 4   2.7500  -2.7500</span></span>
-<span><span class="co">#&gt; 5   2.3977  -2.3977</span></span>
-<span><span class="co">#&gt; 6   2.2414  -2.2414</span></span></code></pre></div>
+<span><span class="va">job</span><span class="op">$</span><span class="fu">table</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<!-- preamble start -->
+
+    <script>
+// TinyTable JavaScript Framework
+// Function factory for creating table-specific operations
+window.TinyTable = {
+  // Helper to create Tabulator instance with Luxon dependency
+  createTabulator: function(elementId, config) {
+    const { DateTime } = window.luxon || {};
+    return new Tabulator(elementId, {
+      dependencies: { DateTime },
+      ...config
+    });
+  },
+
+  createTableFunctions: function (tableId) {
+    const spans = []; // {top, left, rowspan, colspan}
+
+    function resolveToAnchor(i, j) {
+      // find if (i,j) is inside any span; return that span's anchor if so
+      for (const s of spans) {
+        if (
+          i >= s.top && i < s.top + s.rowspan &&
+          j >= s.left && j < s.left + s.colspan
+        ) {
+          return { i: s.top, j: s.left };
+        }
+      }
+      return { i, j };
+    }
+
+    return {
+      styleCell: function (i, j, css_id) {
+        // normalize possible string indices
+        i = +i; j = +j;
+
+        const table = document.getElementById(tableId);
+        const { i: ai, j: aj } = resolveToAnchor(i, j);
+        const cell = table.querySelector(`[data-row="${ai}"][data-col="${aj}"]`);
+        if (!cell) return; // silently skip if not found (e.g., removed)
+        cell.classList.add(css_id);
+      },
+
+      spanCell: function (i, j, rowspan, colspan) {
+        i = +i; j = +j;
+
+        const table = document.getElementById(tableId);
+        const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+        if (!targetCell) {
+          console.warn(`Cell at (${i}, ${j}) not found.`);
+          return;
+        }
+
+        // record span so future styleCell calls map to the anchor
+        spans.push({ top: i, left: j, rowspan, colspan });
+
+        // remove covered cells (except anchor)
+        const cellsToRemove = [];
+        for (let r = 0; r < rowspan; r++) {
+          for (let c = 0; c < colspan; c++) {
+            if (r === 0 && c === 0) continue;
+            const cell = table.querySelector(`[data-row="${i + r}"][data-col="${j + c}"]`);
+            if (cell) cellsToRemove.push(cell);
+          }
+        }
+        cellsToRemove.forEach(cell => cell.remove());
+
+        // set HTML attributes for clarity/serialization
+        targetCell.setAttribute('rowspan', rowspan);
+        targetCell.setAttribute('colspan', colspan);
+      }
+    };
+  }
+};
+
+// =============================================================================
+// TABULATOR CUSTOM FORMATTERS (revised)
+// =============================================================================
+
+// SVG sparkline
+function tinytable_sparkline(cell, p = {}) {
+  let values = cell.getValue() ?? [];
+  if (!Array.isArray(values)) values = [values];
+  // coerce to finite numbers & strip NaNs
+  values = values.map(Number).filter(Number.isFinite);
+  const n = values.length;
+  if (n === 0) return "";
+
+  const w = p.width ?? 120, h = p.height ?? 30, pad = p.pad ?? 2;
+  const color = p.color ?? "currentColor", sw = p.strokeWidth ?? 1.5;
+  const fill = p.fillArea ?? false;
+  const showDots = p.showDots ?? false;
+  const dotR = p.dotRadius ?? 1.75;
+  const ariaLabel = p.ariaLabel ?? `sparkline with ${n} points`;
+
+  // single pass for min/max
+  let min = Infinity, max = -Infinity;
+  for (let v of values) { if (v < min) min = v; if (v > max) max = v; }
+  const span = (max - min) || 1;
+
+  const x = i => pad + (i * (w - 2 * pad)) / Math.max(n - 1, 1);
+  const y = v => h - pad - ((v - min) * (h - 2 * pad)) / span;
+
+  let d = `M ${x(0)},${y(values[0])}`;
+  for (let i = 1; i < n; i++) d += ` L ${x(i)},${y(values[i])}`;
+
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  svg.setAttribute("width", w);
+  svg.setAttribute("height", h);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", ariaLabel);
+
+  const path = document.createElementNS(NS, "path");
+  path.setAttribute("stroke", color);
+  path.setAttribute("stroke-width", sw);
+  path.setAttribute("vector-effect", "non-scaling-stroke");
+
+  if (fill) {
+    const area = document.createElementNS(NS, "path");
+    area.setAttribute("d", d + ` L ${x(n - 1)},${h - pad} L ${x(0)},${h - pad} Z`);
+    area.setAttribute("fill", color);
+    area.setAttribute("fill-opacity", p.fillOpacity ?? 0.25);
+    svg.appendChild(area);
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+  } else {
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+  }
+  svg.appendChild(path);
+
+  if (showDots) {
+    const dot = (i) => {
+      const c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", x(i));
+      c.setAttribute("cy", y(values[i]));
+      c.setAttribute("r", dotR);
+      c.setAttribute("fill", color);
+      return c;
+    };
+    if (p.dots === "end") svg.appendChild(dot(n - 1));
+    else if (p.dots === "minmax") {
+      const iMin = values.indexOf(min), iMax = values.indexOf(max);
+      svg.appendChild(dot(iMin)); svg.appendChild(dot(iMax));
+    } else if (p.dots === true) {
+      for (let i = 0; i < n; i++) svg.appendChild(dot(i));
+    }
+  }
+
+  if (p.title) {
+    const title = document.createElementNS(NS, "title");
+    title.textContent = p.title;
+    svg.appendChild(title);
+  }
+
+  return svg;
+}
+
+// Canvas histogram
+function tinytable_histogram(cell, p = {}) {
+  let data = cell.getValue() ?? [];
+  if (!Array.isArray(data)) data = [data];
+  data = data.map(Number).filter(Number.isFinite);
+  const n = data.length;
+  if (n === 0) return "";
+
+  const cssWidth = p.width ?? 120;
+  const cssHeight = p.height ?? 30;
+  const color = p.color ?? "currentColor";
+  const gap = p.gap ?? 1;         // px gap between bars
+  const pad = p.pad ?? 0;         // inner padding
+  const ariaLabel = p.ariaLabel ?? `histogram with ${n} observations`;
+
+  // robust bins: Sturges as default; allow override
+  const k = Math.max(1, Math.min(64, p.bins ?? Math.ceil(Math.log2(n) + 1)));
+
+  // stats
+  let min = Infinity, max = -Infinity;
+  for (let v of data) { if (v < min) min = v; if (v > max) max = v; }
+
+  // zero-range safeguard -> single centered bar
+  const range = max - min;
+  const binWidth = range > 0 ? range / k : 1;
+
+  const bins = new Array(k).fill(0);
+  if (range === 0) {
+    // put all mass in the middle bin
+    bins[Math.floor(k / 2)] = n;
+  } else {
+    for (let v of data) {
+      let idx = Math.floor((v - min) / binWidth);
+      if (idx >= k) idx = k - 1; // clamp max edge
+      bins[idx]++;
+    }
+  }
+  const maxCount = Math.max(...bins, 1);
+
+  // HiDPI / Retina crispness
+  const dpr = window.devicePixelRatio || 1;
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(cssWidth * dpr);
+  canvas.height = Math.round(cssHeight * dpr);
+  canvas.style.width = cssWidth + "px";
+  canvas.style.height = cssHeight + "px";
+  canvas.setAttribute("role", "img");
+  canvas.setAttribute("aria-label", ariaLabel);
+
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, cssWidth, cssHeight);
+  ctx.fillStyle = color;
+
+  const innerW = cssWidth - pad * 2;
+  const innerH = cssHeight - pad * 2;
+  const barW = innerW / k;
+
+  for (let i = 0; i < k; i++) {
+    const h = (bins[i] / maxCount) * innerH;
+    const x = pad + i * barW;
+    const y = cssHeight - pad - h;
+    // 0.5 translate helps crisp vertical edges on some displays
+    ctx.fillRect(Math.round(x) + 0.5, Math.floor(y), Math.max(0, barW - gap), Math.ceil(h));
+  }
+
+  if (p.title) canvas.title = p.title;
+  return canvas;
+}
+
+// Unified sorter that uses hidden rank field
+function tinytable_rank_sorter(a, b, aRow, bRow, column, dir, sorterParams) {
+  const rankField = sorterParams.rankField;
+  const aVal = aRow.getData()[rankField] || 0;
+  const bVal = bRow.getData()[rankField] || 0;
+  return aVal - bVal;
+}
+</script><script>
+      // Create table-specific functions using external factory
+      const tableFns_6v58l9vxglu05x0o7wvi = TinyTable.createTableFunctions("tinytable_6v58l9vxglu05x0o7wvi");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 2 }, { i: '4', j: 2 }, { i: '6', j: 2 }, { i: '2', j: 4 }, { i: '4', j: 4 }, { i: '6', j: 4 } ], css_id: 'tinytable_css_9n8o98iosemua6rb2f7b',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '3', j: 2 }, { i: '5', j: 2 }, { i: '1', j: 4 }, { i: '3', j: 4 }, { i: '5', j: 4 } ], css_id: 'tinytable_css_qbaehks92zd14h3igmus',}, 
+          { positions: [ { i: '2', j: 1 }, { i: '4', j: 1 }, { i: '6', j: 1 }, { i: '2', j: 3 }, { i: '4', j: 3 }, { i: '6', j: 3 }, { i: '2', j: 5 }, { i: '4', j: 5 }, { i: '6', j: 5 }, { i: '2', j: 6 }, { i: '4', j: 6 }, { i: '6', j: 6 }, { i: '2', j: 7 }, { i: '4', j: 7 }, { i: '6', j: 7 }, { i: '2', j: 8 }, { i: '4', j: 8 }, { i: '6', j: 8 } ], css_id: 'tinytable_css_8oyhm3xhtibg9ckz0265',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '3', j: 1 }, { i: '5', j: 1 }, { i: '1', j: 3 }, { i: '3', j: 3 }, { i: '5', j: 3 }, { i: '1', j: 5 }, { i: '3', j: 5 }, { i: '5', j: 5 }, { i: '1', j: 6 }, { i: '3', j: 6 }, { i: '5', j: 6 }, { i: '1', j: 7 }, { i: '3', j: 7 }, { i: '5', j: 7 }, { i: '1', j: 8 }, { i: '3', j: 8 }, { i: '5', j: 8 } ], css_id: 'tinytable_css_pd4bgcwwchv4awz6mnx7',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 } ], css_id: 'tinytable_css_rrapy1m2305li10rw6b1',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_6v58l9vxglu05x0o7wvi.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script><style>
+
+/* ========================================================================
+ * tinytable CSS - Core styling for HTML table output
+ * ======================================================================== */
+
+/* ========================================================================
+ * CSS Custom Properties (Theme Variables)
+ * ======================================================================== */
+.tinytable {
+    /* Colors */
+    --tt-text-color: inherit;
+    --tt-line-color: black;
+    --tt-border-color: var(--tt-line-color);
+    --tt-striped-bg: rgba(0, 0, 0, .05);
+    --tt-hover-bg: rgba(0, 0, 0, .075);
+    --tt-background-color: transparent;
+    --tt-footnote-bg: var(--tt-background-color);
+
+    /* Spacing */
+    --tt-cell-padding: .5rem;
+    --tt-cell-padding-sm: calc(var(--tt-cell-padding) / 2);
+    --tt-table-margin: .5rem 0;
+    --tt-caption-padding: .5rem 0;
+    --tt-footnote-padding: .2rem .5rem;
+    --tt-footnote-first-padding-top: .5rem;
+    --tt-footnote-gap: .1rem;
+    --tt-container-padding: 10px;
+
+    /* Typography */
+    --tt-font-size-footnote: 0.875rem;
+    --tt-font-size-caption: 1rem;
+    --tt-font-size-sup: 0.75em;
+    --tt-line-height-footnote: 1.25;
+    --tt-line-height-footnote-tight: 1.2;
+    --tt-font-weight-header: normal;
+
+    /* Alignment */
+    --tt-cell-valign: top;
+    --tt-header-align: left;
+    --tt-header-valign: bottom;
+    --tt-caption-align: var(--tt-header-align);
+    --tt-caption-side: top;
+
+    /* Layout */
+    --tt-table-width: 100%;
+
+    /* Border widths */
+    --tt-border-width: 1px;
+    --tt-border-width-tbody: 2px;
+}
+
+/* ========================================================================
+ * Base Table Styles
+ * ======================================================================== */
+.tinytable {
+    width: var(--tt-table-width);
+    margin: var(--tt-table-margin);
+    border-collapse: collapse;
+    background-color: var(--tt-background-color);
+    color: var(--tt-text-color);
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.tinytable * {
+    font-family: inherit;
+}
+
+/* ========================================================================
+ * Cell Styles
+ * ======================================================================== */
+.tinytable th,
+.tinytable td {
+    position: relative;
+    padding: var(--tt-cell-padding);
+    vertical-align: var(--tt-cell-valign);
+}
+
+.tinytable thead th {
+    text-align: var(--tt-header-align);
+    vertical-align: var(--tt-header-valign);
+    font-weight: var(--tt-font-weight-header);
+    border-bottom: none;
+}
+
+.tinytable thead th[align="center"] {
+    text-align: center;
+}
+
+.tinytable tbody + tbody {
+    border-top: var(--tt-border-width-tbody) solid var(--tt-border-color);
+}
+
+/* ========================================================================
+ * Table Variants
+ * ======================================================================== */
+
+/* Small padding variant */
+.tinytable-sm th,
+.tinytable-sm td {
+    padding: var(--tt-cell-padding-sm);
+}
+
+/* Bordered variant */
+.tinytable-bordered {
+    border: var(--tt-border-width) solid var(--tt-border-color);
+}
+
+.tinytable-bordered th,
+.tinytable-bordered td {
+    border: var(--tt-border-width) solid var(--tt-border-color);
+}
+
+/* Striped rows variant */
+.tinytable-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--tt-striped-bg);
+}
+
+/* Hover effect variant */
+.tinytable-hover tbody tr:hover {
+    background-color: var(--tt-hover-bg);
+}
+
+/* Responsive wrapper */
+.tinytable-responsive {
+    width: var(--tt-table-width);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ========================================================================
+ * Custom Border System (Pseudo-elements)
+ * ======================================================================== */
+.tinytable :is(td, th)[class*="tinytable_css_"] {
+    position: relative;
+
+    /* Border control variables */
+    --border-top: 0;
+    --border-right: 0;
+    --border-bottom: 0;
+    --border-left: 0;
+
+    /* Border color variables */
+    --line-color-top: currentColor;
+    --line-color-right: currentColor;
+    --line-color-bottom: currentColor;
+    --line-color-left: currentColor;
+
+    /* Border width variables */
+    --line-width-top: 0.1em;
+    --line-width-right: 0.1em;
+    --line-width-bottom: 0.1em;
+    --line-width-left: 0.1em;
+
+    /* Border trim variables */
+    --trim-top-left: 0%;
+    --trim-top-right: 0%;
+    --trim-right-top: 0%;
+    --trim-right-bottom: 0%;
+    --trim-bottom-left: 0%;
+    --trim-bottom-right: 0%;
+    --trim-left-top: 0%;
+    --trim-left-bottom: 0%;
+}
+
+/* Top, left, and right borders using ::before */
+.tinytable :is(td, th)[class*="tinytable_css_"]::before {
+    content: "";
+    position: absolute;
+    top: var(--trim-top-left, var(--trim-top-right, 0));
+    left: var(--trim-left-top, 0);
+    right: var(--trim-right-top, 0);
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    border-top: calc(var(--border-top) * var(--line-width-top)) solid var(--line-color-top);
+    border-right: calc(var(--border-right) * var(--line-width-right)) solid var(--line-color-right);
+    border-left: calc(var(--border-left) * var(--line-width-left)) solid var(--line-color-left);
+}
+
+/* Bottom border using ::after */
+.tinytable :is(td, th)[class*="tinytable_css_"]::after {
+    content: "";
+    position: absolute;
+    left: var(--trim-bottom-left, 0);
+    right: var(--trim-bottom-right, 0);
+    bottom: var(--trim-left-bottom, var(--trim-right-bottom, 0));
+    height: calc(var(--border-bottom) * var(--line-width-bottom));
+    background: var(--line-color-bottom);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ========================================================================
+ * Container and Layout Components
+ * ======================================================================== */
+.tinytable-container {
+    padding: var(--tt-container-padding);
+    overflow-x: auto;
+    overflow-y: auto;
+    width: auto;
+    height: auto;
+}
+
+/* ========================================================================
+ * Caption Styling
+ * ======================================================================== */
+.tinytable caption {
+    padding: var(--tt-caption-padding);
+    caption-side: var(--tt-caption-side);
+    font-size: var(--tt-font-size-caption);
+    text-align: var(--tt-caption-align);
+}
+
+/* ========================================================================
+ * Footnotes and Table Footer
+ * ======================================================================== */
+
+.tinytable tfoot tr:first-child td {
+    padding-top: var(--tt-footnote-first-padding-top);
+}
+
+.tinytable tfoot td {
+    padding: var(--tt-footnote-padding);
+    font-size: var(--tt-font-size-footnote);
+    line-height: var(--tt-line-height-footnote);
+    background-color: var(--tt-footnote-bg);
+}
+
+/* Remove extra gap between footnote rows */
+.tinytable tfoot tr + tr td {
+    padding-top: var(--tt-footnote-gap);
+}
+
+/* Make superscripts not inflate line boxes */
+.tinytable tfoot sup {
+    font-size: var(--tt-font-size-sup);
+    line-height: 0;
+    vertical-align: text-top;
+}
+
+/* Slightly tighter for wrapped footnote text */
+.tinytable tfoot tr:nth-child(n+2) td {
+    line-height: var(--tt-line-height-footnote-tight);
+}
+
+</style>
+<style>
+    /* tinytable css entries after */
+    #tinytable_6v58l9vxglu05x0o7wvi td.tinytable_css_9n8o98iosemua6rb2f7b, #tinytable_6v58l9vxglu05x0o7wvi th.tinytable_css_9n8o98iosemua6rb2f7b { text-align: left; font-size: 0.875rem; }
+    #tinytable_6v58l9vxglu05x0o7wvi td.tinytable_css_qbaehks92zd14h3igmus, #tinytable_6v58l9vxglu05x0o7wvi th.tinytable_css_qbaehks92zd14h3igmus { text-align: left; background-color: #ededed; font-size: 0.875rem; }
+    #tinytable_6v58l9vxglu05x0o7wvi td.tinytable_css_8oyhm3xhtibg9ckz0265, #tinytable_6v58l9vxglu05x0o7wvi th.tinytable_css_8oyhm3xhtibg9ckz0265 { text-align: right; font-size: 0.875rem; }
+    #tinytable_6v58l9vxglu05x0o7wvi td.tinytable_css_pd4bgcwwchv4awz6mnx7, #tinytable_6v58l9vxglu05x0o7wvi th.tinytable_css_pd4bgcwwchv4awz6mnx7 { text-align: right; background-color: #ededed; font-size: 0.875rem; }
+    #tinytable_6v58l9vxglu05x0o7wvi td.tinytable_css_rrapy1m2305li10rw6b1, #tinytable_6v58l9vxglu05x0o7wvi th.tinytable_css_rrapy1m2305li10rw6b1 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; font-weight: bold; text-align: center; font-size: 0.875rem; }
+    </style>
+<div class="container">
+      <table class="table tinytable tinytable-sm" id="tinytable_6v58l9vxglu05x0o7wvi" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+<thead><tr>
+<th scope="col" data-row="0" data-col="1">Config ID</th>
+                <th scope="col" data-row="0" data-col="2">Upper bound</th>
+                <th scope="col" data-row="0" data-col="3">Upper parameter</th>
+                <th scope="col" data-row="0" data-col="4">Timing</th>
+                <th scope="col" data-row="0" data-col="5">Final N</th>
+                <th scope="col" data-row="0" data-col="6">Power</th>
+                <th scope="col" data-row="0" data-col="7">Upper Z (IA1)</th>
+                <th scope="col" data-row="0" data-col="8">Lower Z (IA1)</th>
+              </tr></thead>
+<tbody>
+<tr>
+<td data-row="1" data-col="1">1</td>
+                  <td data-row="1" data-col="2">sfLDOF</td>
+                  <td data-row="1" data-col="3">0</td>
+                  <td data-row="1" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="1" data-col="5">1.01</td>
+                  <td data-row="1" data-col="6">0.9</td>
+                  <td data-row="1" data-col="7">3.73</td>
+                  <td data-row="1" data-col="8">-3.73</td>
+                </tr>
+<tr>
+<td data-row="2" data-col="1">2</td>
+                  <td data-row="2" data-col="2">sfLDOF</td>
+                  <td data-row="2" data-col="3">0</td>
+                  <td data-row="2" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="2" data-col="5">1.02</td>
+                  <td data-row="2" data-col="6">0.9</td>
+                  <td data-row="2" data-col="7">2.96</td>
+                  <td data-row="2" data-col="8">-2.96</td>
+                </tr>
+<tr>
+<td data-row="3" data-col="1">3</td>
+                  <td data-row="3" data-col="2">sfHSD</td>
+                  <td data-row="3" data-col="3">-4</td>
+                  <td data-row="3" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="3" data-col="5">1.02</td>
+                  <td data-row="3" data-col="6">0.9</td>
+                  <td data-row="3" data-col="7">3.02</td>
+                  <td data-row="3" data-col="8">-3.02</td>
+                </tr>
+<tr>
+<td data-row="4" data-col="1">4</td>
+                  <td data-row="4" data-col="2">sfHSD</td>
+                  <td data-row="4" data-col="3">-4</td>
+                  <td data-row="4" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="4" data-col="5">1.02</td>
+                  <td data-row="4" data-col="6">0.9</td>
+                  <td data-row="4" data-col="7">2.75</td>
+                  <td data-row="4" data-col="8">-2.75</td>
+                </tr>
+<tr>
+<td data-row="5" data-col="1">5</td>
+                  <td data-row="5" data-col="2">sfHSD</td>
+                  <td data-row="5" data-col="3">0</td>
+                  <td data-row="5" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="5" data-col="5">1.11</td>
+                  <td data-row="5" data-col="6">0.9</td>
+                  <td data-row="5" data-col="7">2.4</td>
+                  <td data-row="5" data-col="8">-2.4</td>
+                </tr>
+<tr>
+<td data-row="6" data-col="1">6</td>
+                  <td data-row="6" data-col="2">sfHSD</td>
+                  <td data-row="6" data-col="3">0</td>
+                  <td data-row="6" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="6" data-col="5">1.11</td>
+                  <td data-row="6" data-col="6">0.9</td>
+                  <td data-row="6" data-col="7">2.24</td>
+                  <td data-row="6" data-col="8">-2.24</td>
+                </tr>
+</tbody>
+</table>
+</div>
+<!-- hack to avoid NA insertion in last line -->
 <div class="section level3">
 <h3 id="ranking-and-filtering">Ranking and filtering<a class="anchor" aria-label="anchor" href="#ranking-and-filtering"></a>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">best</span> <span class="op">&lt;-</span> <span class="va">job</span><span class="op">$</span><span class="fu">best</span><span class="op">(</span><span class="st">"final_n"</span>, direction <span class="op">=</span> <span class="st">"min"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">best</span>, <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   upper_setting       timing upper_fun upper_par config_id status error_message</span></span>
-<span><span class="co">#&gt; 1  function.... 0.33, 0.....    sfLDOF         0         1     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 3  function.... 0.33, 0.....     sfHSD        -4         3     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 2  function.... 0.5, 0.75, 1    sfLDOF         0         2     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 4  function.... 0.5, 0.75, 1     sfHSD        -4         4     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 5  function.... 0.33, 0.....     sfHSD         0         5     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 6  function.... 0.5, 0.75, 1     sfHSD         0         6     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 8  function.... 0.5, 0.75, 1     sfHSD         4         8     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 7  function.... 0.33, 0.....     sfHSD         4         7     ok          &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   warnings                        cache_key design_rds    call_args k test.type</span></span>
-<span><span class="co">#&gt; 1     &lt;NA&gt; cb2610fb0a4d16425894a20d0b0d5191       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 3     &lt;NA&gt; a596bf2736e423e3be03e7a44ede0efa       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 2     &lt;NA&gt; 9a19b655ab2e76bc9718cb78cc437a7f       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 4     &lt;NA&gt; 1efc77f880a86f1016c08b31ff8b0e9a       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 5     &lt;NA&gt; d5b205647b9b1c31fa1ff28050f0bca3       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 6     &lt;NA&gt; 93a3a5c5b477581dbce058508a1ed2e3       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 8     &lt;NA&gt; 4264adbfb89d75c2370ee36cadb48789       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt; 7     &lt;NA&gt; 225b7230111b36e594173102e66f87b3       &lt;NA&gt; 3, 2, 0..... 3         2</span></span>
-<span><span class="co">#&gt;   alpha beta          n_I final_n_I      upper_z      lower_z      upper_p</span></span>
-<span><span class="co">#&gt; 1 0.025  0.1 0.333977....  1.012053 3.7307, .... -3.7307,.... 1e-04, 0....</span></span>
-<span><span class="co">#&gt; 3 0.025  0.1 0.335043....  1.015284 3.0162, .... -3.0162,.... 0.0013, ....</span></span>
-<span><span class="co">#&gt; 2 0.025  0.1 0.509137....  1.018275 2.9626, .... -2.9626,.... 0.0015, ....</span></span>
-<span><span class="co">#&gt; 4 0.025  0.1 0.509227....  1.018456 2.75, 2..... -2.75, -.... 0.003, 0....</span></span>
-<span><span class="co">#&gt; 5 0.025  0.1 0.365230....  1.106759 2.3977, .... -2.3977,.... 0.0082, ....</span></span>
-<span><span class="co">#&gt; 6 0.025  0.1 0.555438....  1.110878 2.2414, .... -2.2414,.... 0.0125, ....</span></span>
-<span><span class="co">#&gt; 8 0.025  0.1 0.675309....  1.350620 2.0137, .... -2.0137,.... 0.022, 0....</span></span>
-<span><span class="co">#&gt; 7 0.025  0.1 0.451412....  1.367918 2.0822, .... -2.0822,.... 0.0187, ....</span></span>
-<span><span class="co">#&gt;        lower_p power           en                               upper_name</span></span>
-<span><span class="co">#&gt; 1 1e-04, 0....   0.9 1.007862.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 3 0.0013, ....   0.9 1.010154....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 2 0.0015, ....   0.9 1.012586.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 4 0.003, 0....   0.9 1.012404....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 5 0.0082, ....   0.9 1.088314....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 6 0.0125, ....   0.9 1.093520....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 8 0.022, 0....   0.9 1.319407....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 7 0.0187, ....   0.9 1.329142....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt;                                 lower_name bound_summary  final_n    max_n</span></span>
-<span><span class="co">#&gt; 1 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:.... 1.012053 1.012053</span></span>
-<span><span class="co">#&gt; 3                        Hwang-Shih-DeCani  c("IA 1:.... 1.015284 1.015284</span></span>
-<span><span class="co">#&gt; 2 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:.... 1.018275 1.018275</span></span>
-<span><span class="co">#&gt; 4                        Hwang-Shih-DeCani  c("IA 1:.... 1.018456 1.018456</span></span>
-<span><span class="co">#&gt; 5                        Hwang-Shih-DeCani  c("IA 1:.... 1.106759 1.106759</span></span>
-<span><span class="co">#&gt; 6                        Hwang-Shih-DeCani  c("IA 1:.... 1.110878 1.110878</span></span>
-<span><span class="co">#&gt; 8                        Hwang-Shih-DeCani  c("IA 1:.... 1.350620 1.350620</span></span>
-<span><span class="co">#&gt; 7                        Hwang-Shih-DeCani  c("IA 1:.... 1.367918 1.367918</span></span>
-<span><span class="co">#&gt;   upper_z1 lower_z1</span></span>
-<span><span class="co">#&gt; 1   3.7307  -3.7307</span></span>
-<span><span class="co">#&gt; 3   3.0162  -3.0162</span></span>
-<span><span class="co">#&gt; 2   2.9626  -2.9626</span></span>
-<span><span class="co">#&gt; 4   2.7500  -2.7500</span></span>
-<span><span class="co">#&gt; 5   2.3977  -2.3977</span></span>
-<span><span class="co">#&gt; 6   2.2414  -2.2414</span></span>
-<span><span class="co">#&gt; 8   2.0137  -2.0137</span></span>
-<span><span class="co">#&gt; 7   2.0822  -2.0822</span></span></code></pre></div>
+<span><span class="va">job</span><span class="op">$</span><span class="fu">table</span><span class="op">(</span><span class="va">best</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<!-- preamble start -->
+
+    <script>
+// TinyTable JavaScript Framework
+// Function factory for creating table-specific operations
+window.TinyTable = {
+  // Helper to create Tabulator instance with Luxon dependency
+  createTabulator: function(elementId, config) {
+    const { DateTime } = window.luxon || {};
+    return new Tabulator(elementId, {
+      dependencies: { DateTime },
+      ...config
+    });
+  },
+
+  createTableFunctions: function (tableId) {
+    const spans = []; // {top, left, rowspan, colspan}
+
+    function resolveToAnchor(i, j) {
+      // find if (i,j) is inside any span; return that span's anchor if so
+      for (const s of spans) {
+        if (
+          i >= s.top && i < s.top + s.rowspan &&
+          j >= s.left && j < s.left + s.colspan
+        ) {
+          return { i: s.top, j: s.left };
+        }
+      }
+      return { i, j };
+    }
+
+    return {
+      styleCell: function (i, j, css_id) {
+        // normalize possible string indices
+        i = +i; j = +j;
+
+        const table = document.getElementById(tableId);
+        const { i: ai, j: aj } = resolveToAnchor(i, j);
+        const cell = table.querySelector(`[data-row="${ai}"][data-col="${aj}"]`);
+        if (!cell) return; // silently skip if not found (e.g., removed)
+        cell.classList.add(css_id);
+      },
+
+      spanCell: function (i, j, rowspan, colspan) {
+        i = +i; j = +j;
+
+        const table = document.getElementById(tableId);
+        const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+        if (!targetCell) {
+          console.warn(`Cell at (${i}, ${j}) not found.`);
+          return;
+        }
+
+        // record span so future styleCell calls map to the anchor
+        spans.push({ top: i, left: j, rowspan, colspan });
+
+        // remove covered cells (except anchor)
+        const cellsToRemove = [];
+        for (let r = 0; r < rowspan; r++) {
+          for (let c = 0; c < colspan; c++) {
+            if (r === 0 && c === 0) continue;
+            const cell = table.querySelector(`[data-row="${i + r}"][data-col="${j + c}"]`);
+            if (cell) cellsToRemove.push(cell);
+          }
+        }
+        cellsToRemove.forEach(cell => cell.remove());
+
+        // set HTML attributes for clarity/serialization
+        targetCell.setAttribute('rowspan', rowspan);
+        targetCell.setAttribute('colspan', colspan);
+      }
+    };
+  }
+};
+
+// =============================================================================
+// TABULATOR CUSTOM FORMATTERS (revised)
+// =============================================================================
+
+// SVG sparkline
+function tinytable_sparkline(cell, p = {}) {
+  let values = cell.getValue() ?? [];
+  if (!Array.isArray(values)) values = [values];
+  // coerce to finite numbers & strip NaNs
+  values = values.map(Number).filter(Number.isFinite);
+  const n = values.length;
+  if (n === 0) return "";
+
+  const w = p.width ?? 120, h = p.height ?? 30, pad = p.pad ?? 2;
+  const color = p.color ?? "currentColor", sw = p.strokeWidth ?? 1.5;
+  const fill = p.fillArea ?? false;
+  const showDots = p.showDots ?? false;
+  const dotR = p.dotRadius ?? 1.75;
+  const ariaLabel = p.ariaLabel ?? `sparkline with ${n} points`;
+
+  // single pass for min/max
+  let min = Infinity, max = -Infinity;
+  for (let v of values) { if (v < min) min = v; if (v > max) max = v; }
+  const span = (max - min) || 1;
+
+  const x = i => pad + (i * (w - 2 * pad)) / Math.max(n - 1, 1);
+  const y = v => h - pad - ((v - min) * (h - 2 * pad)) / span;
+
+  let d = `M ${x(0)},${y(values[0])}`;
+  for (let i = 1; i < n; i++) d += ` L ${x(i)},${y(values[i])}`;
+
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  svg.setAttribute("width", w);
+  svg.setAttribute("height", h);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", ariaLabel);
+
+  const path = document.createElementNS(NS, "path");
+  path.setAttribute("stroke", color);
+  path.setAttribute("stroke-width", sw);
+  path.setAttribute("vector-effect", "non-scaling-stroke");
+
+  if (fill) {
+    const area = document.createElementNS(NS, "path");
+    area.setAttribute("d", d + ` L ${x(n - 1)},${h - pad} L ${x(0)},${h - pad} Z`);
+    area.setAttribute("fill", color);
+    area.setAttribute("fill-opacity", p.fillOpacity ?? 0.25);
+    svg.appendChild(area);
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+  } else {
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+  }
+  svg.appendChild(path);
+
+  if (showDots) {
+    const dot = (i) => {
+      const c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", x(i));
+      c.setAttribute("cy", y(values[i]));
+      c.setAttribute("r", dotR);
+      c.setAttribute("fill", color);
+      return c;
+    };
+    if (p.dots === "end") svg.appendChild(dot(n - 1));
+    else if (p.dots === "minmax") {
+      const iMin = values.indexOf(min), iMax = values.indexOf(max);
+      svg.appendChild(dot(iMin)); svg.appendChild(dot(iMax));
+    } else if (p.dots === true) {
+      for (let i = 0; i < n; i++) svg.appendChild(dot(i));
+    }
+  }
+
+  if (p.title) {
+    const title = document.createElementNS(NS, "title");
+    title.textContent = p.title;
+    svg.appendChild(title);
+  }
+
+  return svg;
+}
+
+// Canvas histogram
+function tinytable_histogram(cell, p = {}) {
+  let data = cell.getValue() ?? [];
+  if (!Array.isArray(data)) data = [data];
+  data = data.map(Number).filter(Number.isFinite);
+  const n = data.length;
+  if (n === 0) return "";
+
+  const cssWidth = p.width ?? 120;
+  const cssHeight = p.height ?? 30;
+  const color = p.color ?? "currentColor";
+  const gap = p.gap ?? 1;         // px gap between bars
+  const pad = p.pad ?? 0;         // inner padding
+  const ariaLabel = p.ariaLabel ?? `histogram with ${n} observations`;
+
+  // robust bins: Sturges as default; allow override
+  const k = Math.max(1, Math.min(64, p.bins ?? Math.ceil(Math.log2(n) + 1)));
+
+  // stats
+  let min = Infinity, max = -Infinity;
+  for (let v of data) { if (v < min) min = v; if (v > max) max = v; }
+
+  // zero-range safeguard -> single centered bar
+  const range = max - min;
+  const binWidth = range > 0 ? range / k : 1;
+
+  const bins = new Array(k).fill(0);
+  if (range === 0) {
+    // put all mass in the middle bin
+    bins[Math.floor(k / 2)] = n;
+  } else {
+    for (let v of data) {
+      let idx = Math.floor((v - min) / binWidth);
+      if (idx >= k) idx = k - 1; // clamp max edge
+      bins[idx]++;
+    }
+  }
+  const maxCount = Math.max(...bins, 1);
+
+  // HiDPI / Retina crispness
+  const dpr = window.devicePixelRatio || 1;
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(cssWidth * dpr);
+  canvas.height = Math.round(cssHeight * dpr);
+  canvas.style.width = cssWidth + "px";
+  canvas.style.height = cssHeight + "px";
+  canvas.setAttribute("role", "img");
+  canvas.setAttribute("aria-label", ariaLabel);
+
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, cssWidth, cssHeight);
+  ctx.fillStyle = color;
+
+  const innerW = cssWidth - pad * 2;
+  const innerH = cssHeight - pad * 2;
+  const barW = innerW / k;
+
+  for (let i = 0; i < k; i++) {
+    const h = (bins[i] / maxCount) * innerH;
+    const x = pad + i * barW;
+    const y = cssHeight - pad - h;
+    // 0.5 translate helps crisp vertical edges on some displays
+    ctx.fillRect(Math.round(x) + 0.5, Math.floor(y), Math.max(0, barW - gap), Math.ceil(h));
+  }
+
+  if (p.title) canvas.title = p.title;
+  return canvas;
+}
+
+// Unified sorter that uses hidden rank field
+function tinytable_rank_sorter(a, b, aRow, bRow, column, dir, sorterParams) {
+  const rankField = sorterParams.rankField;
+  const aVal = aRow.getData()[rankField] || 0;
+  const bVal = bRow.getData()[rankField] || 0;
+  return aVal - bVal;
+}
+</script><script>
+      // Create table-specific functions using external factory
+      const tableFns_ijtdx5ntl7d2hervnp7p = TinyTable.createTableFunctions("tinytable_ijtdx5ntl7d2hervnp7p");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 2 }, { i: '4', j: 2 }, { i: '6', j: 2 }, { i: '8', j: 2 }, { i: '2', j: 4 }, { i: '4', j: 4 }, { i: '6', j: 4 }, { i: '8', j: 4 } ], css_id: 'tinytable_css_rp18b5x1wg0rwyfubc70',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '3', j: 2 }, { i: '5', j: 2 }, { i: '7', j: 2 }, { i: '1', j: 4 }, { i: '3', j: 4 }, { i: '5', j: 4 }, { i: '7', j: 4 } ], css_id: 'tinytable_css_gwhmvmap65knyb99qx6c',}, 
+          { positions: [ { i: '2', j: 1 }, { i: '4', j: 1 }, { i: '6', j: 1 }, { i: '8', j: 1 }, { i: '2', j: 3 }, { i: '4', j: 3 }, { i: '6', j: 3 }, { i: '8', j: 3 }, { i: '2', j: 5 }, { i: '4', j: 5 }, { i: '6', j: 5 }, { i: '8', j: 5 }, { i: '2', j: 6 }, { i: '4', j: 6 }, { i: '6', j: 6 }, { i: '8', j: 6 }, { i: '2', j: 7 }, { i: '4', j: 7 }, { i: '6', j: 7 }, { i: '8', j: 7 }, { i: '2', j: 8 }, { i: '4', j: 8 }, { i: '6', j: 8 }, { i: '8', j: 8 } ], css_id: 'tinytable_css_7avfax9a7hlg4e4rbosr',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '3', j: 1 }, { i: '5', j: 1 }, { i: '7', j: 1 }, { i: '1', j: 3 }, { i: '3', j: 3 }, { i: '5', j: 3 }, { i: '7', j: 3 }, { i: '1', j: 5 }, { i: '3', j: 5 }, { i: '5', j: 5 }, { i: '7', j: 5 }, { i: '1', j: 6 }, { i: '3', j: 6 }, { i: '5', j: 6 }, { i: '7', j: 6 }, { i: '1', j: 7 }, { i: '3', j: 7 }, { i: '5', j: 7 }, { i: '7', j: 7 }, { i: '1', j: 8 }, { i: '3', j: 8 }, { i: '5', j: 8 }, { i: '7', j: 8 } ], css_id: 'tinytable_css_bmj3iklkidrjok56654b',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 } ], css_id: 'tinytable_css_fzwsoxmcup2gwkhqnxj4',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_ijtdx5ntl7d2hervnp7p.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script><style>
+
+/* ========================================================================
+ * tinytable CSS - Core styling for HTML table output
+ * ======================================================================== */
+
+/* ========================================================================
+ * CSS Custom Properties (Theme Variables)
+ * ======================================================================== */
+.tinytable {
+    /* Colors */
+    --tt-text-color: inherit;
+    --tt-line-color: black;
+    --tt-border-color: var(--tt-line-color);
+    --tt-striped-bg: rgba(0, 0, 0, .05);
+    --tt-hover-bg: rgba(0, 0, 0, .075);
+    --tt-background-color: transparent;
+    --tt-footnote-bg: var(--tt-background-color);
+
+    /* Spacing */
+    --tt-cell-padding: .5rem;
+    --tt-cell-padding-sm: calc(var(--tt-cell-padding) / 2);
+    --tt-table-margin: .5rem 0;
+    --tt-caption-padding: .5rem 0;
+    --tt-footnote-padding: .2rem .5rem;
+    --tt-footnote-first-padding-top: .5rem;
+    --tt-footnote-gap: .1rem;
+    --tt-container-padding: 10px;
+
+    /* Typography */
+    --tt-font-size-footnote: 0.875rem;
+    --tt-font-size-caption: 1rem;
+    --tt-font-size-sup: 0.75em;
+    --tt-line-height-footnote: 1.25;
+    --tt-line-height-footnote-tight: 1.2;
+    --tt-font-weight-header: normal;
+
+    /* Alignment */
+    --tt-cell-valign: top;
+    --tt-header-align: left;
+    --tt-header-valign: bottom;
+    --tt-caption-align: var(--tt-header-align);
+    --tt-caption-side: top;
+
+    /* Layout */
+    --tt-table-width: 100%;
+
+    /* Border widths */
+    --tt-border-width: 1px;
+    --tt-border-width-tbody: 2px;
+}
+
+/* ========================================================================
+ * Base Table Styles
+ * ======================================================================== */
+.tinytable {
+    width: var(--tt-table-width);
+    margin: var(--tt-table-margin);
+    border-collapse: collapse;
+    background-color: var(--tt-background-color);
+    color: var(--tt-text-color);
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.tinytable * {
+    font-family: inherit;
+}
+
+/* ========================================================================
+ * Cell Styles
+ * ======================================================================== */
+.tinytable th,
+.tinytable td {
+    position: relative;
+    padding: var(--tt-cell-padding);
+    vertical-align: var(--tt-cell-valign);
+}
+
+.tinytable thead th {
+    text-align: var(--tt-header-align);
+    vertical-align: var(--tt-header-valign);
+    font-weight: var(--tt-font-weight-header);
+    border-bottom: none;
+}
+
+.tinytable thead th[align="center"] {
+    text-align: center;
+}
+
+.tinytable tbody + tbody {
+    border-top: var(--tt-border-width-tbody) solid var(--tt-border-color);
+}
+
+/* ========================================================================
+ * Table Variants
+ * ======================================================================== */
+
+/* Small padding variant */
+.tinytable-sm th,
+.tinytable-sm td {
+    padding: var(--tt-cell-padding-sm);
+}
+
+/* Bordered variant */
+.tinytable-bordered {
+    border: var(--tt-border-width) solid var(--tt-border-color);
+}
+
+.tinytable-bordered th,
+.tinytable-bordered td {
+    border: var(--tt-border-width) solid var(--tt-border-color);
+}
+
+/* Striped rows variant */
+.tinytable-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--tt-striped-bg);
+}
+
+/* Hover effect variant */
+.tinytable-hover tbody tr:hover {
+    background-color: var(--tt-hover-bg);
+}
+
+/* Responsive wrapper */
+.tinytable-responsive {
+    width: var(--tt-table-width);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ========================================================================
+ * Custom Border System (Pseudo-elements)
+ * ======================================================================== */
+.tinytable :is(td, th)[class*="tinytable_css_"] {
+    position: relative;
+
+    /* Border control variables */
+    --border-top: 0;
+    --border-right: 0;
+    --border-bottom: 0;
+    --border-left: 0;
+
+    /* Border color variables */
+    --line-color-top: currentColor;
+    --line-color-right: currentColor;
+    --line-color-bottom: currentColor;
+    --line-color-left: currentColor;
+
+    /* Border width variables */
+    --line-width-top: 0.1em;
+    --line-width-right: 0.1em;
+    --line-width-bottom: 0.1em;
+    --line-width-left: 0.1em;
+
+    /* Border trim variables */
+    --trim-top-left: 0%;
+    --trim-top-right: 0%;
+    --trim-right-top: 0%;
+    --trim-right-bottom: 0%;
+    --trim-bottom-left: 0%;
+    --trim-bottom-right: 0%;
+    --trim-left-top: 0%;
+    --trim-left-bottom: 0%;
+}
+
+/* Top, left, and right borders using ::before */
+.tinytable :is(td, th)[class*="tinytable_css_"]::before {
+    content: "";
+    position: absolute;
+    top: var(--trim-top-left, var(--trim-top-right, 0));
+    left: var(--trim-left-top, 0);
+    right: var(--trim-right-top, 0);
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    border-top: calc(var(--border-top) * var(--line-width-top)) solid var(--line-color-top);
+    border-right: calc(var(--border-right) * var(--line-width-right)) solid var(--line-color-right);
+    border-left: calc(var(--border-left) * var(--line-width-left)) solid var(--line-color-left);
+}
+
+/* Bottom border using ::after */
+.tinytable :is(td, th)[class*="tinytable_css_"]::after {
+    content: "";
+    position: absolute;
+    left: var(--trim-bottom-left, 0);
+    right: var(--trim-bottom-right, 0);
+    bottom: var(--trim-left-bottom, var(--trim-right-bottom, 0));
+    height: calc(var(--border-bottom) * var(--line-width-bottom));
+    background: var(--line-color-bottom);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ========================================================================
+ * Container and Layout Components
+ * ======================================================================== */
+.tinytable-container {
+    padding: var(--tt-container-padding);
+    overflow-x: auto;
+    overflow-y: auto;
+    width: auto;
+    height: auto;
+}
+
+/* ========================================================================
+ * Caption Styling
+ * ======================================================================== */
+.tinytable caption {
+    padding: var(--tt-caption-padding);
+    caption-side: var(--tt-caption-side);
+    font-size: var(--tt-font-size-caption);
+    text-align: var(--tt-caption-align);
+}
+
+/* ========================================================================
+ * Footnotes and Table Footer
+ * ======================================================================== */
+
+.tinytable tfoot tr:first-child td {
+    padding-top: var(--tt-footnote-first-padding-top);
+}
+
+.tinytable tfoot td {
+    padding: var(--tt-footnote-padding);
+    font-size: var(--tt-font-size-footnote);
+    line-height: var(--tt-line-height-footnote);
+    background-color: var(--tt-footnote-bg);
+}
+
+/* Remove extra gap between footnote rows */
+.tinytable tfoot tr + tr td {
+    padding-top: var(--tt-footnote-gap);
+}
+
+/* Make superscripts not inflate line boxes */
+.tinytable tfoot sup {
+    font-size: var(--tt-font-size-sup);
+    line-height: 0;
+    vertical-align: text-top;
+}
+
+/* Slightly tighter for wrapped footnote text */
+.tinytable tfoot tr:nth-child(n+2) td {
+    line-height: var(--tt-line-height-footnote-tight);
+}
+
+</style>
+<style>
+    /* tinytable css entries after */
+    #tinytable_ijtdx5ntl7d2hervnp7p td.tinytable_css_rp18b5x1wg0rwyfubc70, #tinytable_ijtdx5ntl7d2hervnp7p th.tinytable_css_rp18b5x1wg0rwyfubc70 { text-align: left; font-size: 0.875rem; }
+    #tinytable_ijtdx5ntl7d2hervnp7p td.tinytable_css_gwhmvmap65knyb99qx6c, #tinytable_ijtdx5ntl7d2hervnp7p th.tinytable_css_gwhmvmap65knyb99qx6c { text-align: left; background-color: #ededed; font-size: 0.875rem; }
+    #tinytable_ijtdx5ntl7d2hervnp7p td.tinytable_css_7avfax9a7hlg4e4rbosr, #tinytable_ijtdx5ntl7d2hervnp7p th.tinytable_css_7avfax9a7hlg4e4rbosr { text-align: right; font-size: 0.875rem; }
+    #tinytable_ijtdx5ntl7d2hervnp7p td.tinytable_css_bmj3iklkidrjok56654b, #tinytable_ijtdx5ntl7d2hervnp7p th.tinytable_css_bmj3iklkidrjok56654b { text-align: right; background-color: #ededed; font-size: 0.875rem; }
+    #tinytable_ijtdx5ntl7d2hervnp7p td.tinytable_css_fzwsoxmcup2gwkhqnxj4, #tinytable_ijtdx5ntl7d2hervnp7p th.tinytable_css_fzwsoxmcup2gwkhqnxj4 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; font-weight: bold; text-align: center; font-size: 0.875rem; }
+    </style>
+<div class="container">
+      <table class="table tinytable tinytable-sm" id="tinytable_ijtdx5ntl7d2hervnp7p" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+<thead><tr>
+<th scope="col" data-row="0" data-col="1">Config ID</th>
+                <th scope="col" data-row="0" data-col="2">Upper bound</th>
+                <th scope="col" data-row="0" data-col="3">Upper parameter</th>
+                <th scope="col" data-row="0" data-col="4">Timing</th>
+                <th scope="col" data-row="0" data-col="5">Final N</th>
+                <th scope="col" data-row="0" data-col="6">Power</th>
+                <th scope="col" data-row="0" data-col="7">Upper Z (IA1)</th>
+                <th scope="col" data-row="0" data-col="8">Lower Z (IA1)</th>
+              </tr></thead>
+<tbody>
+<tr>
+<td data-row="1" data-col="1">1</td>
+                  <td data-row="1" data-col="2">sfLDOF</td>
+                  <td data-row="1" data-col="3">0</td>
+                  <td data-row="1" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="1" data-col="5">1.01</td>
+                  <td data-row="1" data-col="6">0.9</td>
+                  <td data-row="1" data-col="7">3.73</td>
+                  <td data-row="1" data-col="8">-3.73</td>
+                </tr>
+<tr>
+<td data-row="2" data-col="1">3</td>
+                  <td data-row="2" data-col="2">sfHSD</td>
+                  <td data-row="2" data-col="3">-4</td>
+                  <td data-row="2" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="2" data-col="5">1.02</td>
+                  <td data-row="2" data-col="6">0.9</td>
+                  <td data-row="2" data-col="7">3.02</td>
+                  <td data-row="2" data-col="8">-3.02</td>
+                </tr>
+<tr>
+<td data-row="3" data-col="1">2</td>
+                  <td data-row="3" data-col="2">sfLDOF</td>
+                  <td data-row="3" data-col="3">0</td>
+                  <td data-row="3" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="3" data-col="5">1.02</td>
+                  <td data-row="3" data-col="6">0.9</td>
+                  <td data-row="3" data-col="7">2.96</td>
+                  <td data-row="3" data-col="8">-2.96</td>
+                </tr>
+<tr>
+<td data-row="4" data-col="1">4</td>
+                  <td data-row="4" data-col="2">sfHSD</td>
+                  <td data-row="4" data-col="3">-4</td>
+                  <td data-row="4" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="4" data-col="5">1.02</td>
+                  <td data-row="4" data-col="6">0.9</td>
+                  <td data-row="4" data-col="7">2.75</td>
+                  <td data-row="4" data-col="8">-2.75</td>
+                </tr>
+<tr>
+<td data-row="5" data-col="1">5</td>
+                  <td data-row="5" data-col="2">sfHSD</td>
+                  <td data-row="5" data-col="3">0</td>
+                  <td data-row="5" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="5" data-col="5">1.11</td>
+                  <td data-row="5" data-col="6">0.9</td>
+                  <td data-row="5" data-col="7">2.4</td>
+                  <td data-row="5" data-col="8">-2.4</td>
+                </tr>
+<tr>
+<td data-row="6" data-col="1">6</td>
+                  <td data-row="6" data-col="2">sfHSD</td>
+                  <td data-row="6" data-col="3">0</td>
+                  <td data-row="6" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="6" data-col="5">1.11</td>
+                  <td data-row="6" data-col="6">0.9</td>
+                  <td data-row="6" data-col="7">2.24</td>
+                  <td data-row="6" data-col="8">-2.24</td>
+                </tr>
+<tr>
+<td data-row="7" data-col="1">8</td>
+                  <td data-row="7" data-col="2">sfHSD</td>
+                  <td data-row="7" data-col="3">4</td>
+                  <td data-row="7" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="7" data-col="5">1.35</td>
+                  <td data-row="7" data-col="6">0.9</td>
+                  <td data-row="7" data-col="7">2.01</td>
+                  <td data-row="7" data-col="8">-2.01</td>
+                </tr>
+<tr>
+<td data-row="8" data-col="1">7</td>
+                  <td data-row="8" data-col="2">sfHSD</td>
+                  <td data-row="8" data-col="3">4</td>
+                  <td data-row="8" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="8" data-col="5">1.37</td>
+                  <td data-row="8" data-col="6">0.9</td>
+                  <td data-row="8" data-col="7">2.08</td>
+                  <td data-row="8" data-col="8">-2.08</td>
+                </tr>
+</tbody>
+</table>
+</div>
+<!-- hack to avoid NA insertion in last line -->
 </div>
 <div class="section level3">
 <h3 id="plot">Plot<a class="anchor" aria-label="anchor" href="#plot"></a>
@@ -233,56 +1341,613 @@ tuning time-to-event designs.</p>
 <span></span>
 <span><span class="va">job_surv</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>strategy <span class="op">=</span> <span class="st">"grid"</span>, parallel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">res_surv</span> <span class="op">&lt;-</span> <span class="va">job_surv</span><span class="op">$</span><span class="fu">results</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res_surv</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   upper_setting lower_setting       timing    hr upper_fun upper_par lower_fun</span></span>
-<span><span class="co">#&gt; 1  function....  function.... 0.33, 0..... 0.600    sfLDOF         0    sfLDOF</span></span>
-<span><span class="co">#&gt; 2  function....  function.... 0.33, 0..... 0.675    sfLDOF         0    sfLDOF</span></span>
-<span><span class="co">#&gt; 3  function....  function.... 0.33, 0..... 0.750    sfLDOF         0    sfLDOF</span></span>
-<span><span class="co">#&gt; 4  function....  function.... 0.5, 0.75, 1 0.600    sfLDOF         0    sfLDOF</span></span>
-<span><span class="co">#&gt; 5  function....  function.... 0.5, 0.75, 1 0.675    sfLDOF         0    sfLDOF</span></span>
-<span><span class="co">#&gt; 6  function....  function.... 0.5, 0.75, 1 0.750    sfLDOF         0    sfLDOF</span></span>
-<span><span class="co">#&gt;   lower_par config_id status error_message warnings</span></span>
-<span><span class="co">#&gt; 1         0         1     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 2         0         2     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 3         0         3     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 4         0         4     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 5         0         5     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 6         0         6     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;                          cache_key design_rds    call_args k test.type alpha</span></span>
-<span><span class="co">#&gt; 1 2bdc1d4056fd1953f381543e101e42d4       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 2 24c94ad5f8c36c3a5c6359b8095a9904       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 3 30b61e1b7463fcf57be753394c68c6f5       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 4 3dfc591107e557bdecb88c3e4ce9213b       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 5 2cd5778da64b303c943d1d4e195f9921       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 6 ff7ce872df219f3c4e206479a1aca0da       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt;   beta          n_I final_n_I      upper_z      lower_z      upper_p</span></span>
-<span><span class="co">#&gt; 1  0.1 56.24907....  170.4517 3.7307, .... -0.719, .... 1e-04, 0....</span></span>
-<span><span class="co">#&gt; 2  0.1 95.02760....  287.9624 3.7307, .... -0.719, .... 1e-04, 0....</span></span>
-<span><span class="co">#&gt; 3  0.1 177.4604....  537.7591 3.7307, .... -0.719, .... 1e-04, 0....</span></span>
-<span><span class="co">#&gt; 4  0.1 87.06008....  174.1202 2.9626, .... 0.3316, .... 0.0015, ....</span></span>
-<span><span class="co">#&gt; 5  0.1 147.0799....  294.1598 2.9626, .... 0.3316, .... 0.0015, ....</span></span>
-<span><span class="co">#&gt; 6  0.1 274.6662....  549.3326 2.9626, .... 0.3316, .... 0.0015, ....</span></span>
-<span><span class="co">#&gt;        lower_p power           en                               upper_name</span></span>
-<span><span class="co">#&gt; 1 0.7639, ....   0.9 108.7925.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 2 0.7639, ....   0.9 183.7948.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 3 0.7639, ....   0.9 343.2300.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 4 0.3701, ....   0.9 106.7777.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 5 0.3701, ....   0.9 180.3910.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 6 0.3701, ....   0.9 336.8735.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt;                                 lower_name bound_summary final_events</span></span>
-<span><span class="co">#&gt; 1 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     170.4517</span></span>
-<span><span class="co">#&gt; 2 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     287.9624</span></span>
-<span><span class="co">#&gt; 3 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     537.7591</span></span>
-<span><span class="co">#&gt; 4 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     174.1202</span></span>
-<span><span class="co">#&gt; 5 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     294.1598</span></span>
-<span><span class="co">#&gt; 6 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     549.3326</span></span>
-<span><span class="co">#&gt;   max_events      n_total final_n_total analysis_time upper_z1 lower_z1</span></span>
-<span><span class="co">#&gt; 1   170.4517 216, 296....           296  9.582183....   3.7307  -0.7190</span></span>
-<span><span class="co">#&gt; 2   287.9624 352, 482....           482  9.554795....   3.7307  -0.7190</span></span>
-<span><span class="co">#&gt; 3   537.7591 634, 874....           874  9.524268....   3.7307  -0.7190</span></span>
-<span><span class="co">#&gt; 4   174.1202 284, 302....           302  11.48078....   2.9626   0.3316</span></span>
-<span><span class="co">#&gt; 5   294.1598 462, 492....           492  11.45171....   2.9626   0.3316</span></span>
-<span><span class="co">#&gt; 6   549.3326 834, 892....           892  11.41939....   2.9626   0.3316</span></span></code></pre></div>
+<span><span class="va">job_surv</span><span class="op">$</span><span class="fu">table</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<!-- preamble start -->
+
+    <script>
+// TinyTable JavaScript Framework
+// Function factory for creating table-specific operations
+window.TinyTable = {
+  // Helper to create Tabulator instance with Luxon dependency
+  createTabulator: function(elementId, config) {
+    const { DateTime } = window.luxon || {};
+    return new Tabulator(elementId, {
+      dependencies: { DateTime },
+      ...config
+    });
+  },
+
+  createTableFunctions: function (tableId) {
+    const spans = []; // {top, left, rowspan, colspan}
+
+    function resolveToAnchor(i, j) {
+      // find if (i,j) is inside any span; return that span's anchor if so
+      for (const s of spans) {
+        if (
+          i >= s.top && i < s.top + s.rowspan &&
+          j >= s.left && j < s.left + s.colspan
+        ) {
+          return { i: s.top, j: s.left };
+        }
+      }
+      return { i, j };
+    }
+
+    return {
+      styleCell: function (i, j, css_id) {
+        // normalize possible string indices
+        i = +i; j = +j;
+
+        const table = document.getElementById(tableId);
+        const { i: ai, j: aj } = resolveToAnchor(i, j);
+        const cell = table.querySelector(`[data-row="${ai}"][data-col="${aj}"]`);
+        if (!cell) return; // silently skip if not found (e.g., removed)
+        cell.classList.add(css_id);
+      },
+
+      spanCell: function (i, j, rowspan, colspan) {
+        i = +i; j = +j;
+
+        const table = document.getElementById(tableId);
+        const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+        if (!targetCell) {
+          console.warn(`Cell at (${i}, ${j}) not found.`);
+          return;
+        }
+
+        // record span so future styleCell calls map to the anchor
+        spans.push({ top: i, left: j, rowspan, colspan });
+
+        // remove covered cells (except anchor)
+        const cellsToRemove = [];
+        for (let r = 0; r < rowspan; r++) {
+          for (let c = 0; c < colspan; c++) {
+            if (r === 0 && c === 0) continue;
+            const cell = table.querySelector(`[data-row="${i + r}"][data-col="${j + c}"]`);
+            if (cell) cellsToRemove.push(cell);
+          }
+        }
+        cellsToRemove.forEach(cell => cell.remove());
+
+        // set HTML attributes for clarity/serialization
+        targetCell.setAttribute('rowspan', rowspan);
+        targetCell.setAttribute('colspan', colspan);
+      }
+    };
+  }
+};
+
+// =============================================================================
+// TABULATOR CUSTOM FORMATTERS (revised)
+// =============================================================================
+
+// SVG sparkline
+function tinytable_sparkline(cell, p = {}) {
+  let values = cell.getValue() ?? [];
+  if (!Array.isArray(values)) values = [values];
+  // coerce to finite numbers & strip NaNs
+  values = values.map(Number).filter(Number.isFinite);
+  const n = values.length;
+  if (n === 0) return "";
+
+  const w = p.width ?? 120, h = p.height ?? 30, pad = p.pad ?? 2;
+  const color = p.color ?? "currentColor", sw = p.strokeWidth ?? 1.5;
+  const fill = p.fillArea ?? false;
+  const showDots = p.showDots ?? false;
+  const dotR = p.dotRadius ?? 1.75;
+  const ariaLabel = p.ariaLabel ?? `sparkline with ${n} points`;
+
+  // single pass for min/max
+  let min = Infinity, max = -Infinity;
+  for (let v of values) { if (v < min) min = v; if (v > max) max = v; }
+  const span = (max - min) || 1;
+
+  const x = i => pad + (i * (w - 2 * pad)) / Math.max(n - 1, 1);
+  const y = v => h - pad - ((v - min) * (h - 2 * pad)) / span;
+
+  let d = `M ${x(0)},${y(values[0])}`;
+  for (let i = 1; i < n; i++) d += ` L ${x(i)},${y(values[i])}`;
+
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  svg.setAttribute("width", w);
+  svg.setAttribute("height", h);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", ariaLabel);
+
+  const path = document.createElementNS(NS, "path");
+  path.setAttribute("stroke", color);
+  path.setAttribute("stroke-width", sw);
+  path.setAttribute("vector-effect", "non-scaling-stroke");
+
+  if (fill) {
+    const area = document.createElementNS(NS, "path");
+    area.setAttribute("d", d + ` L ${x(n - 1)},${h - pad} L ${x(0)},${h - pad} Z`);
+    area.setAttribute("fill", color);
+    area.setAttribute("fill-opacity", p.fillOpacity ?? 0.25);
+    svg.appendChild(area);
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+  } else {
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+  }
+  svg.appendChild(path);
+
+  if (showDots) {
+    const dot = (i) => {
+      const c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", x(i));
+      c.setAttribute("cy", y(values[i]));
+      c.setAttribute("r", dotR);
+      c.setAttribute("fill", color);
+      return c;
+    };
+    if (p.dots === "end") svg.appendChild(dot(n - 1));
+    else if (p.dots === "minmax") {
+      const iMin = values.indexOf(min), iMax = values.indexOf(max);
+      svg.appendChild(dot(iMin)); svg.appendChild(dot(iMax));
+    } else if (p.dots === true) {
+      for (let i = 0; i < n; i++) svg.appendChild(dot(i));
+    }
+  }
+
+  if (p.title) {
+    const title = document.createElementNS(NS, "title");
+    title.textContent = p.title;
+    svg.appendChild(title);
+  }
+
+  return svg;
+}
+
+// Canvas histogram
+function tinytable_histogram(cell, p = {}) {
+  let data = cell.getValue() ?? [];
+  if (!Array.isArray(data)) data = [data];
+  data = data.map(Number).filter(Number.isFinite);
+  const n = data.length;
+  if (n === 0) return "";
+
+  const cssWidth = p.width ?? 120;
+  const cssHeight = p.height ?? 30;
+  const color = p.color ?? "currentColor";
+  const gap = p.gap ?? 1;         // px gap between bars
+  const pad = p.pad ?? 0;         // inner padding
+  const ariaLabel = p.ariaLabel ?? `histogram with ${n} observations`;
+
+  // robust bins: Sturges as default; allow override
+  const k = Math.max(1, Math.min(64, p.bins ?? Math.ceil(Math.log2(n) + 1)));
+
+  // stats
+  let min = Infinity, max = -Infinity;
+  for (let v of data) { if (v < min) min = v; if (v > max) max = v; }
+
+  // zero-range safeguard -> single centered bar
+  const range = max - min;
+  const binWidth = range > 0 ? range / k : 1;
+
+  const bins = new Array(k).fill(0);
+  if (range === 0) {
+    // put all mass in the middle bin
+    bins[Math.floor(k / 2)] = n;
+  } else {
+    for (let v of data) {
+      let idx = Math.floor((v - min) / binWidth);
+      if (idx >= k) idx = k - 1; // clamp max edge
+      bins[idx]++;
+    }
+  }
+  const maxCount = Math.max(...bins, 1);
+
+  // HiDPI / Retina crispness
+  const dpr = window.devicePixelRatio || 1;
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(cssWidth * dpr);
+  canvas.height = Math.round(cssHeight * dpr);
+  canvas.style.width = cssWidth + "px";
+  canvas.style.height = cssHeight + "px";
+  canvas.setAttribute("role", "img");
+  canvas.setAttribute("aria-label", ariaLabel);
+
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, cssWidth, cssHeight);
+  ctx.fillStyle = color;
+
+  const innerW = cssWidth - pad * 2;
+  const innerH = cssHeight - pad * 2;
+  const barW = innerW / k;
+
+  for (let i = 0; i < k; i++) {
+    const h = (bins[i] / maxCount) * innerH;
+    const x = pad + i * barW;
+    const y = cssHeight - pad - h;
+    // 0.5 translate helps crisp vertical edges on some displays
+    ctx.fillRect(Math.round(x) + 0.5, Math.floor(y), Math.max(0, barW - gap), Math.ceil(h));
+  }
+
+  if (p.title) canvas.title = p.title;
+  return canvas;
+}
+
+// Unified sorter that uses hidden rank field
+function tinytable_rank_sorter(a, b, aRow, bRow, column, dir, sorterParams) {
+  const rankField = sorterParams.rankField;
+  const aVal = aRow.getData()[rankField] || 0;
+  const bVal = bRow.getData()[rankField] || 0;
+  return aVal - bVal;
+}
+</script><script>
+      // Create table-specific functions using external factory
+      const tableFns_9dc94va645er44c0k8p3 = TinyTable.createTableFunctions("tinytable_9dc94va645er44c0k8p3");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 2 }, { i: '4', j: 2 }, { i: '6', j: 2 }, { i: '2', j: 4 }, { i: '4', j: 4 }, { i: '6', j: 4 } ], css_id: 'tinytable_css_j6k6qk1n4y3wmwlmimxg',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '3', j: 2 }, { i: '5', j: 2 }, { i: '1', j: 4 }, { i: '3', j: 4 }, { i: '5', j: 4 } ], css_id: 'tinytable_css_h34t7stsbnbucz7eq866',}, 
+          { positions: [ { i: '2', j: 1 }, { i: '4', j: 1 }, { i: '6', j: 1 }, { i: '2', j: 3 }, { i: '4', j: 3 }, { i: '6', j: 3 }, { i: '2', j: 5 }, { i: '4', j: 5 }, { i: '6', j: 5 }, { i: '2', j: 6 }, { i: '4', j: 6 }, { i: '6', j: 6 }, { i: '2', j: 7 }, { i: '4', j: 7 }, { i: '6', j: 7 }, { i: '2', j: 8 }, { i: '4', j: 8 }, { i: '6', j: 8 }, { i: '2', j: 9 }, { i: '4', j: 9 }, { i: '6', j: 9 }, { i: '2', j: 10 }, { i: '4', j: 10 }, { i: '6', j: 10 } ], css_id: 'tinytable_css_zqv0x2gd4b69pzpxj7ro',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '3', j: 1 }, { i: '5', j: 1 }, { i: '1', j: 3 }, { i: '3', j: 3 }, { i: '5', j: 3 }, { i: '1', j: 5 }, { i: '3', j: 5 }, { i: '5', j: 5 }, { i: '1', j: 6 }, { i: '3', j: 6 }, { i: '5', j: 6 }, { i: '1', j: 7 }, { i: '3', j: 7 }, { i: '5', j: 7 }, { i: '1', j: 8 }, { i: '3', j: 8 }, { i: '5', j: 8 }, { i: '1', j: 9 }, { i: '3', j: 9 }, { i: '5', j: 9 }, { i: '1', j: 10 }, { i: '3', j: 10 }, { i: '5', j: 10 } ], css_id: 'tinytable_css_4olspg8l5gya08tpxs7f',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 } ], css_id: 'tinytable_css_avlpyuvwvoji80fl9572',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_9dc94va645er44c0k8p3.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script><style>
+
+/* ========================================================================
+ * tinytable CSS - Core styling for HTML table output
+ * ======================================================================== */
+
+/* ========================================================================
+ * CSS Custom Properties (Theme Variables)
+ * ======================================================================== */
+.tinytable {
+    /* Colors */
+    --tt-text-color: inherit;
+    --tt-line-color: black;
+    --tt-border-color: var(--tt-line-color);
+    --tt-striped-bg: rgba(0, 0, 0, .05);
+    --tt-hover-bg: rgba(0, 0, 0, .075);
+    --tt-background-color: transparent;
+    --tt-footnote-bg: var(--tt-background-color);
+
+    /* Spacing */
+    --tt-cell-padding: .5rem;
+    --tt-cell-padding-sm: calc(var(--tt-cell-padding) / 2);
+    --tt-table-margin: .5rem 0;
+    --tt-caption-padding: .5rem 0;
+    --tt-footnote-padding: .2rem .5rem;
+    --tt-footnote-first-padding-top: .5rem;
+    --tt-footnote-gap: .1rem;
+    --tt-container-padding: 10px;
+
+    /* Typography */
+    --tt-font-size-footnote: 0.875rem;
+    --tt-font-size-caption: 1rem;
+    --tt-font-size-sup: 0.75em;
+    --tt-line-height-footnote: 1.25;
+    --tt-line-height-footnote-tight: 1.2;
+    --tt-font-weight-header: normal;
+
+    /* Alignment */
+    --tt-cell-valign: top;
+    --tt-header-align: left;
+    --tt-header-valign: bottom;
+    --tt-caption-align: var(--tt-header-align);
+    --tt-caption-side: top;
+
+    /* Layout */
+    --tt-table-width: 100%;
+
+    /* Border widths */
+    --tt-border-width: 1px;
+    --tt-border-width-tbody: 2px;
+}
+
+/* ========================================================================
+ * Base Table Styles
+ * ======================================================================== */
+.tinytable {
+    width: var(--tt-table-width);
+    margin: var(--tt-table-margin);
+    border-collapse: collapse;
+    background-color: var(--tt-background-color);
+    color: var(--tt-text-color);
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.tinytable * {
+    font-family: inherit;
+}
+
+/* ========================================================================
+ * Cell Styles
+ * ======================================================================== */
+.tinytable th,
+.tinytable td {
+    position: relative;
+    padding: var(--tt-cell-padding);
+    vertical-align: var(--tt-cell-valign);
+}
+
+.tinytable thead th {
+    text-align: var(--tt-header-align);
+    vertical-align: var(--tt-header-valign);
+    font-weight: var(--tt-font-weight-header);
+    border-bottom: none;
+}
+
+.tinytable thead th[align="center"] {
+    text-align: center;
+}
+
+.tinytable tbody + tbody {
+    border-top: var(--tt-border-width-tbody) solid var(--tt-border-color);
+}
+
+/* ========================================================================
+ * Table Variants
+ * ======================================================================== */
+
+/* Small padding variant */
+.tinytable-sm th,
+.tinytable-sm td {
+    padding: var(--tt-cell-padding-sm);
+}
+
+/* Bordered variant */
+.tinytable-bordered {
+    border: var(--tt-border-width) solid var(--tt-border-color);
+}
+
+.tinytable-bordered th,
+.tinytable-bordered td {
+    border: var(--tt-border-width) solid var(--tt-border-color);
+}
+
+/* Striped rows variant */
+.tinytable-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--tt-striped-bg);
+}
+
+/* Hover effect variant */
+.tinytable-hover tbody tr:hover {
+    background-color: var(--tt-hover-bg);
+}
+
+/* Responsive wrapper */
+.tinytable-responsive {
+    width: var(--tt-table-width);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ========================================================================
+ * Custom Border System (Pseudo-elements)
+ * ======================================================================== */
+.tinytable :is(td, th)[class*="tinytable_css_"] {
+    position: relative;
+
+    /* Border control variables */
+    --border-top: 0;
+    --border-right: 0;
+    --border-bottom: 0;
+    --border-left: 0;
+
+    /* Border color variables */
+    --line-color-top: currentColor;
+    --line-color-right: currentColor;
+    --line-color-bottom: currentColor;
+    --line-color-left: currentColor;
+
+    /* Border width variables */
+    --line-width-top: 0.1em;
+    --line-width-right: 0.1em;
+    --line-width-bottom: 0.1em;
+    --line-width-left: 0.1em;
+
+    /* Border trim variables */
+    --trim-top-left: 0%;
+    --trim-top-right: 0%;
+    --trim-right-top: 0%;
+    --trim-right-bottom: 0%;
+    --trim-bottom-left: 0%;
+    --trim-bottom-right: 0%;
+    --trim-left-top: 0%;
+    --trim-left-bottom: 0%;
+}
+
+/* Top, left, and right borders using ::before */
+.tinytable :is(td, th)[class*="tinytable_css_"]::before {
+    content: "";
+    position: absolute;
+    top: var(--trim-top-left, var(--trim-top-right, 0));
+    left: var(--trim-left-top, 0);
+    right: var(--trim-right-top, 0);
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    border-top: calc(var(--border-top) * var(--line-width-top)) solid var(--line-color-top);
+    border-right: calc(var(--border-right) * var(--line-width-right)) solid var(--line-color-right);
+    border-left: calc(var(--border-left) * var(--line-width-left)) solid var(--line-color-left);
+}
+
+/* Bottom border using ::after */
+.tinytable :is(td, th)[class*="tinytable_css_"]::after {
+    content: "";
+    position: absolute;
+    left: var(--trim-bottom-left, 0);
+    right: var(--trim-bottom-right, 0);
+    bottom: var(--trim-left-bottom, var(--trim-right-bottom, 0));
+    height: calc(var(--border-bottom) * var(--line-width-bottom));
+    background: var(--line-color-bottom);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ========================================================================
+ * Container and Layout Components
+ * ======================================================================== */
+.tinytable-container {
+    padding: var(--tt-container-padding);
+    overflow-x: auto;
+    overflow-y: auto;
+    width: auto;
+    height: auto;
+}
+
+/* ========================================================================
+ * Caption Styling
+ * ======================================================================== */
+.tinytable caption {
+    padding: var(--tt-caption-padding);
+    caption-side: var(--tt-caption-side);
+    font-size: var(--tt-font-size-caption);
+    text-align: var(--tt-caption-align);
+}
+
+/* ========================================================================
+ * Footnotes and Table Footer
+ * ======================================================================== */
+
+.tinytable tfoot tr:first-child td {
+    padding-top: var(--tt-footnote-first-padding-top);
+}
+
+.tinytable tfoot td {
+    padding: var(--tt-footnote-padding);
+    font-size: var(--tt-font-size-footnote);
+    line-height: var(--tt-line-height-footnote);
+    background-color: var(--tt-footnote-bg);
+}
+
+/* Remove extra gap between footnote rows */
+.tinytable tfoot tr + tr td {
+    padding-top: var(--tt-footnote-gap);
+}
+
+/* Make superscripts not inflate line boxes */
+.tinytable tfoot sup {
+    font-size: var(--tt-font-size-sup);
+    line-height: 0;
+    vertical-align: text-top;
+}
+
+/* Slightly tighter for wrapped footnote text */
+.tinytable tfoot tr:nth-child(n+2) td {
+    line-height: var(--tt-line-height-footnote-tight);
+}
+
+</style>
+<style>
+    /* tinytable css entries after */
+    #tinytable_9dc94va645er44c0k8p3 td.tinytable_css_j6k6qk1n4y3wmwlmimxg, #tinytable_9dc94va645er44c0k8p3 th.tinytable_css_j6k6qk1n4y3wmwlmimxg { text-align: left; font-size: 0.875rem; }
+    #tinytable_9dc94va645er44c0k8p3 td.tinytable_css_h34t7stsbnbucz7eq866, #tinytable_9dc94va645er44c0k8p3 th.tinytable_css_h34t7stsbnbucz7eq866 { text-align: left; background-color: #ededed; font-size: 0.875rem; }
+    #tinytable_9dc94va645er44c0k8p3 td.tinytable_css_zqv0x2gd4b69pzpxj7ro, #tinytable_9dc94va645er44c0k8p3 th.tinytable_css_zqv0x2gd4b69pzpxj7ro { text-align: right; font-size: 0.875rem; }
+    #tinytable_9dc94va645er44c0k8p3 td.tinytable_css_4olspg8l5gya08tpxs7f, #tinytable_9dc94va645er44c0k8p3 th.tinytable_css_4olspg8l5gya08tpxs7f { text-align: right; background-color: #ededed; font-size: 0.875rem; }
+    #tinytable_9dc94va645er44c0k8p3 td.tinytable_css_avlpyuvwvoji80fl9572, #tinytable_9dc94va645er44c0k8p3 th.tinytable_css_avlpyuvwvoji80fl9572 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; font-weight: bold; text-align: center; font-size: 0.875rem; }
+    </style>
+<div class="container">
+      <table class="table tinytable tinytable-sm" id="tinytable_9dc94va645er44c0k8p3" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+<thead><tr>
+<th scope="col" data-row="0" data-col="1">Config ID</th>
+                <th scope="col" data-row="0" data-col="2">Upper bound</th>
+                <th scope="col" data-row="0" data-col="3">Upper parameter</th>
+                <th scope="col" data-row="0" data-col="4">Timing</th>
+                <th scope="col" data-row="0" data-col="5">HR</th>
+                <th scope="col" data-row="0" data-col="6">Final events</th>
+                <th scope="col" data-row="0" data-col="7">Final total N</th>
+                <th scope="col" data-row="0" data-col="8">Power</th>
+                <th scope="col" data-row="0" data-col="9">Upper Z (IA1)</th>
+                <th scope="col" data-row="0" data-col="10">Lower Z (IA1)</th>
+              </tr></thead>
+<tbody>
+<tr>
+<td data-row="1" data-col="1">1</td>
+                  <td data-row="1" data-col="2">sfLDOF</td>
+                  <td data-row="1" data-col="3">0</td>
+                  <td data-row="1" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="1" data-col="5">0.6</td>
+                  <td data-row="1" data-col="6">170</td>
+                  <td data-row="1" data-col="7">296</td>
+                  <td data-row="1" data-col="8">0.9</td>
+                  <td data-row="1" data-col="9">3.73</td>
+                  <td data-row="1" data-col="10">-0.719</td>
+                </tr>
+<tr>
+<td data-row="2" data-col="1">2</td>
+                  <td data-row="2" data-col="2">sfLDOF</td>
+                  <td data-row="2" data-col="3">0</td>
+                  <td data-row="2" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="2" data-col="5">0.675</td>
+                  <td data-row="2" data-col="6">288</td>
+                  <td data-row="2" data-col="7">482</td>
+                  <td data-row="2" data-col="8">0.9</td>
+                  <td data-row="2" data-col="9">3.73</td>
+                  <td data-row="2" data-col="10">-0.719</td>
+                </tr>
+<tr>
+<td data-row="3" data-col="1">3</td>
+                  <td data-row="3" data-col="2">sfLDOF</td>
+                  <td data-row="3" data-col="3">0</td>
+                  <td data-row="3" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="3" data-col="5">0.75</td>
+                  <td data-row="3" data-col="6">538</td>
+                  <td data-row="3" data-col="7">874</td>
+                  <td data-row="3" data-col="8">0.9</td>
+                  <td data-row="3" data-col="9">3.73</td>
+                  <td data-row="3" data-col="10">-0.719</td>
+                </tr>
+<tr>
+<td data-row="4" data-col="1">4</td>
+                  <td data-row="4" data-col="2">sfLDOF</td>
+                  <td data-row="4" data-col="3">0</td>
+                  <td data-row="4" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="4" data-col="5">0.6</td>
+                  <td data-row="4" data-col="6">174</td>
+                  <td data-row="4" data-col="7">302</td>
+                  <td data-row="4" data-col="8">0.9</td>
+                  <td data-row="4" data-col="9">2.96</td>
+                  <td data-row="4" data-col="10">0.332</td>
+                </tr>
+<tr>
+<td data-row="5" data-col="1">5</td>
+                  <td data-row="5" data-col="2">sfLDOF</td>
+                  <td data-row="5" data-col="3">0</td>
+                  <td data-row="5" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="5" data-col="5">0.675</td>
+                  <td data-row="5" data-col="6">294</td>
+                  <td data-row="5" data-col="7">492</td>
+                  <td data-row="5" data-col="8">0.9</td>
+                  <td data-row="5" data-col="9">2.96</td>
+                  <td data-row="5" data-col="10">0.332</td>
+                </tr>
+<tr>
+<td data-row="6" data-col="1">6</td>
+                  <td data-row="6" data-col="2">sfLDOF</td>
+                  <td data-row="6" data-col="3">0</td>
+                  <td data-row="6" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="6" data-col="5">0.75</td>
+                  <td data-row="6" data-col="6">549</td>
+                  <td data-row="6" data-col="7">892</td>
+                  <td data-row="6" data-col="8">0.9</td>
+                  <td data-row="6" data-col="9">2.96</td>
+                  <td data-row="6" data-col="10">0.332</td>
+                </tr>
+</tbody>
+</table>
+</div>
+<!-- hack to avoid NA insertion in last line -->
 <div class="section level3">
 <h3 id="calendar-timed-analyses-with-gssurvcalendartune">Calendar-timed analyses with <code>gsSurvCalendarTune()</code><a class="anchor" aria-label="anchor" href="#calendar-timed-analyses-with-gssurvcalendartune"></a>
 </h3>
@@ -313,147 +1978,1281 @@ timing.</p>
 <span></span>
 <span><span class="va">job_cal</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>strategy <span class="op">=</span> <span class="st">"grid"</span>, parallel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">res_cal</span> <span class="op">&lt;-</span> <span class="va">job_cal</span><span class="op">$</span><span class="fu">results</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res_cal</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   upper_setting lower_setting calendarTime    spending    hr upper_fun</span></span>
-<span><span class="co">#&gt; 1  function....  function....   12, 24, 36 information 0.600    sfLDOF</span></span>
-<span><span class="co">#&gt; 2  function....  function....   12, 24, 36 information 0.675    sfLDOF</span></span>
-<span><span class="co">#&gt; 3  function....  function....   12, 24, 36 information 0.750    sfLDOF</span></span>
-<span><span class="co">#&gt; 4  function....  function....   12, 24, 36    calendar 0.600    sfLDOF</span></span>
-<span><span class="co">#&gt; 5  function....  function....   12, 24, 36    calendar 0.675    sfLDOF</span></span>
-<span><span class="co">#&gt; 6  function....  function....   12, 24, 36    calendar 0.750    sfLDOF</span></span>
-<span><span class="co">#&gt;   upper_par lower_fun lower_par config_id status error_message warnings</span></span>
-<span><span class="co">#&gt; 1         0    sfLDOF         0         1     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 2         0    sfLDOF         0         2     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 3         0    sfLDOF         0         3     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 4         0    sfLDOF         0         4     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 5         0    sfLDOF         0         5     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 6         0    sfLDOF         0         6     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;                          cache_key design_rds    call_args k test.type alpha</span></span>
-<span><span class="co">#&gt; 1 67d4ff1d6f5f24b2dbb1867dcccdedc3       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 2 307ed73a6eb8e444e41038fe72f157c9       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 3 b0411c34866aff5756f402c227202d2d       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 4 34955b117a00dad79e8bfb1491aea92c       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 5 988aef302b5b92b089bf580e7b9a3076       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 6 14ba6c43ba873ead55e48552c98ec7d6       &lt;NA&gt; 4, 0.025.... 3         4 0.025</span></span>
-<span><span class="co">#&gt;   beta       timing          n_I final_n_I      upper_z      lower_z</span></span>
-<span><span class="co">#&gt; 1  0.1 0.234953.... 40.57769....  172.7049 4.4783, .... -1.5645,....</span></span>
-<span><span class="co">#&gt; 2  0.1 0.239261.... 70.11500....  293.0476 4.4352, .... -1.5165,....</span></span>
-<span><span class="co">#&gt; 3  0.1 0.243794.... 133.8081....  548.8561 4.3911, .... -1.467, ....</span></span>
-<span><span class="co">#&gt; 4  0.1 0.234953.... 38.77264....  165.0223 3.7103, .... -1.0234,....</span></span>
-<span><span class="co">#&gt; 5  0.1 0.239261.... 66.81866....  279.2704 3.7103, .... -1.0102,....</span></span>
-<span><span class="co">#&gt; 6  0.1 0.243794.... 127.1924....  521.7196 3.7103, .... -0.9963,....</span></span>
-<span><span class="co">#&gt;        upper_p      lower_p     power           en</span></span>
-<span><span class="co">#&gt; 1 0, 0.011.... 0.9412, .... 0.8999993 132.7351....</span></span>
-<span><span class="co">#&gt; 2 0, 0.012.... 0.9353, .... 0.8999992 226.1005....</span></span>
-<span><span class="co">#&gt; 3 0, 0.012.... 0.9288, .... 0.8999990 424.9542....</span></span>
-<span><span class="co">#&gt; 4 1e-04, 0.... 0.8469, .... 0.9000000 119.9537....</span></span>
-<span><span class="co">#&gt; 5 1e-04, 0.... 0.8438, .... 0.9000000 204.1468....</span></span>
-<span><span class="co">#&gt; 6 1e-04, 0.... 0.8404, .... 0.9000000 383.4974....</span></span>
-<span><span class="co">#&gt;                                 upper_name</span></span>
-<span><span class="co">#&gt; 1 Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 2 Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 3 Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 4 Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 5 Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 6 Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt;                                 lower_name bound_summary final_events</span></span>
-<span><span class="co">#&gt; 1 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     172.7049</span></span>
-<span><span class="co">#&gt; 2 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     293.0476</span></span>
-<span><span class="co">#&gt; 3 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     548.8561</span></span>
-<span><span class="co">#&gt; 4 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     165.0223</span></span>
-<span><span class="co">#&gt; 5 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     279.2704</span></span>
-<span><span class="co">#&gt; 6 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     521.7196</span></span>
-<span><span class="co">#&gt;   max_events      n_total final_n_total analysis_time upper_z1 lower_z1</span></span>
-<span><span class="co">#&gt; 1   172.7049 128, 212....           212    12, 24, 36   4.4783  -1.5645</span></span>
-<span><span class="co">#&gt; 2   293.0476 212, 354....           354    12, 24, 36   4.4352  -1.5165</span></span>
-<span><span class="co">#&gt; 3   548.8561 390, 650....           650    12, 24, 36   4.3911  -1.4670</span></span>
-<span><span class="co">#&gt; 4   165.0223 122, 204....           204    12, 24, 36   3.7103  -1.0234</span></span>
-<span><span class="co">#&gt; 5   279.2704 202, 336....           336    12, 24, 36   3.7103  -1.0102</span></span>
-<span><span class="co">#&gt; 6   521.7196 372, 618....           618    12, 24, 36   3.7103  -0.9963</span></span></code></pre></div>
+<span><span class="va">job_cal</span><span class="op">$</span><span class="fu">table</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<!-- preamble start -->
+
+    <script>
+// TinyTable JavaScript Framework
+// Function factory for creating table-specific operations
+window.TinyTable = {
+  // Helper to create Tabulator instance with Luxon dependency
+  createTabulator: function(elementId, config) {
+    const { DateTime } = window.luxon || {};
+    return new Tabulator(elementId, {
+      dependencies: { DateTime },
+      ...config
+    });
+  },
+
+  createTableFunctions: function (tableId) {
+    const spans = []; // {top, left, rowspan, colspan}
+
+    function resolveToAnchor(i, j) {
+      // find if (i,j) is inside any span; return that span's anchor if so
+      for (const s of spans) {
+        if (
+          i >= s.top && i < s.top + s.rowspan &&
+          j >= s.left && j < s.left + s.colspan
+        ) {
+          return { i: s.top, j: s.left };
+        }
+      }
+      return { i, j };
+    }
+
+    return {
+      styleCell: function (i, j, css_id) {
+        // normalize possible string indices
+        i = +i; j = +j;
+
+        const table = document.getElementById(tableId);
+        const { i: ai, j: aj } = resolveToAnchor(i, j);
+        const cell = table.querySelector(`[data-row="${ai}"][data-col="${aj}"]`);
+        if (!cell) return; // silently skip if not found (e.g., removed)
+        cell.classList.add(css_id);
+      },
+
+      spanCell: function (i, j, rowspan, colspan) {
+        i = +i; j = +j;
+
+        const table = document.getElementById(tableId);
+        const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+        if (!targetCell) {
+          console.warn(`Cell at (${i}, ${j}) not found.`);
+          return;
+        }
+
+        // record span so future styleCell calls map to the anchor
+        spans.push({ top: i, left: j, rowspan, colspan });
+
+        // remove covered cells (except anchor)
+        const cellsToRemove = [];
+        for (let r = 0; r < rowspan; r++) {
+          for (let c = 0; c < colspan; c++) {
+            if (r === 0 && c === 0) continue;
+            const cell = table.querySelector(`[data-row="${i + r}"][data-col="${j + c}"]`);
+            if (cell) cellsToRemove.push(cell);
+          }
+        }
+        cellsToRemove.forEach(cell => cell.remove());
+
+        // set HTML attributes for clarity/serialization
+        targetCell.setAttribute('rowspan', rowspan);
+        targetCell.setAttribute('colspan', colspan);
+      }
+    };
+  }
+};
+
+// =============================================================================
+// TABULATOR CUSTOM FORMATTERS (revised)
+// =============================================================================
+
+// SVG sparkline
+function tinytable_sparkline(cell, p = {}) {
+  let values = cell.getValue() ?? [];
+  if (!Array.isArray(values)) values = [values];
+  // coerce to finite numbers & strip NaNs
+  values = values.map(Number).filter(Number.isFinite);
+  const n = values.length;
+  if (n === 0) return "";
+
+  const w = p.width ?? 120, h = p.height ?? 30, pad = p.pad ?? 2;
+  const color = p.color ?? "currentColor", sw = p.strokeWidth ?? 1.5;
+  const fill = p.fillArea ?? false;
+  const showDots = p.showDots ?? false;
+  const dotR = p.dotRadius ?? 1.75;
+  const ariaLabel = p.ariaLabel ?? `sparkline with ${n} points`;
+
+  // single pass for min/max
+  let min = Infinity, max = -Infinity;
+  for (let v of values) { if (v < min) min = v; if (v > max) max = v; }
+  const span = (max - min) || 1;
+
+  const x = i => pad + (i * (w - 2 * pad)) / Math.max(n - 1, 1);
+  const y = v => h - pad - ((v - min) * (h - 2 * pad)) / span;
+
+  let d = `M ${x(0)},${y(values[0])}`;
+  for (let i = 1; i < n; i++) d += ` L ${x(i)},${y(values[i])}`;
+
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  svg.setAttribute("width", w);
+  svg.setAttribute("height", h);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", ariaLabel);
+
+  const path = document.createElementNS(NS, "path");
+  path.setAttribute("stroke", color);
+  path.setAttribute("stroke-width", sw);
+  path.setAttribute("vector-effect", "non-scaling-stroke");
+
+  if (fill) {
+    const area = document.createElementNS(NS, "path");
+    area.setAttribute("d", d + ` L ${x(n - 1)},${h - pad} L ${x(0)},${h - pad} Z`);
+    area.setAttribute("fill", color);
+    area.setAttribute("fill-opacity", p.fillOpacity ?? 0.25);
+    svg.appendChild(area);
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+  } else {
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+  }
+  svg.appendChild(path);
+
+  if (showDots) {
+    const dot = (i) => {
+      const c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", x(i));
+      c.setAttribute("cy", y(values[i]));
+      c.setAttribute("r", dotR);
+      c.setAttribute("fill", color);
+      return c;
+    };
+    if (p.dots === "end") svg.appendChild(dot(n - 1));
+    else if (p.dots === "minmax") {
+      const iMin = values.indexOf(min), iMax = values.indexOf(max);
+      svg.appendChild(dot(iMin)); svg.appendChild(dot(iMax));
+    } else if (p.dots === true) {
+      for (let i = 0; i < n; i++) svg.appendChild(dot(i));
+    }
+  }
+
+  if (p.title) {
+    const title = document.createElementNS(NS, "title");
+    title.textContent = p.title;
+    svg.appendChild(title);
+  }
+
+  return svg;
+}
+
+// Canvas histogram
+function tinytable_histogram(cell, p = {}) {
+  let data = cell.getValue() ?? [];
+  if (!Array.isArray(data)) data = [data];
+  data = data.map(Number).filter(Number.isFinite);
+  const n = data.length;
+  if (n === 0) return "";
+
+  const cssWidth = p.width ?? 120;
+  const cssHeight = p.height ?? 30;
+  const color = p.color ?? "currentColor";
+  const gap = p.gap ?? 1;         // px gap between bars
+  const pad = p.pad ?? 0;         // inner padding
+  const ariaLabel = p.ariaLabel ?? `histogram with ${n} observations`;
+
+  // robust bins: Sturges as default; allow override
+  const k = Math.max(1, Math.min(64, p.bins ?? Math.ceil(Math.log2(n) + 1)));
+
+  // stats
+  let min = Infinity, max = -Infinity;
+  for (let v of data) { if (v < min) min = v; if (v > max) max = v; }
+
+  // zero-range safeguard -> single centered bar
+  const range = max - min;
+  const binWidth = range > 0 ? range / k : 1;
+
+  const bins = new Array(k).fill(0);
+  if (range === 0) {
+    // put all mass in the middle bin
+    bins[Math.floor(k / 2)] = n;
+  } else {
+    for (let v of data) {
+      let idx = Math.floor((v - min) / binWidth);
+      if (idx >= k) idx = k - 1; // clamp max edge
+      bins[idx]++;
+    }
+  }
+  const maxCount = Math.max(...bins, 1);
+
+  // HiDPI / Retina crispness
+  const dpr = window.devicePixelRatio || 1;
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(cssWidth * dpr);
+  canvas.height = Math.round(cssHeight * dpr);
+  canvas.style.width = cssWidth + "px";
+  canvas.style.height = cssHeight + "px";
+  canvas.setAttribute("role", "img");
+  canvas.setAttribute("aria-label", ariaLabel);
+
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, cssWidth, cssHeight);
+  ctx.fillStyle = color;
+
+  const innerW = cssWidth - pad * 2;
+  const innerH = cssHeight - pad * 2;
+  const barW = innerW / k;
+
+  for (let i = 0; i < k; i++) {
+    const h = (bins[i] / maxCount) * innerH;
+    const x = pad + i * barW;
+    const y = cssHeight - pad - h;
+    // 0.5 translate helps crisp vertical edges on some displays
+    ctx.fillRect(Math.round(x) + 0.5, Math.floor(y), Math.max(0, barW - gap), Math.ceil(h));
+  }
+
+  if (p.title) canvas.title = p.title;
+  return canvas;
+}
+
+// Unified sorter that uses hidden rank field
+function tinytable_rank_sorter(a, b, aRow, bRow, column, dir, sorterParams) {
+  const rankField = sorterParams.rankField;
+  const aVal = aRow.getData()[rankField] || 0;
+  const bVal = bRow.getData()[rankField] || 0;
+  return aVal - bVal;
+}
+</script><script>
+      // Create table-specific functions using external factory
+      const tableFns_hqj4w0ioy0lc1w6vygmi = TinyTable.createTableFunctions("tinytable_hqj4w0ioy0lc1w6vygmi");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 2 }, { i: '4', j: 2 }, { i: '6', j: 2 }, { i: '2', j: 4 }, { i: '4', j: 4 }, { i: '6', j: 4 }, { i: '2', j: 5 }, { i: '4', j: 5 }, { i: '6', j: 5 } ], css_id: 'tinytable_css_n30w3ey1d5a61rptry8g',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '3', j: 2 }, { i: '5', j: 2 }, { i: '1', j: 4 }, { i: '3', j: 4 }, { i: '5', j: 4 }, { i: '1', j: 5 }, { i: '3', j: 5 }, { i: '5', j: 5 } ], css_id: 'tinytable_css_nlop84sllwu67riupt9a',}, 
+          { positions: [ { i: '2', j: 1 }, { i: '4', j: 1 }, { i: '6', j: 1 }, { i: '2', j: 3 }, { i: '4', j: 3 }, { i: '6', j: 3 }, { i: '2', j: 6 }, { i: '4', j: 6 }, { i: '6', j: 6 }, { i: '2', j: 7 }, { i: '4', j: 7 }, { i: '6', j: 7 }, { i: '2', j: 8 }, { i: '4', j: 8 }, { i: '6', j: 8 }, { i: '2', j: 9 }, { i: '4', j: 9 }, { i: '6', j: 9 }, { i: '2', j: 10 }, { i: '4', j: 10 }, { i: '6', j: 10 }, { i: '2', j: 11 }, { i: '4', j: 11 }, { i: '6', j: 11 } ], css_id: 'tinytable_css_89eecxpavj13sbxk9hgi',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '3', j: 1 }, { i: '5', j: 1 }, { i: '1', j: 3 }, { i: '3', j: 3 }, { i: '5', j: 3 }, { i: '1', j: 6 }, { i: '3', j: 6 }, { i: '5', j: 6 }, { i: '1', j: 7 }, { i: '3', j: 7 }, { i: '5', j: 7 }, { i: '1', j: 8 }, { i: '3', j: 8 }, { i: '5', j: 8 }, { i: '1', j: 9 }, { i: '3', j: 9 }, { i: '5', j: 9 }, { i: '1', j: 10 }, { i: '3', j: 10 }, { i: '5', j: 10 }, { i: '1', j: 11 }, { i: '3', j: 11 }, { i: '5', j: 11 } ], css_id: 'tinytable_css_iyyfbwqdbnr38i6fhyqp',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 }, { i: '0', j: 11 } ], css_id: 'tinytable_css_rm6eduyxl0ztaa91o8a0',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_hqj4w0ioy0lc1w6vygmi.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script><style>
+
+/* ========================================================================
+ * tinytable CSS - Core styling for HTML table output
+ * ======================================================================== */
+
+/* ========================================================================
+ * CSS Custom Properties (Theme Variables)
+ * ======================================================================== */
+.tinytable {
+    /* Colors */
+    --tt-text-color: inherit;
+    --tt-line-color: black;
+    --tt-border-color: var(--tt-line-color);
+    --tt-striped-bg: rgba(0, 0, 0, .05);
+    --tt-hover-bg: rgba(0, 0, 0, .075);
+    --tt-background-color: transparent;
+    --tt-footnote-bg: var(--tt-background-color);
+
+    /* Spacing */
+    --tt-cell-padding: .5rem;
+    --tt-cell-padding-sm: calc(var(--tt-cell-padding) / 2);
+    --tt-table-margin: .5rem 0;
+    --tt-caption-padding: .5rem 0;
+    --tt-footnote-padding: .2rem .5rem;
+    --tt-footnote-first-padding-top: .5rem;
+    --tt-footnote-gap: .1rem;
+    --tt-container-padding: 10px;
+
+    /* Typography */
+    --tt-font-size-footnote: 0.875rem;
+    --tt-font-size-caption: 1rem;
+    --tt-font-size-sup: 0.75em;
+    --tt-line-height-footnote: 1.25;
+    --tt-line-height-footnote-tight: 1.2;
+    --tt-font-weight-header: normal;
+
+    /* Alignment */
+    --tt-cell-valign: top;
+    --tt-header-align: left;
+    --tt-header-valign: bottom;
+    --tt-caption-align: var(--tt-header-align);
+    --tt-caption-side: top;
+
+    /* Layout */
+    --tt-table-width: 100%;
+
+    /* Border widths */
+    --tt-border-width: 1px;
+    --tt-border-width-tbody: 2px;
+}
+
+/* ========================================================================
+ * Base Table Styles
+ * ======================================================================== */
+.tinytable {
+    width: var(--tt-table-width);
+    margin: var(--tt-table-margin);
+    border-collapse: collapse;
+    background-color: var(--tt-background-color);
+    color: var(--tt-text-color);
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.tinytable * {
+    font-family: inherit;
+}
+
+/* ========================================================================
+ * Cell Styles
+ * ======================================================================== */
+.tinytable th,
+.tinytable td {
+    position: relative;
+    padding: var(--tt-cell-padding);
+    vertical-align: var(--tt-cell-valign);
+}
+
+.tinytable thead th {
+    text-align: var(--tt-header-align);
+    vertical-align: var(--tt-header-valign);
+    font-weight: var(--tt-font-weight-header);
+    border-bottom: none;
+}
+
+.tinytable thead th[align="center"] {
+    text-align: center;
+}
+
+.tinytable tbody + tbody {
+    border-top: var(--tt-border-width-tbody) solid var(--tt-border-color);
+}
+
+/* ========================================================================
+ * Table Variants
+ * ======================================================================== */
+
+/* Small padding variant */
+.tinytable-sm th,
+.tinytable-sm td {
+    padding: var(--tt-cell-padding-sm);
+}
+
+/* Bordered variant */
+.tinytable-bordered {
+    border: var(--tt-border-width) solid var(--tt-border-color);
+}
+
+.tinytable-bordered th,
+.tinytable-bordered td {
+    border: var(--tt-border-width) solid var(--tt-border-color);
+}
+
+/* Striped rows variant */
+.tinytable-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--tt-striped-bg);
+}
+
+/* Hover effect variant */
+.tinytable-hover tbody tr:hover {
+    background-color: var(--tt-hover-bg);
+}
+
+/* Responsive wrapper */
+.tinytable-responsive {
+    width: var(--tt-table-width);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ========================================================================
+ * Custom Border System (Pseudo-elements)
+ * ======================================================================== */
+.tinytable :is(td, th)[class*="tinytable_css_"] {
+    position: relative;
+
+    /* Border control variables */
+    --border-top: 0;
+    --border-right: 0;
+    --border-bottom: 0;
+    --border-left: 0;
+
+    /* Border color variables */
+    --line-color-top: currentColor;
+    --line-color-right: currentColor;
+    --line-color-bottom: currentColor;
+    --line-color-left: currentColor;
+
+    /* Border width variables */
+    --line-width-top: 0.1em;
+    --line-width-right: 0.1em;
+    --line-width-bottom: 0.1em;
+    --line-width-left: 0.1em;
+
+    /* Border trim variables */
+    --trim-top-left: 0%;
+    --trim-top-right: 0%;
+    --trim-right-top: 0%;
+    --trim-right-bottom: 0%;
+    --trim-bottom-left: 0%;
+    --trim-bottom-right: 0%;
+    --trim-left-top: 0%;
+    --trim-left-bottom: 0%;
+}
+
+/* Top, left, and right borders using ::before */
+.tinytable :is(td, th)[class*="tinytable_css_"]::before {
+    content: "";
+    position: absolute;
+    top: var(--trim-top-left, var(--trim-top-right, 0));
+    left: var(--trim-left-top, 0);
+    right: var(--trim-right-top, 0);
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    border-top: calc(var(--border-top) * var(--line-width-top)) solid var(--line-color-top);
+    border-right: calc(var(--border-right) * var(--line-width-right)) solid var(--line-color-right);
+    border-left: calc(var(--border-left) * var(--line-width-left)) solid var(--line-color-left);
+}
+
+/* Bottom border using ::after */
+.tinytable :is(td, th)[class*="tinytable_css_"]::after {
+    content: "";
+    position: absolute;
+    left: var(--trim-bottom-left, 0);
+    right: var(--trim-bottom-right, 0);
+    bottom: var(--trim-left-bottom, var(--trim-right-bottom, 0));
+    height: calc(var(--border-bottom) * var(--line-width-bottom));
+    background: var(--line-color-bottom);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ========================================================================
+ * Container and Layout Components
+ * ======================================================================== */
+.tinytable-container {
+    padding: var(--tt-container-padding);
+    overflow-x: auto;
+    overflow-y: auto;
+    width: auto;
+    height: auto;
+}
+
+/* ========================================================================
+ * Caption Styling
+ * ======================================================================== */
+.tinytable caption {
+    padding: var(--tt-caption-padding);
+    caption-side: var(--tt-caption-side);
+    font-size: var(--tt-font-size-caption);
+    text-align: var(--tt-caption-align);
+}
+
+/* ========================================================================
+ * Footnotes and Table Footer
+ * ======================================================================== */
+
+.tinytable tfoot tr:first-child td {
+    padding-top: var(--tt-footnote-first-padding-top);
+}
+
+.tinytable tfoot td {
+    padding: var(--tt-footnote-padding);
+    font-size: var(--tt-font-size-footnote);
+    line-height: var(--tt-line-height-footnote);
+    background-color: var(--tt-footnote-bg);
+}
+
+/* Remove extra gap between footnote rows */
+.tinytable tfoot tr + tr td {
+    padding-top: var(--tt-footnote-gap);
+}
+
+/* Make superscripts not inflate line boxes */
+.tinytable tfoot sup {
+    font-size: var(--tt-font-size-sup);
+    line-height: 0;
+    vertical-align: text-top;
+}
+
+/* Slightly tighter for wrapped footnote text */
+.tinytable tfoot tr:nth-child(n+2) td {
+    line-height: var(--tt-line-height-footnote-tight);
+}
+
+</style>
+<style>
+    /* tinytable css entries after */
+    #tinytable_hqj4w0ioy0lc1w6vygmi td.tinytable_css_n30w3ey1d5a61rptry8g, #tinytable_hqj4w0ioy0lc1w6vygmi th.tinytable_css_n30w3ey1d5a61rptry8g { text-align: left; font-size: 0.875rem; }
+    #tinytable_hqj4w0ioy0lc1w6vygmi td.tinytable_css_nlop84sllwu67riupt9a, #tinytable_hqj4w0ioy0lc1w6vygmi th.tinytable_css_nlop84sllwu67riupt9a { text-align: left; background-color: #ededed; font-size: 0.875rem; }
+    #tinytable_hqj4w0ioy0lc1w6vygmi td.tinytable_css_89eecxpavj13sbxk9hgi, #tinytable_hqj4w0ioy0lc1w6vygmi th.tinytable_css_89eecxpavj13sbxk9hgi { text-align: right; font-size: 0.875rem; }
+    #tinytable_hqj4w0ioy0lc1w6vygmi td.tinytable_css_iyyfbwqdbnr38i6fhyqp, #tinytable_hqj4w0ioy0lc1w6vygmi th.tinytable_css_iyyfbwqdbnr38i6fhyqp { text-align: right; background-color: #ededed; font-size: 0.875rem; }
+    #tinytable_hqj4w0ioy0lc1w6vygmi td.tinytable_css_rm6eduyxl0ztaa91o8a0, #tinytable_hqj4w0ioy0lc1w6vygmi th.tinytable_css_rm6eduyxl0ztaa91o8a0 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; font-weight: bold; text-align: center; font-size: 0.875rem; }
+    </style>
+<div class="container">
+      <table class="table tinytable tinytable-sm" id="tinytable_hqj4w0ioy0lc1w6vygmi" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+<thead><tr>
+<th scope="col" data-row="0" data-col="1">Config ID</th>
+                <th scope="col" data-row="0" data-col="2">Upper bound</th>
+                <th scope="col" data-row="0" data-col="3">Upper parameter</th>
+                <th scope="col" data-row="0" data-col="4">Calendar time</th>
+                <th scope="col" data-row="0" data-col="5">Spending</th>
+                <th scope="col" data-row="0" data-col="6">HR</th>
+                <th scope="col" data-row="0" data-col="7">Final events</th>
+                <th scope="col" data-row="0" data-col="8">Final total N</th>
+                <th scope="col" data-row="0" data-col="9">Power</th>
+                <th scope="col" data-row="0" data-col="10">Upper Z (IA1)</th>
+                <th scope="col" data-row="0" data-col="11">Lower Z (IA1)</th>
+              </tr></thead>
+<tbody>
+<tr>
+<td data-row="1" data-col="1">1</td>
+                  <td data-row="1" data-col="2">sfLDOF</td>
+                  <td data-row="1" data-col="3">0</td>
+                  <td data-row="1" data-col="4">12, 24, 36</td>
+                  <td data-row="1" data-col="5">information</td>
+                  <td data-row="1" data-col="6">0.6</td>
+                  <td data-row="1" data-col="7">173</td>
+                  <td data-row="1" data-col="8">212</td>
+                  <td data-row="1" data-col="9">0.9</td>
+                  <td data-row="1" data-col="10">4.48</td>
+                  <td data-row="1" data-col="11">-1.565</td>
+                </tr>
+<tr>
+<td data-row="2" data-col="1">2</td>
+                  <td data-row="2" data-col="2">sfLDOF</td>
+                  <td data-row="2" data-col="3">0</td>
+                  <td data-row="2" data-col="4">12, 24, 36</td>
+                  <td data-row="2" data-col="5">information</td>
+                  <td data-row="2" data-col="6">0.675</td>
+                  <td data-row="2" data-col="7">293</td>
+                  <td data-row="2" data-col="8">354</td>
+                  <td data-row="2" data-col="9">0.9</td>
+                  <td data-row="2" data-col="10">4.44</td>
+                  <td data-row="2" data-col="11">-1.516</td>
+                </tr>
+<tr>
+<td data-row="3" data-col="1">3</td>
+                  <td data-row="3" data-col="2">sfLDOF</td>
+                  <td data-row="3" data-col="3">0</td>
+                  <td data-row="3" data-col="4">12, 24, 36</td>
+                  <td data-row="3" data-col="5">information</td>
+                  <td data-row="3" data-col="6">0.75</td>
+                  <td data-row="3" data-col="7">549</td>
+                  <td data-row="3" data-col="8">650</td>
+                  <td data-row="3" data-col="9">0.9</td>
+                  <td data-row="3" data-col="10">4.39</td>
+                  <td data-row="3" data-col="11">-1.467</td>
+                </tr>
+<tr>
+<td data-row="4" data-col="1">4</td>
+                  <td data-row="4" data-col="2">sfLDOF</td>
+                  <td data-row="4" data-col="3">0</td>
+                  <td data-row="4" data-col="4">12, 24, 36</td>
+                  <td data-row="4" data-col="5">calendar</td>
+                  <td data-row="4" data-col="6">0.6</td>
+                  <td data-row="4" data-col="7">165</td>
+                  <td data-row="4" data-col="8">204</td>
+                  <td data-row="4" data-col="9">0.9</td>
+                  <td data-row="4" data-col="10">3.71</td>
+                  <td data-row="4" data-col="11">-1.023</td>
+                </tr>
+<tr>
+<td data-row="5" data-col="1">5</td>
+                  <td data-row="5" data-col="2">sfLDOF</td>
+                  <td data-row="5" data-col="3">0</td>
+                  <td data-row="5" data-col="4">12, 24, 36</td>
+                  <td data-row="5" data-col="5">calendar</td>
+                  <td data-row="5" data-col="6">0.675</td>
+                  <td data-row="5" data-col="7">279</td>
+                  <td data-row="5" data-col="8">336</td>
+                  <td data-row="5" data-col="9">0.9</td>
+                  <td data-row="5" data-col="10">3.71</td>
+                  <td data-row="5" data-col="11">-1.01</td>
+                </tr>
+<tr>
+<td data-row="6" data-col="1">6</td>
+                  <td data-row="6" data-col="2">sfLDOF</td>
+                  <td data-row="6" data-col="3">0</td>
+                  <td data-row="6" data-col="4">12, 24, 36</td>
+                  <td data-row="6" data-col="5">calendar</td>
+                  <td data-row="6" data-col="6">0.75</td>
+                  <td data-row="6" data-col="7">522</td>
+                  <td data-row="6" data-col="8">618</td>
+                  <td data-row="6" data-col="9">0.9</td>
+                  <td data-row="6" data-col="10">3.71</td>
+                  <td data-row="6" data-col="11">-0.996</td>
+                </tr>
+</tbody>
+</table>
+</div>
+<!-- hack to avoid NA insertion in last line -->
 </div>
 <div class="section level3">
 <h3 id="multi-scenario-exploration">Multi-scenario exploration<a class="anchor" aria-label="anchor" href="#multi-scenario-exploration"></a>
 </h3>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">best_surv</span> <span class="op">&lt;-</span> <span class="va">job_surv</span><span class="op">$</span><span class="fu">best</span><span class="op">(</span><span class="st">"final_events"</span>, direction <span class="op">=</span> <span class="st">"min"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">best_surv</span>, <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    upper_setting lower_setting       timing    hr upper_fun upper_par lower_fun</span></span>
-<span><span class="co">#&gt; 1   function....  function.... 0.33, 0..... 0.600    sfLDOF         0    sfLDOF</span></span>
-<span><span class="co">#&gt; 7   function....  function.... 0.33, 0..... 0.600     sfHSD        -4    sfLDOF</span></span>
-<span><span class="co">#&gt; 4   function....  function.... 0.5, 0.75, 1 0.600    sfLDOF         0    sfLDOF</span></span>
-<span><span class="co">#&gt; 10  function....  function.... 0.5, 0.75, 1 0.600     sfHSD        -4    sfLDOF</span></span>
-<span><span class="co">#&gt; 13  function....  function.... 0.33, 0..... 0.600     sfHSD         0    sfLDOF</span></span>
-<span><span class="co">#&gt; 16  function....  function.... 0.5, 0.75, 1 0.600     sfHSD         0    sfLDOF</span></span>
-<span><span class="co">#&gt; 22  function....  function.... 0.5, 0.75, 1 0.600     sfHSD         4    sfLDOF</span></span>
-<span><span class="co">#&gt; 19  function....  function.... 0.33, 0..... 0.600     sfHSD         4    sfLDOF</span></span>
-<span><span class="co">#&gt; 2   function....  function.... 0.33, 0..... 0.675    sfLDOF         0    sfLDOF</span></span>
-<span><span class="co">#&gt; 8   function....  function.... 0.33, 0..... 0.675     sfHSD        -4    sfLDOF</span></span>
-<span><span class="co">#&gt;    lower_par config_id status error_message warnings</span></span>
-<span><span class="co">#&gt; 1          0         1     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 7          0         7     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 4          0         4     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 10         0        10     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 13         0        13     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 16         0        16     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 22         0        22     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 19         0        19     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 2          0         2     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 8          0         8     ok          &lt;NA&gt;     &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;                           cache_key design_rds    call_args k test.type alpha</span></span>
-<span><span class="co">#&gt; 1  2bdc1d4056fd1953f381543e101e42d4       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 7  532c66c85af46e8d26301263fcb75f86       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 4  3dfc591107e557bdecb88c3e4ce9213b       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 10 199e919539db0b92a84028ae5045b7f1       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 13 23b47031ac3b4b8b661ab6e848699f24       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 16 49a3b99a684cf1347c4365eacc1b2300       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 22 89be71aa1ed8624d5fe1ba2470f3a62f       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 19 3ff4f5cb6365ba3f5e77131b768e977b       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 2  24c94ad5f8c36c3a5c6359b8095a9904       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt; 8  a6cb76c6931b049398a077d2ff067ffc       &lt;NA&gt; 3, 4, 0..... 3         4 0.025</span></span>
-<span><span class="co">#&gt;    beta          n_I final_n_I      upper_z      lower_z      upper_p</span></span>
-<span><span class="co">#&gt; 1   0.1 56.24907....  170.4517 3.7307, .... -0.719, .... 1e-04, 0....</span></span>
-<span><span class="co">#&gt; 7   0.1 56.42214....  170.9762 3.0162, .... -0.7161,.... 0.0013, ....</span></span>
-<span><span class="co">#&gt; 4   0.1 87.06008....  174.1202 2.9626, .... 0.3316, .... 0.0015, ....</span></span>
-<span><span class="co">#&gt; 10  0.1 87.11271....  174.2254 2.75, 2..... 0.3323, .... 0.003, 0....</span></span>
-<span><span class="co">#&gt; 13  0.1 61.09307....  185.1305 2.3977, .... -0.6382,.... 0.0082, ....</span></span>
-<span><span class="co">#&gt; 16  0.1 93.90369....  187.8074 2.2414, .... 0.4235, .... 0.0125, ....</span></span>
-<span><span class="co">#&gt; 22  0.1 111.9806....  223.9612 2.0137, .... 0.6515, .... 0.022, 0....</span></span>
-<span><span class="co">#&gt; 19  0.1 74.60758....  226.0836 2.0822, .... -0.4282,.... 0.0187, ....</span></span>
-<span><span class="co">#&gt; 2   0.1 95.02760....  287.9624 3.7307, .... -0.719, .... 1e-04, 0....</span></span>
-<span><span class="co">#&gt; 8   0.1 95.31999....  288.8485 3.0162, .... -0.7161,.... 0.0013, ....</span></span>
-<span><span class="co">#&gt;         lower_p     power           en                               upper_name</span></span>
-<span><span class="co">#&gt; 1  0.7639, .... 0.9000000 108.7925.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 7  0.763, 0.... 0.9000000 108.9419....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 4  0.3701, .... 0.9000000 106.7777.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 10 0.3698, .... 0.9000000 106.7939....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 13 0.7383, .... 0.9000000 113.8644....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 16 0.336, 0.... 0.9000000 111.8445....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 22 0.2574, .... 0.9000000 126.5371....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 19 0.6658, .... 0.8999999 128.5347....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt; 2  0.7639, .... 0.9000000 183.7948.... Lan-DeMets O'Brien-Fleming approximation</span></span>
-<span><span class="co">#&gt; 8  0.763, 0.... 0.9000000 184.0472....                        Hwang-Shih-DeCani</span></span>
-<span><span class="co">#&gt;                                  lower_name bound_summary final_events</span></span>
-<span><span class="co">#&gt; 1  Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     170.4517</span></span>
-<span><span class="co">#&gt; 7  Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     170.9762</span></span>
-<span><span class="co">#&gt; 4  Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     174.1202</span></span>
-<span><span class="co">#&gt; 10 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     174.2254</span></span>
-<span><span class="co">#&gt; 13 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     185.1305</span></span>
-<span><span class="co">#&gt; 16 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     187.8074</span></span>
-<span><span class="co">#&gt; 22 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     223.9612</span></span>
-<span><span class="co">#&gt; 19 Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     226.0836</span></span>
-<span><span class="co">#&gt; 2  Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     287.9624</span></span>
-<span><span class="co">#&gt; 8  Lan-DeMets O'Brien-Fleming approximation  c("IA 1:....     288.8485</span></span>
-<span><span class="co">#&gt;    max_events      n_total final_n_total analysis_time upper_z1 lower_z1</span></span>
-<span><span class="co">#&gt; 1    170.4517 216, 296....           296  9.582183....   3.7307  -0.7190</span></span>
-<span><span class="co">#&gt; 7    170.9762 218, 296....           296  9.582183....   3.0162  -0.7161</span></span>
-<span><span class="co">#&gt; 4    174.1202 284, 302....           302  11.48078....   2.9626   0.3316</span></span>
-<span><span class="co">#&gt; 10   174.2254 284, 302....           302  11.48078....   2.7500   0.3323</span></span>
-<span><span class="co">#&gt; 13   185.1305 234, 320....           320  9.582183....   2.3977  -0.6382</span></span>
-<span><span class="co">#&gt; 16   187.8074 306, 326....           326  11.48078....   2.2414   0.4235</span></span>
-<span><span class="co">#&gt; 22   223.9612 366, 388....           388  11.48078....   2.0137   0.6515</span></span>
-<span><span class="co">#&gt; 19   226.0836 286, 392....           392  9.582183....   2.0822  -0.4282</span></span>
-<span><span class="co">#&gt; 2    287.9624 352, 482....           482  9.554795....   3.7307  -0.7190</span></span>
-<span><span class="co">#&gt; 8    288.8485 352, 484....           484  9.554795....   3.0162  -0.7161</span></span></code></pre></div>
+<span><span class="va">job_surv</span><span class="op">$</span><span class="fu">table</span><span class="op">(</span><span class="va">best_surv</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<!-- preamble start -->
+
+    <script>
+// TinyTable JavaScript Framework
+// Function factory for creating table-specific operations
+window.TinyTable = {
+  // Helper to create Tabulator instance with Luxon dependency
+  createTabulator: function(elementId, config) {
+    const { DateTime } = window.luxon || {};
+    return new Tabulator(elementId, {
+      dependencies: { DateTime },
+      ...config
+    });
+  },
+
+  createTableFunctions: function (tableId) {
+    const spans = []; // {top, left, rowspan, colspan}
+
+    function resolveToAnchor(i, j) {
+      // find if (i,j) is inside any span; return that span's anchor if so
+      for (const s of spans) {
+        if (
+          i >= s.top && i < s.top + s.rowspan &&
+          j >= s.left && j < s.left + s.colspan
+        ) {
+          return { i: s.top, j: s.left };
+        }
+      }
+      return { i, j };
+    }
+
+    return {
+      styleCell: function (i, j, css_id) {
+        // normalize possible string indices
+        i = +i; j = +j;
+
+        const table = document.getElementById(tableId);
+        const { i: ai, j: aj } = resolveToAnchor(i, j);
+        const cell = table.querySelector(`[data-row="${ai}"][data-col="${aj}"]`);
+        if (!cell) return; // silently skip if not found (e.g., removed)
+        cell.classList.add(css_id);
+      },
+
+      spanCell: function (i, j, rowspan, colspan) {
+        i = +i; j = +j;
+
+        const table = document.getElementById(tableId);
+        const targetCell = table.querySelector(`[data-row="${i}"][data-col="${j}"]`);
+        if (!targetCell) {
+          console.warn(`Cell at (${i}, ${j}) not found.`);
+          return;
+        }
+
+        // record span so future styleCell calls map to the anchor
+        spans.push({ top: i, left: j, rowspan, colspan });
+
+        // remove covered cells (except anchor)
+        const cellsToRemove = [];
+        for (let r = 0; r < rowspan; r++) {
+          for (let c = 0; c < colspan; c++) {
+            if (r === 0 && c === 0) continue;
+            const cell = table.querySelector(`[data-row="${i + r}"][data-col="${j + c}"]`);
+            if (cell) cellsToRemove.push(cell);
+          }
+        }
+        cellsToRemove.forEach(cell => cell.remove());
+
+        // set HTML attributes for clarity/serialization
+        targetCell.setAttribute('rowspan', rowspan);
+        targetCell.setAttribute('colspan', colspan);
+      }
+    };
+  }
+};
+
+// =============================================================================
+// TABULATOR CUSTOM FORMATTERS (revised)
+// =============================================================================
+
+// SVG sparkline
+function tinytable_sparkline(cell, p = {}) {
+  let values = cell.getValue() ?? [];
+  if (!Array.isArray(values)) values = [values];
+  // coerce to finite numbers & strip NaNs
+  values = values.map(Number).filter(Number.isFinite);
+  const n = values.length;
+  if (n === 0) return "";
+
+  const w = p.width ?? 120, h = p.height ?? 30, pad = p.pad ?? 2;
+  const color = p.color ?? "currentColor", sw = p.strokeWidth ?? 1.5;
+  const fill = p.fillArea ?? false;
+  const showDots = p.showDots ?? false;
+  const dotR = p.dotRadius ?? 1.75;
+  const ariaLabel = p.ariaLabel ?? `sparkline with ${n} points`;
+
+  // single pass for min/max
+  let min = Infinity, max = -Infinity;
+  for (let v of values) { if (v < min) min = v; if (v > max) max = v; }
+  const span = (max - min) || 1;
+
+  const x = i => pad + (i * (w - 2 * pad)) / Math.max(n - 1, 1);
+  const y = v => h - pad - ((v - min) * (h - 2 * pad)) / span;
+
+  let d = `M ${x(0)},${y(values[0])}`;
+  for (let i = 1; i < n; i++) d += ` L ${x(i)},${y(values[i])}`;
+
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  svg.setAttribute("width", w);
+  svg.setAttribute("height", h);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", ariaLabel);
+
+  const path = document.createElementNS(NS, "path");
+  path.setAttribute("stroke", color);
+  path.setAttribute("stroke-width", sw);
+  path.setAttribute("vector-effect", "non-scaling-stroke");
+
+  if (fill) {
+    const area = document.createElementNS(NS, "path");
+    area.setAttribute("d", d + ` L ${x(n - 1)},${h - pad} L ${x(0)},${h - pad} Z`);
+    area.setAttribute("fill", color);
+    area.setAttribute("fill-opacity", p.fillOpacity ?? 0.25);
+    svg.appendChild(area);
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+  } else {
+    path.setAttribute("d", d);
+    path.setAttribute("fill", "none");
+  }
+  svg.appendChild(path);
+
+  if (showDots) {
+    const dot = (i) => {
+      const c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", x(i));
+      c.setAttribute("cy", y(values[i]));
+      c.setAttribute("r", dotR);
+      c.setAttribute("fill", color);
+      return c;
+    };
+    if (p.dots === "end") svg.appendChild(dot(n - 1));
+    else if (p.dots === "minmax") {
+      const iMin = values.indexOf(min), iMax = values.indexOf(max);
+      svg.appendChild(dot(iMin)); svg.appendChild(dot(iMax));
+    } else if (p.dots === true) {
+      for (let i = 0; i < n; i++) svg.appendChild(dot(i));
+    }
+  }
+
+  if (p.title) {
+    const title = document.createElementNS(NS, "title");
+    title.textContent = p.title;
+    svg.appendChild(title);
+  }
+
+  return svg;
+}
+
+// Canvas histogram
+function tinytable_histogram(cell, p = {}) {
+  let data = cell.getValue() ?? [];
+  if (!Array.isArray(data)) data = [data];
+  data = data.map(Number).filter(Number.isFinite);
+  const n = data.length;
+  if (n === 0) return "";
+
+  const cssWidth = p.width ?? 120;
+  const cssHeight = p.height ?? 30;
+  const color = p.color ?? "currentColor";
+  const gap = p.gap ?? 1;         // px gap between bars
+  const pad = p.pad ?? 0;         // inner padding
+  const ariaLabel = p.ariaLabel ?? `histogram with ${n} observations`;
+
+  // robust bins: Sturges as default; allow override
+  const k = Math.max(1, Math.min(64, p.bins ?? Math.ceil(Math.log2(n) + 1)));
+
+  // stats
+  let min = Infinity, max = -Infinity;
+  for (let v of data) { if (v < min) min = v; if (v > max) max = v; }
+
+  // zero-range safeguard -> single centered bar
+  const range = max - min;
+  const binWidth = range > 0 ? range / k : 1;
+
+  const bins = new Array(k).fill(0);
+  if (range === 0) {
+    // put all mass in the middle bin
+    bins[Math.floor(k / 2)] = n;
+  } else {
+    for (let v of data) {
+      let idx = Math.floor((v - min) / binWidth);
+      if (idx >= k) idx = k - 1; // clamp max edge
+      bins[idx]++;
+    }
+  }
+  const maxCount = Math.max(...bins, 1);
+
+  // HiDPI / Retina crispness
+  const dpr = window.devicePixelRatio || 1;
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(cssWidth * dpr);
+  canvas.height = Math.round(cssHeight * dpr);
+  canvas.style.width = cssWidth + "px";
+  canvas.style.height = cssHeight + "px";
+  canvas.setAttribute("role", "img");
+  canvas.setAttribute("aria-label", ariaLabel);
+
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, cssWidth, cssHeight);
+  ctx.fillStyle = color;
+
+  const innerW = cssWidth - pad * 2;
+  const innerH = cssHeight - pad * 2;
+  const barW = innerW / k;
+
+  for (let i = 0; i < k; i++) {
+    const h = (bins[i] / maxCount) * innerH;
+    const x = pad + i * barW;
+    const y = cssHeight - pad - h;
+    // 0.5 translate helps crisp vertical edges on some displays
+    ctx.fillRect(Math.round(x) + 0.5, Math.floor(y), Math.max(0, barW - gap), Math.ceil(h));
+  }
+
+  if (p.title) canvas.title = p.title;
+  return canvas;
+}
+
+// Unified sorter that uses hidden rank field
+function tinytable_rank_sorter(a, b, aRow, bRow, column, dir, sorterParams) {
+  const rankField = sorterParams.rankField;
+  const aVal = aRow.getData()[rankField] || 0;
+  const bVal = bRow.getData()[rankField] || 0;
+  return aVal - bVal;
+}
+</script><script>
+      // Create table-specific functions using external factory
+      const tableFns_xw7gp3psf6zhmmp7w13w = TinyTable.createTableFunctions("tinytable_xw7gp3psf6zhmmp7w13w");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 2 }, { i: '4', j: 2 }, { i: '6', j: 2 }, { i: '8', j: 2 }, { i: '10', j: 2 }, { i: '2', j: 4 }, { i: '4', j: 4 }, { i: '6', j: 4 }, { i: '8', j: 4 }, { i: '10', j: 4 } ], css_id: 'tinytable_css_1yo572qvocsjdmqew5ab',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '3', j: 2 }, { i: '5', j: 2 }, { i: '7', j: 2 }, { i: '9', j: 2 }, { i: '1', j: 4 }, { i: '3', j: 4 }, { i: '5', j: 4 }, { i: '7', j: 4 }, { i: '9', j: 4 } ], css_id: 'tinytable_css_ibl5diu3n6bbzoshnbue',}, 
+          { positions: [ { i: '2', j: 1 }, { i: '4', j: 1 }, { i: '6', j: 1 }, { i: '8', j: 1 }, { i: '10', j: 1 }, { i: '2', j: 3 }, { i: '4', j: 3 }, { i: '6', j: 3 }, { i: '8', j: 3 }, { i: '10', j: 3 }, { i: '2', j: 5 }, { i: '4', j: 5 }, { i: '6', j: 5 }, { i: '8', j: 5 }, { i: '10', j: 5 }, { i: '2', j: 6 }, { i: '4', j: 6 }, { i: '6', j: 6 }, { i: '8', j: 6 }, { i: '10', j: 6 }, { i: '2', j: 7 }, { i: '4', j: 7 }, { i: '6', j: 7 }, { i: '8', j: 7 }, { i: '10', j: 7 }, { i: '2', j: 8 }, { i: '4', j: 8 }, { i: '6', j: 8 }, { i: '8', j: 8 }, { i: '10', j: 8 }, { i: '2', j: 9 }, { i: '4', j: 9 }, { i: '6', j: 9 }, { i: '8', j: 9 }, { i: '10', j: 9 }, { i: '2', j: 10 }, { i: '4', j: 10 }, { i: '6', j: 10 }, { i: '8', j: 10 }, { i: '10', j: 10 } ], css_id: 'tinytable_css_ws8dilfgz1c09znmem2b',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '3', j: 1 }, { i: '5', j: 1 }, { i: '7', j: 1 }, { i: '9', j: 1 }, { i: '1', j: 3 }, { i: '3', j: 3 }, { i: '5', j: 3 }, { i: '7', j: 3 }, { i: '9', j: 3 }, { i: '1', j: 5 }, { i: '3', j: 5 }, { i: '5', j: 5 }, { i: '7', j: 5 }, { i: '9', j: 5 }, { i: '1', j: 6 }, { i: '3', j: 6 }, { i: '5', j: 6 }, { i: '7', j: 6 }, { i: '9', j: 6 }, { i: '1', j: 7 }, { i: '3', j: 7 }, { i: '5', j: 7 }, { i: '7', j: 7 }, { i: '9', j: 7 }, { i: '1', j: 8 }, { i: '3', j: 8 }, { i: '5', j: 8 }, { i: '7', j: 8 }, { i: '9', j: 8 }, { i: '1', j: 9 }, { i: '3', j: 9 }, { i: '5', j: 9 }, { i: '7', j: 9 }, { i: '9', j: 9 }, { i: '1', j: 10 }, { i: '3', j: 10 }, { i: '5', j: 10 }, { i: '7', j: 10 }, { i: '9', j: 10 } ], css_id: 'tinytable_css_9ksz09od3p848lv7afn0',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 }, { i: '0', j: 10 } ], css_id: 'tinytable_css_5qtlhlag21urewyc2eop',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_xw7gp3psf6zhmmp7w13w.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script><style>
+
+/* ========================================================================
+ * tinytable CSS - Core styling for HTML table output
+ * ======================================================================== */
+
+/* ========================================================================
+ * CSS Custom Properties (Theme Variables)
+ * ======================================================================== */
+.tinytable {
+    /* Colors */
+    --tt-text-color: inherit;
+    --tt-line-color: black;
+    --tt-border-color: var(--tt-line-color);
+    --tt-striped-bg: rgba(0, 0, 0, .05);
+    --tt-hover-bg: rgba(0, 0, 0, .075);
+    --tt-background-color: transparent;
+    --tt-footnote-bg: var(--tt-background-color);
+
+    /* Spacing */
+    --tt-cell-padding: .5rem;
+    --tt-cell-padding-sm: calc(var(--tt-cell-padding) / 2);
+    --tt-table-margin: .5rem 0;
+    --tt-caption-padding: .5rem 0;
+    --tt-footnote-padding: .2rem .5rem;
+    --tt-footnote-first-padding-top: .5rem;
+    --tt-footnote-gap: .1rem;
+    --tt-container-padding: 10px;
+
+    /* Typography */
+    --tt-font-size-footnote: 0.875rem;
+    --tt-font-size-caption: 1rem;
+    --tt-font-size-sup: 0.75em;
+    --tt-line-height-footnote: 1.25;
+    --tt-line-height-footnote-tight: 1.2;
+    --tt-font-weight-header: normal;
+
+    /* Alignment */
+    --tt-cell-valign: top;
+    --tt-header-align: left;
+    --tt-header-valign: bottom;
+    --tt-caption-align: var(--tt-header-align);
+    --tt-caption-side: top;
+
+    /* Layout */
+    --tt-table-width: 100%;
+
+    /* Border widths */
+    --tt-border-width: 1px;
+    --tt-border-width-tbody: 2px;
+}
+
+/* ========================================================================
+ * Base Table Styles
+ * ======================================================================== */
+.tinytable {
+    width: var(--tt-table-width);
+    margin: var(--tt-table-margin);
+    border-collapse: collapse;
+    background-color: var(--tt-background-color);
+    color: var(--tt-text-color);
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.tinytable * {
+    font-family: inherit;
+}
+
+/* ========================================================================
+ * Cell Styles
+ * ======================================================================== */
+.tinytable th,
+.tinytable td {
+    position: relative;
+    padding: var(--tt-cell-padding);
+    vertical-align: var(--tt-cell-valign);
+}
+
+.tinytable thead th {
+    text-align: var(--tt-header-align);
+    vertical-align: var(--tt-header-valign);
+    font-weight: var(--tt-font-weight-header);
+    border-bottom: none;
+}
+
+.tinytable thead th[align="center"] {
+    text-align: center;
+}
+
+.tinytable tbody + tbody {
+    border-top: var(--tt-border-width-tbody) solid var(--tt-border-color);
+}
+
+/* ========================================================================
+ * Table Variants
+ * ======================================================================== */
+
+/* Small padding variant */
+.tinytable-sm th,
+.tinytable-sm td {
+    padding: var(--tt-cell-padding-sm);
+}
+
+/* Bordered variant */
+.tinytable-bordered {
+    border: var(--tt-border-width) solid var(--tt-border-color);
+}
+
+.tinytable-bordered th,
+.tinytable-bordered td {
+    border: var(--tt-border-width) solid var(--tt-border-color);
+}
+
+/* Striped rows variant */
+.tinytable-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--tt-striped-bg);
+}
+
+/* Hover effect variant */
+.tinytable-hover tbody tr:hover {
+    background-color: var(--tt-hover-bg);
+}
+
+/* Responsive wrapper */
+.tinytable-responsive {
+    width: var(--tt-table-width);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ========================================================================
+ * Custom Border System (Pseudo-elements)
+ * ======================================================================== */
+.tinytable :is(td, th)[class*="tinytable_css_"] {
+    position: relative;
+
+    /* Border control variables */
+    --border-top: 0;
+    --border-right: 0;
+    --border-bottom: 0;
+    --border-left: 0;
+
+    /* Border color variables */
+    --line-color-top: currentColor;
+    --line-color-right: currentColor;
+    --line-color-bottom: currentColor;
+    --line-color-left: currentColor;
+
+    /* Border width variables */
+    --line-width-top: 0.1em;
+    --line-width-right: 0.1em;
+    --line-width-bottom: 0.1em;
+    --line-width-left: 0.1em;
+
+    /* Border trim variables */
+    --trim-top-left: 0%;
+    --trim-top-right: 0%;
+    --trim-right-top: 0%;
+    --trim-right-bottom: 0%;
+    --trim-bottom-left: 0%;
+    --trim-bottom-right: 0%;
+    --trim-left-top: 0%;
+    --trim-left-bottom: 0%;
+}
+
+/* Top, left, and right borders using ::before */
+.tinytable :is(td, th)[class*="tinytable_css_"]::before {
+    content: "";
+    position: absolute;
+    top: var(--trim-top-left, var(--trim-top-right, 0));
+    left: var(--trim-left-top, 0);
+    right: var(--trim-right-top, 0);
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    border-top: calc(var(--border-top) * var(--line-width-top)) solid var(--line-color-top);
+    border-right: calc(var(--border-right) * var(--line-width-right)) solid var(--line-color-right);
+    border-left: calc(var(--border-left) * var(--line-width-left)) solid var(--line-color-left);
+}
+
+/* Bottom border using ::after */
+.tinytable :is(td, th)[class*="tinytable_css_"]::after {
+    content: "";
+    position: absolute;
+    left: var(--trim-bottom-left, 0);
+    right: var(--trim-bottom-right, 0);
+    bottom: var(--trim-left-bottom, var(--trim-right-bottom, 0));
+    height: calc(var(--border-bottom) * var(--line-width-bottom));
+    background: var(--line-color-bottom);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ========================================================================
+ * Container and Layout Components
+ * ======================================================================== */
+.tinytable-container {
+    padding: var(--tt-container-padding);
+    overflow-x: auto;
+    overflow-y: auto;
+    width: auto;
+    height: auto;
+}
+
+/* ========================================================================
+ * Caption Styling
+ * ======================================================================== */
+.tinytable caption {
+    padding: var(--tt-caption-padding);
+    caption-side: var(--tt-caption-side);
+    font-size: var(--tt-font-size-caption);
+    text-align: var(--tt-caption-align);
+}
+
+/* ========================================================================
+ * Footnotes and Table Footer
+ * ======================================================================== */
+
+.tinytable tfoot tr:first-child td {
+    padding-top: var(--tt-footnote-first-padding-top);
+}
+
+.tinytable tfoot td {
+    padding: var(--tt-footnote-padding);
+    font-size: var(--tt-font-size-footnote);
+    line-height: var(--tt-line-height-footnote);
+    background-color: var(--tt-footnote-bg);
+}
+
+/* Remove extra gap between footnote rows */
+.tinytable tfoot tr + tr td {
+    padding-top: var(--tt-footnote-gap);
+}
+
+/* Make superscripts not inflate line boxes */
+.tinytable tfoot sup {
+    font-size: var(--tt-font-size-sup);
+    line-height: 0;
+    vertical-align: text-top;
+}
+
+/* Slightly tighter for wrapped footnote text */
+.tinytable tfoot tr:nth-child(n+2) td {
+    line-height: var(--tt-line-height-footnote-tight);
+}
+
+</style>
+<style>
+    /* tinytable css entries after */
+    #tinytable_xw7gp3psf6zhmmp7w13w td.tinytable_css_1yo572qvocsjdmqew5ab, #tinytable_xw7gp3psf6zhmmp7w13w th.tinytable_css_1yo572qvocsjdmqew5ab { text-align: left; font-size: 0.875rem; }
+    #tinytable_xw7gp3psf6zhmmp7w13w td.tinytable_css_ibl5diu3n6bbzoshnbue, #tinytable_xw7gp3psf6zhmmp7w13w th.tinytable_css_ibl5diu3n6bbzoshnbue { text-align: left; background-color: #ededed; font-size: 0.875rem; }
+    #tinytable_xw7gp3psf6zhmmp7w13w td.tinytable_css_ws8dilfgz1c09znmem2b, #tinytable_xw7gp3psf6zhmmp7w13w th.tinytable_css_ws8dilfgz1c09znmem2b { text-align: right; font-size: 0.875rem; }
+    #tinytable_xw7gp3psf6zhmmp7w13w td.tinytable_css_9ksz09od3p848lv7afn0, #tinytable_xw7gp3psf6zhmmp7w13w th.tinytable_css_9ksz09od3p848lv7afn0 { text-align: right; background-color: #ededed; font-size: 0.875rem; }
+    #tinytable_xw7gp3psf6zhmmp7w13w td.tinytable_css_5qtlhlag21urewyc2eop, #tinytable_xw7gp3psf6zhmmp7w13w th.tinytable_css_5qtlhlag21urewyc2eop {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; font-weight: bold; text-align: center; font-size: 0.875rem; }
+    </style>
+<div class="container">
+      <table class="table tinytable tinytable-sm" id="tinytable_xw7gp3psf6zhmmp7w13w" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+<thead><tr>
+<th scope="col" data-row="0" data-col="1">Config ID</th>
+                <th scope="col" data-row="0" data-col="2">Upper bound</th>
+                <th scope="col" data-row="0" data-col="3">Upper parameter</th>
+                <th scope="col" data-row="0" data-col="4">Timing</th>
+                <th scope="col" data-row="0" data-col="5">HR</th>
+                <th scope="col" data-row="0" data-col="6">Final events</th>
+                <th scope="col" data-row="0" data-col="7">Final total N</th>
+                <th scope="col" data-row="0" data-col="8">Power</th>
+                <th scope="col" data-row="0" data-col="9">Upper Z (IA1)</th>
+                <th scope="col" data-row="0" data-col="10">Lower Z (IA1)</th>
+              </tr></thead>
+<tbody>
+<tr>
+<td data-row="1" data-col="1">1</td>
+                  <td data-row="1" data-col="2">sfLDOF</td>
+                  <td data-row="1" data-col="3">0</td>
+                  <td data-row="1" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="1" data-col="5">0.6</td>
+                  <td data-row="1" data-col="6">170</td>
+                  <td data-row="1" data-col="7">296</td>
+                  <td data-row="1" data-col="8">0.9</td>
+                  <td data-row="1" data-col="9">3.73</td>
+                  <td data-row="1" data-col="10">-0.719</td>
+                </tr>
+<tr>
+<td data-row="2" data-col="1">7</td>
+                  <td data-row="2" data-col="2">sfHSD</td>
+                  <td data-row="2" data-col="3">-4</td>
+                  <td data-row="2" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="2" data-col="5">0.6</td>
+                  <td data-row="2" data-col="6">171</td>
+                  <td data-row="2" data-col="7">296</td>
+                  <td data-row="2" data-col="8">0.9</td>
+                  <td data-row="2" data-col="9">3.02</td>
+                  <td data-row="2" data-col="10">-0.716</td>
+                </tr>
+<tr>
+<td data-row="3" data-col="1">4</td>
+                  <td data-row="3" data-col="2">sfLDOF</td>
+                  <td data-row="3" data-col="3">0</td>
+                  <td data-row="3" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="3" data-col="5">0.6</td>
+                  <td data-row="3" data-col="6">174</td>
+                  <td data-row="3" data-col="7">302</td>
+                  <td data-row="3" data-col="8">0.9</td>
+                  <td data-row="3" data-col="9">2.96</td>
+                  <td data-row="3" data-col="10">0.332</td>
+                </tr>
+<tr>
+<td data-row="4" data-col="1">10</td>
+                  <td data-row="4" data-col="2">sfHSD</td>
+                  <td data-row="4" data-col="3">-4</td>
+                  <td data-row="4" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="4" data-col="5">0.6</td>
+                  <td data-row="4" data-col="6">174</td>
+                  <td data-row="4" data-col="7">302</td>
+                  <td data-row="4" data-col="8">0.9</td>
+                  <td data-row="4" data-col="9">2.75</td>
+                  <td data-row="4" data-col="10">0.332</td>
+                </tr>
+<tr>
+<td data-row="5" data-col="1">13</td>
+                  <td data-row="5" data-col="2">sfHSD</td>
+                  <td data-row="5" data-col="3">0</td>
+                  <td data-row="5" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="5" data-col="5">0.6</td>
+                  <td data-row="5" data-col="6">185</td>
+                  <td data-row="5" data-col="7">320</td>
+                  <td data-row="5" data-col="8">0.9</td>
+                  <td data-row="5" data-col="9">2.4</td>
+                  <td data-row="5" data-col="10">-0.638</td>
+                </tr>
+<tr>
+<td data-row="6" data-col="1">16</td>
+                  <td data-row="6" data-col="2">sfHSD</td>
+                  <td data-row="6" data-col="3">0</td>
+                  <td data-row="6" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="6" data-col="5">0.6</td>
+                  <td data-row="6" data-col="6">188</td>
+                  <td data-row="6" data-col="7">326</td>
+                  <td data-row="6" data-col="8">0.9</td>
+                  <td data-row="6" data-col="9">2.24</td>
+                  <td data-row="6" data-col="10">0.423</td>
+                </tr>
+<tr>
+<td data-row="7" data-col="1">22</td>
+                  <td data-row="7" data-col="2">sfHSD</td>
+                  <td data-row="7" data-col="3">4</td>
+                  <td data-row="7" data-col="4">0.5, 0.75, 1</td>
+                  <td data-row="7" data-col="5">0.6</td>
+                  <td data-row="7" data-col="6">224</td>
+                  <td data-row="7" data-col="7">388</td>
+                  <td data-row="7" data-col="8">0.9</td>
+                  <td data-row="7" data-col="9">2.01</td>
+                  <td data-row="7" data-col="10">0.651</td>
+                </tr>
+<tr>
+<td data-row="8" data-col="1">19</td>
+                  <td data-row="8" data-col="2">sfHSD</td>
+                  <td data-row="8" data-col="3">4</td>
+                  <td data-row="8" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="8" data-col="5">0.6</td>
+                  <td data-row="8" data-col="6">226</td>
+                  <td data-row="8" data-col="7">392</td>
+                  <td data-row="8" data-col="8">0.9</td>
+                  <td data-row="8" data-col="9">2.08</td>
+                  <td data-row="8" data-col="10">-0.428</td>
+                </tr>
+<tr>
+<td data-row="9" data-col="1">2</td>
+                  <td data-row="9" data-col="2">sfLDOF</td>
+                  <td data-row="9" data-col="3">0</td>
+                  <td data-row="9" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="9" data-col="5">0.675</td>
+                  <td data-row="9" data-col="6">288</td>
+                  <td data-row="9" data-col="7">482</td>
+                  <td data-row="9" data-col="8">0.9</td>
+                  <td data-row="9" data-col="9">3.73</td>
+                  <td data-row="9" data-col="10">-0.719</td>
+                </tr>
+<tr>
+<td data-row="10" data-col="1">8</td>
+                  <td data-row="10" data-col="2">sfHSD</td>
+                  <td data-row="10" data-col="3">-4</td>
+                  <td data-row="10" data-col="4">0.33, 0.67, 1</td>
+                  <td data-row="10" data-col="5">0.675</td>
+                  <td data-row="10" data-col="6">289</td>
+                  <td data-row="10" data-col="7">484</td>
+                  <td data-row="10" data-col="8">0.9</td>
+                  <td data-row="10" data-col="9">3.02</td>
+                  <td data-row="10" data-col="10">-0.716</td>
+                </tr>
+</tbody>
+</table>
+</div>
+<!-- hack to avoid NA insertion in last line -->
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">job_surv</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span>metric <span class="op">=</span> <span class="st">"final_events"</span>, x <span class="op">=</span> <span class="st">"hr"</span>, color <span class="op">=</span> <span class="st">"upper_fun"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gsDesignTune_files/figure-html/unnamed-chunk-9-1.svg" class="r-plt" alt="" width="80%" style="display: block; margin: auto;"></p>
@@ -466,7 +3265,7 @@ timing.</p>
 <code class="sourceCode R"><span><span class="va">report_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".html"</span><span class="op">)</span></span>
 <span><span class="va">job_surv</span><span class="op">$</span><span class="fu">report</span><span class="op">(</span><span class="va">report_path</span><span class="op">)</span></span>
 <span><span class="va">report_path</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpfgPNKG/file1d5f76ff28c8.html"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/RtmpDqlBRP/file1d705a2d4d1c.html"</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

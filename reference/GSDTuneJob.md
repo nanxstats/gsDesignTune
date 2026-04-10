@@ -51,6 +51,8 @@ or
 
 - [`GSDTuneJob$summarize()`](#method-GSDTuneJob-summarize)
 
+- [`GSDTuneJob$table()`](#method-GSDTuneJob-table)
+
 - [`GSDTuneJob$design()`](#method-GSDTuneJob-design)
 
 - [`GSDTuneJob$call_args()`](#method-GSDTuneJob-call_args)
@@ -148,6 +150,63 @@ Summarize the run (counts + numeric metric summaries).
 #### Usage
 
     GSDTuneJob$summarize()
+
+------------------------------------------------------------------------
+
+### Method [`table()`](https://rdrr.io/r/base/table.html)
+
+Render a compact results table with tinytable.
+
+Returns a `tinytable` object which knits to HTML/LaTeX automatically in
+R Markdown and can also be printed explicitly with
+`print(x, output = "html")` or `print(x, output = "latex")`.
+
+#### Usage
+
+    GSDTuneJob$table(
+      data = NULL,
+      columns = NULL,
+      n = NULL,
+      caption = NULL,
+      notes = NULL,
+      digits = 3,
+      theme = "striped"
+    )
+
+#### Arguments
+
+- `data`:
+
+  Optional results-like data.frame to render. Defaults to `$results()`.
+
+- `columns`:
+
+  Optional character vector of columns to display, in order. When
+  `NULL`, a compact default set is chosen automatically. Explicit column
+  selections are preserved, including audit/internal columns.
+
+- `n`:
+
+  Optional number of rows to display.
+
+- `caption`:
+
+  Optional table caption.
+
+- `notes`:
+
+  Optional table notes passed to
+  [`tinytable::tt()`](https://vincentarelbundock.github.io/tinytable/man/tt.html).
+
+- `digits`:
+
+  Number of digits for numeric columns.
+
+- `theme`:
+
+  Tinytable theme passed to
+  [`tinytable::tt()`](https://vincentarelbundock.github.io/tinytable/man/tt.html).
+  Defaults to `"striped"`.
 
 ------------------------------------------------------------------------
 

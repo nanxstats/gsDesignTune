@@ -39,7 +39,7 @@ GSDTuneJob"></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>GSDTuneJob</h1>
-      <small class="dont-index">Source: <a href="https://github.com/nanxstats/gsDesignTune/blob/v0.1.0/R/job.R" class="external-link"><code>R/job.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/nanxstats/gsDesignTune/blob/main/R/job.R" class="external-link"><code>R/job.R</code></a></small>
       <div class="d-none name"><code>GSDTuneJob.Rd</code></div>
     </div>
 
@@ -92,6 +92,7 @@ designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gs
 <li><p><a href="#method-GSDTuneJob-run"><code>GSDTuneJob$run()</code></a></p></li>
 <li><p><a href="#method-GSDTuneJob-results"><code>GSDTuneJob$results()</code></a></p></li>
 <li><p><a href="#method-GSDTuneJob-summarize"><code>GSDTuneJob$summarize()</code></a></p></li>
+<li><p><a href="#method-GSDTuneJob-table"><code>GSDTuneJob$table()</code></a></p></li>
 <li><p><a href="#method-GSDTuneJob-design"><code>GSDTuneJob$design()</code></a></p></li>
 <li><p><a href="#method-GSDTuneJob-call_args"><code>GSDTuneJob$call_args()</code></a></p></li>
 <li><p><a href="#method-GSDTuneJob-best"><code>GSDTuneJob$best()</code></a></p></li>
@@ -178,27 +179,66 @@ designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gs
 </div>
 
 
-</div><p></p><hr><a id="method-GSDTuneJob-design"></a><div class="section">
-<h3 id="method-design-">Method <code>design()</code><a class="anchor" aria-label="anchor" href="#method-design-"></a></h3>
-<p>Retrieve a design object for configuration <code>i</code>.</p><div class="section">
+</div><p></p><hr><a id="method-GSDTuneJob-table"></a><div class="section">
+<h3 id="method-table-">Method <code><a href="https://rdrr.io/r/base/table.html" class="external-link">table()</a></code><a class="anchor" aria-label="anchor" href="#method-table-"></a></h3>
+<p>Render a compact results table with tinytable.</p>
+<p>Returns a <code>tinytable</code> object which knits to HTML/LaTeX automatically in
+R Markdown and can also be printed explicitly with
+<code>print(x, output = "html")</code> or <code>print(x, output = "latex")</code>.</p><div class="section">
 <h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">design</span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">table</span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  columns <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  n <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  notes <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  digits <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  theme <span class="op">=</span> <span class="st">"striped"</span></span>
+<span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>i</code></dt>
-<dd><p>Row index of the configuration.</p></dd>
+<p></p><div class="arguments"><dl><dt><code>data</code></dt>
+<dd><p>Optional results-like data.frame to render. Defaults to
+<code>$results()</code>.</p></dd>
+
+
+<dt><code>columns</code></dt>
+<dd><p>Optional character vector of columns to display, in order.
+When <code>NULL</code>, a compact default set is chosen automatically. Explicit
+column selections are preserved, including audit/internal columns.</p></dd>
+
+
+<dt><code>n</code></dt>
+<dd><p>Optional number of rows to display.</p></dd>
+
+
+<dt><code>caption</code></dt>
+<dd><p>Optional table caption.</p></dd>
+
+
+<dt><code>notes</code></dt>
+<dd><p>Optional table notes passed to <code><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tinytable::tt()</a></code>.</p></dd>
+
+
+<dt><code>digits</code></dt>
+<dd><p>Number of digits for numeric columns.</p></dd>
+
+
+<dt><code>theme</code></dt>
+<dd><p>Tinytable theme passed to <code><a href="https://vincentarelbundock.github.io/tinytable/man/tt.html" class="external-link">tinytable::tt()</a></code>. Defaults to
+<code>"striped"</code>.</p></dd>
 
 
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-GSDTuneJob-call_args"></a><div class="section">
-<h3 id="method-call-args-">Method <code>call_args()</code><a class="anchor" aria-label="anchor" href="#method-call-args-"></a></h3>
-<p>Return the underlying argument list for configuration <code>i</code>.</p><div class="section">
+</div><p></p><hr><a id="method-GSDTuneJob-design"></a><div class="section">
+<h3 id="method-design-">Method <code>design()</code><a class="anchor" aria-label="anchor" href="#method-design-"></a></h3>
+<p>Retrieve a design object for configuration <code>i</code>.</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">call_args</span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">design</span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -210,15 +250,31 @@ designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gs
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-GSDTuneJob-best"></a><div class="section">
-<h3 id="method-best-">Method <code>best()</code><a class="anchor" aria-label="anchor" href="#method-best-"></a></h3>
-<p>Rank configurations by a metric (with optional constraints).</p><div class="section">
+</div><p></p><hr><a id="method-GSDTuneJob-call_args"></a><div class="section">
+<h3 id="method-call-args-">Method <code>call_args()</code><a class="anchor" aria-label="anchor" href="#method-call-args-"></a></h3>
+<p>Return the underlying argument list for configuration <code>i</code>.</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">best</span><span class="op">(</span><span class="va">metric</span>, direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"min"</span>, <span class="st">"max"</span><span class="op">)</span>, constraints <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">call_args</span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-4">Arguments<a class="anchor" aria-label="anchor" href="#arguments-4"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>i</code></dt>
+<dd><p>Row index of the configuration.</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-GSDTuneJob-best"></a><div class="section">
+<h3 id="method-best-">Method <code>best()</code><a class="anchor" aria-label="anchor" href="#method-best-"></a></h3>
+<p>Rank configurations by a metric (with optional constraints).</p><div class="section">
+<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">best</span><span class="op">(</span><span class="va">metric</span>, direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"min"</span>, <span class="st">"max"</span><span class="op">)</span>, constraints <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>metric</code></dt>
 <dd><p>Metric column name.</p></dd>
 
@@ -237,12 +293,12 @@ designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gs
 </div><p></p><hr><a id="method-GSDTuneJob-pareto"></a><div class="section">
 <h3 id="method-pareto-">Method <code>pareto()</code><a class="anchor" aria-label="anchor" href="#method-pareto-"></a></h3>
 <p>Compute a Pareto (non-dominated) set for multiple metrics.</p><div class="section">
-<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
+<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">pareto</span><span class="op">(</span><span class="va">metrics</span>, <span class="va">directions</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-5">Arguments<a class="anchor" aria-label="anchor" href="#arguments-5"></a></h4>
+<h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>metrics</code></dt>
 <dd><p>Metric column names.</p></dd>
 
@@ -257,12 +313,12 @@ designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gs
 </div><p></p><hr><a id="method-GSDTuneJob-plot"></a><div class="section">
 <h3 id="method-plot-">Method <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code><a class="anchor" aria-label="anchor" href="#method-plot-"></a></h3>
 <p>Create a quick exploration plot.</p><div class="section">
-<h4 id="usage-8">Usage<a class="anchor" aria-label="anchor" href="#usage-8"></a></h4>
+<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span><span class="va">metric</span>, <span class="va">x</span>, color <span class="op">=</span> <span class="cn">NULL</span>, facet <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-6">Arguments<a class="anchor" aria-label="anchor" href="#arguments-6"></a></h4>
+<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>metric</code></dt>
 <dd><p>Y-axis metric column name.</p></dd>
 
@@ -285,12 +341,12 @@ designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gs
 </div><p></p><hr><a id="method-GSDTuneJob-report"></a><div class="section">
 <h3 id="method-report-">Method <code>report()</code><a class="anchor" aria-label="anchor" href="#method-report-"></a></h3>
 <p>Render an HTML report.</p><div class="section">
-<h4 id="usage-9">Usage<a class="anchor" aria-label="anchor" href="#usage-9"></a></h4>
+<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">report</span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-7">Arguments<a class="anchor" aria-label="anchor" href="#arguments-7"></a></h4>
+<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>path</code></dt>
 <dd><p>Output HTML file path.</p></dd>
 
@@ -301,12 +357,12 @@ designs created by <code><a href="https://keaven.github.io/gsDesign/reference/gs
 </div><p></p><hr><a id="method-GSDTuneJob-clone"></a><div class="section">
 <h3 id="method-clone-">Method <code>clone()</code><a class="anchor" aria-label="anchor" href="#method-clone-"></a></h3>
 <p>The objects of this class are cloneable with this method.</p><div class="section">
-<h4 id="usage-10">Usage<a class="anchor" aria-label="anchor" href="#usage-10"></a></h4>
+<h4 id="usage-11">Usage<a class="anchor" aria-label="anchor" href="#usage-11"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">GSDTuneJob</span><span class="op">$</span><span class="fu">clone</span><span class="op">(</span>deep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
-<h4 id="arguments-8">Arguments<a class="anchor" aria-label="anchor" href="#arguments-8"></a></h4>
+<h4 id="arguments-9">Arguments<a class="anchor" aria-label="anchor" href="#arguments-9"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>deep</code></dt>
 <dd><p>Whether to make a deep clone.</p></dd>
 

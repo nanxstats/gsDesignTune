@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/nanxstats/gsDesignTune/blob/v0.1.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/nanxstats/gsDesignTune/blob/main/DESCRIPTION)
 
 Xiao N (2026). *gsDesignTune: Dependency-Aware Scenario Exploration for
 Group Sequential Designs*. R package version 0.1.0,

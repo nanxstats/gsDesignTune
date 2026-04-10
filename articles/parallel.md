@@ -58,38 +58,16 @@ job <- gsDesignTune(
 )
 
 job$run(strategy = "random", n = 5, parallel = FALSE, seed = 123)
-head(job$results())
-#>   upper_setting       timing upper_fun upper_par config_id status error_message
-#> 1  function.... 0.5, 0.75, 1     sfHSD        -2         1     ok          <NA>
-#> 2  function.... 0.5, 0.75, 1     sfHSD        -2         2     ok          <NA>
-#> 3  function.... 0.5, 0.75, 1     sfHSD        -4         3     ok          <NA>
-#> 4  function.... 0.33, 0.....     sfHSD        -2         4     ok          <NA>
-#> 5  function.... 0.5, 0.75, 1     sfHSD         0         5     ok          <NA>
-#>   warnings                        cache_key design_rds    call_args k test.type
-#> 1     <NA> 9a58b4eeb3847992f01dadc5c9317c92       <NA> 3, 2, 0..... 3         2
-#> 2     <NA> 9a58b4eeb3847992f01dadc5c9317c92       <NA> 3, 2, 0..... 3         2
-#> 3     <NA> 1efc77f880a86f1016c08b31ff8b0e9a       <NA> 3, 2, 0..... 3         2
-#> 4     <NA> 10536dd2fa170ecc0af4ea40d0cfb733       <NA> 3, 2, 0..... 3         2
-#> 5     <NA> 93a3a5c5b477581dbce058508a1ed2e3       <NA> 3, 2, 0..... 3         2
-#>   alpha beta          n_I final_n_I      upper_z      lower_z      upper_p
-#> 1 0.025  0.1 0.523934....  1.047869 2.4717, .... -2.4717,.... 0.0067, ....
-#> 2 0.025  0.1 0.523934....  1.047869 2.4717, .... -2.4717,.... 0.0067, ....
-#> 3 0.025  0.1 0.509227....  1.018456 2.75, 2..... -2.75, -.... 0.003, 0....
-#> 4 0.025  0.1 0.344287....  1.043295 2.6821, .... -2.6821,.... 0.0037, ....
-#> 5 0.025  0.1 0.555438....  1.110878 2.2414, .... -2.2414,.... 0.0125, ....
-#>        lower_p     power           en        upper_name        lower_name
-#> 1 0.0067, .... 0.8999999 1.037208.... Hwang-Shih-DeCani Hwang-Shih-DeCani
-#> 2 0.0067, .... 0.8999999 1.037208.... Hwang-Shih-DeCani Hwang-Shih-DeCani
-#> 3 0.003, 0.... 0.9000000 1.012404.... Hwang-Shih-DeCani Hwang-Shih-DeCani
-#> 4 0.0037, .... 0.9000000 1.033104.... Hwang-Shih-DeCani Hwang-Shih-DeCani
-#> 5 0.0125, .... 0.9000000 1.093520.... Hwang-Shih-DeCani Hwang-Shih-DeCani
-#>   bound_summary  final_n    max_n upper_z1 lower_z1
-#> 1  c("IA 1:.... 1.047869 1.047869   2.4717  -2.4717
-#> 2  c("IA 1:.... 1.047869 1.047869   2.4717  -2.4717
-#> 3  c("IA 1:.... 1.018456 1.018456   2.7500  -2.7500
-#> 4  c("IA 1:.... 1.043295 1.043295   2.6821  -2.6821
-#> 5  c("IA 1:.... 1.110878 1.110878   2.2414  -2.2414
+job$table()
 ```
+
+| Config ID | Upper parameter | Timing        | Final N | Power | Upper Z (IA1) | Lower Z (IA1) |
+|-----------|-----------------|---------------|---------|-------|---------------|---------------|
+| 1         | -2              | 0.5, 0.75, 1  | 1.05    | 0.9   | 2.47          | -2.47         |
+| 2         | -2              | 0.5, 0.75, 1  | 1.05    | 0.9   | 2.47          | -2.47         |
+| 3         | -4              | 0.5, 0.75, 1  | 1.02    | 0.9   | 2.75          | -2.75         |
+| 4         | -2              | 0.33, 0.67, 1 | 1.04    | 0.9   | 2.68          | -2.68         |
+| 5         | 0               | 0.5, 0.75, 1  | 1.11    | 0.9   | 2.24          | -2.24         |
 
 ## Export a report
 
@@ -97,5 +75,5 @@ head(job$results())
 report_path <- tempfile(fileext = ".html")
 job$report(report_path)
 report_path
-#> [1] "/tmp/RtmpwyieCZ/file1d9f2db15059.html"
+#> [1] "/tmp/RtmpsGNPlO/file1db02e108dbf.html"
 ```

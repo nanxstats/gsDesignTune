@@ -40,15 +40,17 @@ job1 <- gsSurvTune(
 
 job1$run(strategy = "grid", parallel = FALSE)
 res1 <- job1$results()
-head(res1[, c("hr", "upper_fun", "upper_par", "final_events")])
-#>     hr upper_fun upper_par final_events
-#> 1 0.65    sfLDOF         0     239.6915
-#> 2 0.70    sfLDOF         0     349.7268
-#> 3 0.65     sfHSD        -4     240.4291
-#> 4 0.70     sfHSD        -4     350.8029
-#> 5 0.65     sfHSD         0     260.3331
-#> 6 0.70     sfHSD         0     379.8442
+job1$table(columns = c("hr", "upper_fun", "upper_par", "final_events"), n = 6)
 ```
+
+| HR   | Upper bound | Upper parameter | Final events |
+|------|-------------|-----------------|--------------|
+| 0.65 | sfLDOF      | 0               | 240          |
+| 0.7  | sfLDOF      | 0               | 350          |
+| 0.65 | sfHSD       | -4              | 240          |
+| 0.7  | sfHSD       | -4              | 351          |
+| 0.65 | sfHSD       | 0               | 260          |
+| 0.7  | sfHSD       | 0               | 380          |
 
 ## Advanced: `tune_dep()`
 
@@ -80,15 +82,17 @@ job2 <- gsSurvTune(
 
 job2$run(strategy = "grid", parallel = FALSE)
 res2 <- job2$results()
-head(res2[, c("hr", "sfu", "sfupar", "final_events")])
-#>     hr              sfu sfupar final_events
-#> 1 0.65 gsDesign::sfLDOF      0     239.6915
-#> 2 0.65  gsDesign::sfHSD     -4     240.4291
-#> 3 0.65  gsDesign::sfHSD      0     260.3331
-#> 4 0.65  gsDesign::sfHSD      4     317.9218
-#> 5 0.70 gsDesign::sfLDOF      0     349.7268
-#> 6 0.70  gsDesign::sfHSD     -4     350.8029
+job2$table(columns = c("hr", "sfu", "sfupar", "final_events"), n = 6)
 ```
+
+| HR   | Sfu              | Sfupar | Final events |
+|------|------------------|--------|--------------|
+| 0.65 | gsDesign::sfLDOF | 0      | 240          |
+| 0.65 | gsDesign::sfHSD  | -4     | 240          |
+| 0.65 | gsDesign::sfHSD  | 0      | 260          |
+| 0.65 | gsDesign::sfHSD  | 4      | 318          |
+| 0.7  | gsDesign::sfLDOF | 0      | 350          |
+| 0.7  | gsDesign::sfHSD  | -4     | 351          |
 
 ``` r
 job2$plot(metric = "final_events", x = "hr", color = "sfu")
@@ -102,5 +106,5 @@ job2$plot(metric = "final_events", x = "hr", color = "sfu")
 report_path <- tempfile(fileext = ".html")
 job2$report(report_path)
 report_path
-#> [1] "/tmp/RtmpgtvDoE/file1ddf191af5ad.html"
+#> [1] "/tmp/RtmpAfGjTQ/file1df01129977.html"
 ```

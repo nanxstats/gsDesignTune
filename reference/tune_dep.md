@@ -48,7 +48,7 @@ tune_dep(
 #>         tune_fixed(0)
 #>     else tune_seq(-4, 4, 9)
 #> }
-#> <environment: 0x558236c9a3d0>
+#> <environment: 0x5615fcde6600>
 #> 
 #> $call
 #> tune_dep(depends_on = "sfu", map = function(sfu) {
