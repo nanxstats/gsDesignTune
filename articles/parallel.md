@@ -75,5 +75,5 @@ job$table()
 report_path <- tempfile(fileext = ".html")
 job$report(report_path)
 report_path
-#> [1] "/tmp/RtmpsGNPlO/file1db02e108dbf.html"
+#> [1] "/tmp/RtmpSbfbzG/file1cdd5450d33b.html"
 ```

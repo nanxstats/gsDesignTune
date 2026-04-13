@@ -1,7 +1,7 @@
 # AGENTS.md
 
 gsDesignTune prioritizes **user experience, reproducibility, and
-auditability** for systematic design-space exploration of group
+auditability** for systematic design space exploration of group
 sequential designs from {gsDesign}. Keep changes small, explicit, and
 easy to review.
 

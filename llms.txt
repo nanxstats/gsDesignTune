@@ -2,7 +2,7 @@
 
 Enables systematic, dependency-aware scenario exploration for group
 sequential designs created by gsDesign. gsDesignTune is built for
-**design-space evaluation** (ranking, filtering, Pareto trade-offs)
+**design space evaluation** (ranking, filtering, Pareto trade-offs)
 rather than claiming a single “optimal design”. With a focus on user
 experience, correctness, and speed, it supports off-the-shelf parallel
 processing with progress tracking, caching, and reproducible reporting.
