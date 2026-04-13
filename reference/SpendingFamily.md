@@ -94,7 +94,7 @@ fam$expand()
 #>     class(x) <- "spendfn"
 #>     x
 #> }
-#> <bytecode: 0x55a5d7fe0558>
+#> <bytecode: 0x55b9f30b7870>
 #> <environment: namespace:gsDesign>
 #> 
 #> $fun_label
@@ -132,7 +132,7 @@ fam$expand()
 #>     class(x) <- "spendfn"
 #>     x
 #> }
-#> <bytecode: 0x55a5d7fecfb0>
+#> <bytecode: 0x55b9f30cbd58>
 #> <environment: namespace:gsDesign>
 #> 
 #> $fun_label

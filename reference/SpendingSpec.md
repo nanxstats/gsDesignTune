@@ -103,7 +103,7 @@ spec$expand()
 #>     class(x) <- "spendfn"
 #>     x
 #> }
-#> <bytecode: 0x55a5d7fe0558>
+#> <bytecode: 0x55b9f30b7870>
 #> <environment: namespace:gsDesign>
 #> 
 #> $fun_label
@@ -130,7 +130,7 @@ spec$expand()
 #>     class(x) <- "spendfn"
 #>     x
 #> }
-#> <bytecode: 0x55a5d7fe0558>
+#> <bytecode: 0x55b9f30b7870>
 #> <environment: namespace:gsDesign>
 #> 
 #> $fun_label

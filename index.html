@@ -63,8 +63,11 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of gsDesignTune from GitHub with:</p>
+<p>You can install gsDesignTune from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"gsDesignTune"</span><span class="op">)</span></span></code></pre></div>
+<p>Or try the development version from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"nanxstats/gsDesignTune"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -84,7 +87,7 @@
 <h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
 <p>Evaluate time-to-event designs:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://keaven.github.io/gsDesign/" class="external-link">gsDesign</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nanx.me/gsDesignTune/">gsDesignTune</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://future.futureverse.org" class="external-link">future</a></span><span class="op">)</span></span>
@@ -265,7 +268,7 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">job</span><span class="op">$</span><span class="fu">best</span><span class="op">(</span><span class="st">"final_events"</span>, direction <span class="op">=</span> <span class="st">"min"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="va">job</span><span class="op">$</span><span class="fu">table</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
@@ -416,7 +419,7 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">job</span><span class="op">$</span><span class="fu">pareto</span><span class="op">(</span></span>
 <span>  metrics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"final_events"</span>, <span class="st">"upper_z1"</span><span class="op">)</span>,</span>
 <span>  directions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"min"</span>, <span class="st">"min"</span><span class="op">)</span></span>
@@ -557,10 +560,10 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">job</span><span class="op">$</span><span class="fu">plot</span><span class="op">(</span>metric <span class="op">=</span> <span class="st">"final_events"</span>, x <span class="op">=</span> <span class="st">"hr"</span>, color <span class="op">=</span> <span class="st">"upper_fun"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example-1.svg" alt="" width="100%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">job</span><span class="op">$</span><span class="fu">report</span><span class="op">(</span><span class="st">"gstune_report.html"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
