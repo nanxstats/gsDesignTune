@@ -18,8 +18,13 @@ processing with progress tracking, caching, and reproducible reporting.
 
 ## Installation
 
-You can install the development version of gsDesignTune from GitHub
-with:
+You can install gsDesignTune from CRAN:
+
+``` r
+install.packages("gsDesignTune")
+```
+
+Or try the development version from GitHub:
 
 ``` r
 # install.packages("pak")
